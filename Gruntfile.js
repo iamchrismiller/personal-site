@@ -6,9 +6,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-bower-task');
   grunt.loadNpmTasks('grunt-jquery-builder');
-
-  grunt.loadNpmTasks('grunt-github-pages');
-  grunt.loadNpmTasks('grunt-build-gh-pages');
+  grunt.loadNpmTasks('grunt-release-branch');
 
   require('matchdep')
     .filter('grunt-*')
@@ -42,7 +40,7 @@ module.exports = function (grunt) {
   ]);
 
 
-  grunt.registerTask('ghpages', ['build_gh_pages']);
+  grunt.registerTask('release', ['releaseBranch:release']);
 
 };
 
