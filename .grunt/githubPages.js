@@ -3,6 +3,6 @@ module.exports = {
     options : {
       commitMessage : 'ph-pages build'
     },
-    src     : './public'
+    src     : 'public'
   }
 };
