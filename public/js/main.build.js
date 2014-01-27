@@ -513,7 +513,7 @@ Snake.prototype.getNextMove = function() {
 
 module.exports = Snake;
 },{"./Particle":1,"./util/cookie":4}],3:[function(require,module,exports){
-/*global $, require*/
+/*global $, require, NProgress*/
 
 //Snake Game Container
 var Snake = require('./Snake');
@@ -529,6 +529,7 @@ var app = {
     this.snake.start();
     this.bindEvents();
     this.shuffleHeader();
+    NProgress.done();
   },
 
   shuffleHeader : function() {
@@ -560,8 +561,9 @@ var app = {
 };
 
 
-app.start();
-
+$(document).ready(function() {
+  app.start();
+});
 },{"./Snake":2}],4:[function(require,module,exports){
 /*global module*/
 

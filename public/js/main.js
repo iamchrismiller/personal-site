@@ -1,4 +1,4 @@
-/*global $, require*/
+/*global $, require, NProgress*/
 
 //Snake Game Container
 var Snake = require('./Snake');
@@ -14,6 +14,7 @@ var app = {
     this.snake.start();
     this.bindEvents();
     this.shuffleHeader();
+    NProgress.done();
   },
 
   shuffleHeader : function() {
@@ -45,4 +46,6 @@ var app = {
 };
 
 
-app.start();
+$(document).ready(function() {
+  app.start();
+});
