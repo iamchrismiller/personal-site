@@ -32,7 +32,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('dev', [
-    'jshint',
+//    'jshint',
     'sass',
     'browserify',
     'connect',

@@ -36,7 +36,7 @@ Particle.prototype.draw = function (context) {
 
 module.exports = Particle;
 },{}],2:[function(require,module,exports){
-/**global requestAnimationFrame, require, $*/
+/*global requestAnimationFrame, module, require, $ */
 
 var Particle = require('./Particle');
 var cookie = require('./util/cookie');
@@ -118,8 +118,7 @@ Snake.prototype.reset = function() {
   if (animationTimeout) {
     clearTimeout(animationTimeout);
   }
-
-}
+};
 
 Snake.prototype.restart = function () {
   this.saveGame();
@@ -273,7 +272,6 @@ Snake.prototype.drawLoop = function() {
       break;
   }
 
-
   if (this.isWallCollision(headX, headY)) {
     this.lose();
   }
@@ -317,7 +315,7 @@ Snake.prototype.drawLoop = function() {
 
 Snake.prototype._getDirection = function () {
   var direction;
-  while (typeof direction == 'undefined' || (this.direction - direction + 4) % 4 == 2) {
+  while (typeof direction === 'undefined' || (this.direction - direction + 4) % 4 == 2) {
     if (this.dQueue.length > 0) {
       //Shift through the Queue
       direction = this.dQueue.shift();
@@ -327,7 +325,7 @@ Snake.prototype._getDirection = function () {
     }
   }
   return direction;
-}
+};
 
 
 Snake.prototype.isWallCollision = function(x,y) {
@@ -337,7 +335,7 @@ Snake.prototype.isWallCollision = function(x,y) {
     isLeftCollision = x === -1;
 
   return isTopCollision || isRightCollision  || isBottomCollision || isLeftCollision;
-}
+};
 
 Snake.prototype.isSelfCollision = function(x,y) {
   for (var i = 0; i < this.snakePieces.length; i++) {
@@ -515,6 +513,8 @@ Snake.prototype.getNextMove = function() {
 
 module.exports = Snake;
 },{"./Particle":1,"./util/cookie":4}],3:[function(require,module,exports){
+/*global $, require*/
+
 //Snake Game Container
 var Snake = require('./Snake');
 
@@ -563,6 +563,8 @@ var app = {
 app.start();
 
 },{"./Snake":2}],4:[function(require,module,exports){
+/*global module*/
+
 module.exports = {
 
   set : function (name, value, days) {
@@ -577,7 +579,7 @@ module.exports = {
     var cookies = document.cookie.split(';');
     for (var i = 0; i < cookies.length; i++) {
       var cookie = cookies[i].trim();
-      if (cookie.indexOf(name) == 0) {
+      if (cookie.indexOf(name) === 0) {
         return cookie.substring(name.length, cookie.length);
       }
     }
