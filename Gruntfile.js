@@ -42,7 +42,7 @@ module.exports = function (grunt) {
   ]);
 
 
-  grunt.registerTask('ghpages', ['githubPages:target']);
+  grunt.registerTask('ghpages', ['build_gh_pages']);
 
 };
 
