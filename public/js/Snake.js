@@ -1,4 +1,4 @@
-/**global requestAnimationFrame*/
+/*global requestAnimationFrame, module, require, $ */
 
 var Particle = require('./Particle');
 var cookie = require('./util/cookie');
@@ -80,8 +80,7 @@ Snake.prototype.reset = function() {
   if (animationTimeout) {
     clearTimeout(animationTimeout);
   }
-
-}
+};
 
 Snake.prototype.restart = function () {
   this.saveGame();
@@ -235,7 +234,6 @@ Snake.prototype.drawLoop = function() {
       break;
   }
 
-
   if (this.isWallCollision(headX, headY)) {
     this.lose();
   }
@@ -279,7 +277,7 @@ Snake.prototype.drawLoop = function() {
 
 Snake.prototype._getDirection = function () {
   var direction;
-  while (typeof direction == 'undefined' || (this.direction - direction + 4) % 4 == 2) {
+  while (typeof direction === 'undefined' || (this.direction - direction + 4) % 4 == 2) {
     if (this.dQueue.length > 0) {
       //Shift through the Queue
       direction = this.dQueue.shift();
@@ -289,17 +287,17 @@ Snake.prototype._getDirection = function () {
     }
   }
   return direction;
-}
+};
 
 
 Snake.prototype.isWallCollision = function(x,y) {
-  var isTopCollision = y == -1,
+  var isTopCollision = y === -1,
     isRightCollision = x >= canvasWidth / this.settings.snakePixels,
     isBottomCollision = y >= canvasHeight / this.settings.snakePixels,
-    isLeftCollision = x == -1;
+    isLeftCollision = x === -1;
 
   return isTopCollision || isRightCollision  || isBottomCollision || isLeftCollision;
-}
+};
 
 Snake.prototype.isSelfCollision = function(x,y) {
   for (var i = 0; i < this.snakePieces.length; i++) {

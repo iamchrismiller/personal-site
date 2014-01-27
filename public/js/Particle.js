@@ -17,7 +17,7 @@ function Particle(options) {
 }
 
 Particle.prototype.getBWHex = function () {
-  return '#' + ((!(Math.random()+.5|0) == true) ? 'FFFFFF' : '000000');
+  return '#' + ((!(Math.random()+ 0.5 | 0) === true) ? 'FFFFFF' : '000000');
 };
 
 Particle.prototype.getColor = function() {

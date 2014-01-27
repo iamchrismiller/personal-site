@@ -1,3 +1,5 @@
+/*global module*/
+
 module.exports = {
 
   set : function (name, value, days) {
@@ -12,7 +14,7 @@ module.exports = {
     var cookies = document.cookie.split(';');
     for (var i = 0; i < cookies.length; i++) {
       var cookie = cookies[i].trim();
-      if (cookie.indexOf(name) == 0) {
+      if (cookie.indexOf(name) === 0) {
         return cookie.substring(name.length, cookie.length);
       }
     }

@@ -18,7 +18,7 @@ function Particle(options) {
 }
 
 Particle.prototype.getBWHex = function () {
-  return '#' + ((!(Math.random()+.5|0) == true) ? 'FFFFFF' : '000000');
+  return '#' + ((!(Math.random()+ 0.5 | 0) === true) ? 'FFFFFF' : '000000');
 };
 
 Particle.prototype.getColor = function() {
@@ -36,7 +36,7 @@ Particle.prototype.draw = function (context) {
 
 module.exports = Particle;
 },{}],2:[function(require,module,exports){
-/**global requestAnimationFrame*/
+/**global requestAnimationFrame, require, $*/
 
 var Particle = require('./Particle');
 var cookie = require('./util/cookie');
@@ -331,10 +331,10 @@ Snake.prototype._getDirection = function () {
 
 
 Snake.prototype.isWallCollision = function(x,y) {
-  var isTopCollision = y == -1,
+  var isTopCollision = y === -1,
     isRightCollision = x >= canvasWidth / this.settings.snakePixels,
     isBottomCollision = y >= canvasHeight / this.settings.snakePixels,
-    isLeftCollision = x == -1;
+    isLeftCollision = x === -1;
 
   return isTopCollision || isRightCollision  || isBottomCollision || isLeftCollision;
 }

@@ -1,3 +1,5 @@
+/*global $, require*/
+
 //Snake Game Container
 var Snake = require('./Snake');
 

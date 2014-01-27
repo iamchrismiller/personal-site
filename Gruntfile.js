@@ -32,7 +32,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('dev', [
-//    'jshint',
+    'jshint',
     'sass',
     'browserify',
     'connect',
@@ -40,7 +40,7 @@ module.exports = function (grunt) {
   ]);
 
 
-  grunt.registerTask('ghpages', ['githubPages']);
+  grunt.registerTask('ghpages', ['githubPages:target']);
 
 };
 
