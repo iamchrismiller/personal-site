@@ -6,7 +6,9 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-bower-task');
   grunt.loadNpmTasks('grunt-jquery-builder');
+
   grunt.loadNpmTasks('grunt-github-pages');
+  grunt.loadNpmTasks('grunt-build-gh-pages');
 
   require('matchdep')
     .filter('grunt-*')
