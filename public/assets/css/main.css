@@ -1,0 +1,419 @@
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/animations\.scss}line{font-family:\000031}}
+.animate {
+  -webkit-animation-duration: .5s;
+  -moz-animation-duration: .5s;
+  -o-animation-duration: .5s;
+  animation-duration: .5s;
+  -webkit-animation-fill-mode: both;
+  -moz-animation-fill-mode: both;
+  -o-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes spin {
+  from {
+    -moz-transform: rotate(0deg);
+  }
+
+  to {
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes fadeInTop {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-1000px);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+  }
+}
+
+@-moz-keyframes fadeInTop {
+  0% {
+    opacity: 0;
+    -moz-transform: translateY(-1000px);
+  }
+
+  100% {
+    opacity: 1;
+    -moz-transform: translateY(0);
+  }
+}
+
+@-o-keyframes fadeInTop {
+  0% {
+    opacity: 0;
+    -o-transform: translateY(-1000px);
+  }
+
+  100% {
+    opacity: 1;
+    -o-transform: translateY(0);
+  }
+}
+
+@keyframes fadeInTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-1000px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/animations\.scss}line{font-family:\0000374}}
+.fadeInTop {
+  -webkit-animation-name: fadeInTop;
+  -moz-animation-name: fadeInTop;
+  -o-animation-name: fadeInTop;
+  animation-name: fadeInTop;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\000031}}
+body {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\000038}}
+body #canvas {
+  position: relative;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\0000312}}
+body a {
+  text-decoration: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\0000317}}
+body .bg {
+  position: absolute;
+  top: 0;
+  background: url("../img/bg.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\0000329}}
+body .blurred {
+  -webkit-filter: blur(4px);
+  -moz-filter: blur(4px);
+  -o-filter: blur(4px);
+  -ms-filter: blur(4px);
+  filter: blur(4px);
+  opacity: 0.8;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\0000340}}
+body .container .intro {
+  color: #FFF;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 40px;
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  transition: all 1s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\0000351}}
+body .container .intro h1 {
+  margin: 0;
+  font-weight: normal;
+  font-size: 5em;
+  color: #329ECC;
+  line-height: 1;
+  letter-spacing: -3.9px;
+  text-transform: uppercase;
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  transition: all 1s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\0000365}}
+body .container .intro h2 {
+  color: #333;
+  margin: 0 0 0 5px;
+  font-weight: normal;
+  font-size: 2em;
+  border-bottom: 1px solid;
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  transition: all 1s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\0000377}}
+body .container .intro p {
+  font-family: Georgia, serif;
+  font-size: 5em;
+  margin: 0 0 0 10px;
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  transition: all 1s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\0000386}}
+body .container .intro p.pre {
+  margin: 0;
+  font-weight: normal;
+  font-size: 2em;
+  line-height: 0.90;
+  color: #333;
+  letter-spacing: -1px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\0000397}}
+body .container .intro p.quote {
+  color: #FFFFFF;
+  margin-top: 10px;
+  font-size: 1.2em;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003104}}
+body .container .intro .social {
+  margin-top: 20px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003107}}
+body .container .intro .social i {
+  font-size: 2.8em;
+  margin-right: 20px;
+  color: #808080;
+  padding: 12px 14px;
+  opacity: .4;
+  border-radius: 50px;
+  box-shadow: 0 0 0 4px #FFF;
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  transition: all 1s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003119}}
+body .container .intro .social i:hover {
+  opacity: .7;
+  background-color: #fff;
+  color: #808080;
+  -webkit-animation: spin 2s linear infinite;
+  -moz-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003132}}
+body #menu {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  height: 320px;
+  width: 100px;
+  background: rgba(0, 0, 0, 0.2);
+  color: #FFF;
+  z-index: 1;
+  text-align: center;
+  border-top-right-radius: 40px;
+  -moz-border-top-right-radius: 40px;
+  -o-border-top-right-radius: 40px;
+  -webkit-border-top-right-radius: 40px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003147}}
+body #menu p {
+  margin: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003151}}
+body #menu ul {
+  margin: 10px auto 0px 0px;
+  list-style-type: none;
+  padding: 10px;
+  font-size: 1em;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003157}}
+body #menu ul.links {
+  margin-top: 10px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003161}}
+body #menu ul.links a.inactive {
+  text-decoration: line-through;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003167}}
+body #menu ul.shortcuts {
+  margin: 0;
+  padding: 0;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  color: #ffffff;
+  font-size: .8em;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003176}}
+body #menu ul li {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 10px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003181}}
+body #menu ul li a {
+  text-decoration: none;
+  color: #FFF;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003189}}
+body .footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.3);
+  color: white;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003197}}
+body .footer .menu-button {
+  position: absolute;
+  bottom: 0;
+  color: #FFF;
+  font-size: 2em;
+  margin-left: 5px;
+  z-index: 2;
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+/* Smartphones (landscape) ----------- */
+/* Smartphones (portrait) ----------- */
+/* iPads (portrait and landscape) ----------- */
+/* iPads (landscape) ----------- */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000320}}
+  body {
+    background-color: red;
+    border: 30px solid red;
+  }
+}
+/* iPads (portrait) ----------- */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000330}}
+  body {
+    background-color: red;
+    border: 10px solid red;
+  }
+}
+/* Even Smaller Desktops and laptops ----------- */
+@media only screen and (max-width: 480px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000342}}
+  body .container .intro {
+    text-align: center;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000345}}
+  body .container .intro .social {
+    text-align: center;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000348}}
+  body .container .intro .social i {
+    font-size: 2.8em;
+    opacity: .8;
+    background: rgba(255, 255, 255, 0.9);
+    margin-left: 15px;
+    margin-bottom: 10px;
+    margin-right: 15px;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000358}}
+  body .container .intro h1 {
+    font-size: 3.8em;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000362}}
+  body .container .intro h2 {
+    font-size: 1.6em;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000368}}
+  body .container .intro p.quote {
+    color: #333;
+    font-size: 1.1em;
+    font-variant: small-caps;
+    text-align: center;
+  }
+}
+/* Smaller Desktops and laptops ----------- */
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000387}}
+  body .container .intro {
+    text-align: center;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000390}}
+  body .container .intro p {
+    font-size: 3em;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000393}}
+  body .container .intro p.tagline {
+    font-size: 1.3em;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000397}}
+  body .container .intro p.quote {
+    font-size: 1.0em;
+  }
+}
+/* Smaller Desktops and laptops ----------- */
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003113}}
+  body .container .intro {
+    text-align: center;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003116}}
+  body .container .intro p {
+    font-size: 3em;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003119}}
+  body .container .intro p.tagline {
+    font-size: 1.3em;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003123}}
+  body .container .intro p.quote {
+    font-size: 1.0em;
+  }
+}
+/* Mid Desktops and laptops ----------- */
+@media only screen and (min-width: 769px) and (max-width: 996px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003140}}
+  body .container .intro p {
+    font-size: 3em;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003143}}
+  body .container .intro p.tagline {
+    font-size: 1.4em;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003147}}
+  body .container .intro p.quote {
+    font-size: 1.0em;
+  }
+}
+/* Desktops and laptops ----------- */
+@media only screen and (min-width: 997px) and (max-width: 1224px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003163}}
+  body .container .intro p {
+    font-size: 4em;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003166}}
+  body .container .intro p.tagline {
+    font-size: 1.6em;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003170}}
+  body .container .intro p.quote {
+    font-size: 1.1em;
+  }
+}
+/* Large screens ----------- */
+/* iPhone 4 ----------- */

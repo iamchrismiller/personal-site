@@ -1,0 +1,209 @@
+body {
+  font-family : "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight : 300;
+  margin      : 0;
+  padding     : 0;
+  overflow    : hidden;
+
+  #canvas {
+    position : relative;
+  }
+
+  a {
+    text-decoration : none;
+  }
+
+
+  .bg {
+    position                : absolute;
+    top                     : 0;
+    background              : url('../img/bg.jpg') no-repeat center center fixed;
+    -webkit-background-size : cover;
+    -moz-background-size    : cover;
+    -o-background-size      : cover;
+    background-size         : cover;
+    height                  : 100%;
+    width                   : 100%;
+  }
+
+  .blurred {
+    -webkit-filter : blur(4px);
+    -moz-filter    : blur(4px);
+    -o-filter      : blur(4px);
+    -ms-filter     : blur(4px);
+    filter         : blur(4px);
+    opacity        : 0.8;
+  }
+
+  .container {
+
+    .intro {
+      color              : #FFF;
+      position           : absolute;
+      top                : 0;
+      left               : 0;
+      padding            : 40px;
+
+      -webkit-transition : all 1s;
+      -moz-transition    : all 1s;
+      transition         : all 1s;
+
+      h1 {
+        margin: 0;
+        font-weight: normal;
+        font-size: 5em;
+        color: #329ECC;
+        line-height: 1;
+        letter-spacing: -3.9px;
+        text-transform: uppercase;
+
+        -webkit-transition : all 1s;
+        -moz-transition    : all 1s;
+        transition         : all 1s;
+      }
+
+      h2 {
+        color: #333;
+        margin: 0 0 0 5px;
+        font-weight: normal;
+        font-size: 2em;
+        border-bottom: 1px solid;
+
+        -webkit-transition : all 1s;
+        -moz-transition    : all 1s;
+        transition         : all 1s;
+      }
+
+      p {
+        font-family : Georgia, serif;
+        font-size   : 5em;
+        margin      : 0 0 0 10px;
+
+        -webkit-transition : all 1s;
+        -moz-transition    : all 1s;
+        transition         : all 1s;
+
+        &.pre {
+          margin: 0;
+          font-weight: normal;
+          font-size: 2em;
+          line-height: 0.90;
+          color: #333;
+          letter-spacing: -1px;
+
+
+        }
+
+        &.quote {
+          color : #FFFFFF;
+          margin-top : 10px;
+          font-size  : 1.2em;
+        }
+      }
+
+      .social {
+        margin-top : 20px;
+
+        i {
+          font-size          : 2.8em;
+          margin-right       : 20px;
+          color              : #808080;
+          padding            : 12px 14px;
+          opacity            : .4;
+          border-radius      : 50px;
+          box-shadow         : 0 0 0 4px #FFF;
+          -webkit-transition : all 1s;
+          -moz-transition    : all 1s;
+          transition         : all 1s;
+
+          &:hover {
+            opacity           : .7;
+            background-color  : #fff;
+            color             : #808080;
+            -webkit-animation : spin 2s linear infinite;
+            -moz-animation    : spin 2s linear infinite;
+            animation         : spin 2s linear infinite;
+          }
+        }
+      }
+    }
+  }
+
+  #menu {
+    display                         : none;
+    position                        : absolute;
+    bottom                          : 0;
+    height                          : 320px;
+    width                           : 100px;
+    background                      : rgba(0, 0, 0, 0.2);
+    color                           : #FFF;
+    z-index                         : 1;
+    text-align                      : center;
+    border-top-right-radius         : 40px;
+    -moz-border-top-right-radius    : 40px;
+    -o-border-top-right-radius      : 40px;
+    -webkit-border-top-right-radius : 40px;
+
+    p {
+      margin : 0;
+    }
+
+    ul {
+      margin          : 10px auto 0px 0px;
+      list-style-type : none;
+      padding         : 10px;
+      font-size       : 1em;
+
+      &.links {
+        margin-top : 10px;
+
+        a {
+          &.inactive {
+            text-decoration:line-through;
+          }
+        }
+      }
+
+      &.shortcuts {
+        margin        : 0;
+        padding       : 0;
+        margin-top    : 15px;
+        margin-bottom : 5px;
+        color         : #ffffff;
+        font-size     : .8em;
+      }
+
+      li {
+        margin        : 0;
+        padding       : 0;
+        margin-bottom : 10px;
+
+        a {
+          text-decoration : none;
+          color           : #FFF;
+        }
+      }
+    }
+  }
+
+  .footer {
+    position   : absolute;
+    bottom     : 0;
+    width      : 100%;
+    height     : 40px;
+    background : rgba(0, 0, 0, 0.3);
+    color      : white;
+
+    .menu-button {
+      position    : absolute;
+      bottom      : 0;
+      color       : #FFF;
+      font-size   : 2em;
+      margin-left : 5px;
+      z-index     : 2;
+    }
+
+  }
+
+}
+
