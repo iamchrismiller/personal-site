@@ -35,6 +35,7 @@ module.exports = function (grunt) {
 //    'jshint',
     'sass',
     'browserify',
+    'uglify',
     'connect',
     'watch'
   ]);
