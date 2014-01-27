@@ -40,7 +40,7 @@ module.exports = function (grunt) {
   ]);
 
 
-  grunt.registerTask('release', ['releaseBranch:release']);
+  grunt.registerTask('release', ['releaseBranchPre', 'releaseBranch:release']);
 
 };
 
