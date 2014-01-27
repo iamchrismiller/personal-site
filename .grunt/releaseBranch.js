@@ -3,7 +3,7 @@ module.exports = {
     options: {
       releaseBranch: 'gh-pages',
       remoteRepository: 'origin',
-      cwd: '../',
+      cwd: '.',
       distDir: 'public',
       commitMessage: 'Build GH-Pages.',
       commit: false,
