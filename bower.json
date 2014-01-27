@@ -1,12 +1,18 @@
 {
-  "name": "personal-site",
-  "version": "1.0.0",
-  "ignore": [
+  "name"            : "personal-site",
+  "version"         : "1.0.0",
+  "ignore"          : [
     ".jshintrc",
     "**/*.txt"
   ],
-  "dependencies": {
-    "font-awesome": "~4.0.3",
-    "shuffle-letters": "https://github.com/devstopfix/jquery-shuffle-letters-plugin.git"
+  "dependencies"    : {
+    "font-awesome"    : "~4.0.3",
+    "shuffle-letters" : "https://github.com/devstopfix/jquery-shuffle-letters-plugin.git"
+  },
+  "exportsOverride" : {
+    "font-awesome" : {
+      "css"   : "css/*.css",
+      "fonts" : "fonts/*"
+    }
   }
 }
