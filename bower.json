@@ -6,13 +6,7 @@
     "**/*.txt"
   ],
   "dependencies"    : {
-    "font-awesome"    : "~4.0.3",
+    "font-awesome"    : "4.0.3",
     "shuffle-letters" : "https://github.com/devstopfix/jquery-shuffle-letters-plugin.git"
-  },
-  "exportsOverride" : {
-    "font-awesome" : {
-      "css"   : "css/*.css",
-      "fonts" : "fonts/*"
-    }
   }
-}
+};
