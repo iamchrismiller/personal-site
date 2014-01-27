@@ -13,15 +13,10 @@ var app = {
   start : function () {
     NProgress.done();
     this.bindEvents();
-    this.shuffleHeader();
 
     setTimeout(function() {
       app.snake.start();
     }, 3000);
-  },
-
-  shuffleHeader : function() {
-    $('.intro h1').shuffleLetters({ fps  : 20});
   },
 
   toggleMenu : function () {
