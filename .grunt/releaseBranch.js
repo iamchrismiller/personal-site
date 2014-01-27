@@ -9,7 +9,8 @@ module.exports = {
       commit: false,
       push: false,
       blacklist: [
-        '.git'
+        '.git',
+        'CNAME'
       ]
     }
   }
