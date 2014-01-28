@@ -5,7 +5,7 @@ module.exports = {
       remoteRepository: 'origin',
       cwd: '.',
       distDir: 'public',
-      commitMessage: 'Build GH-Pages.',
+      commitMessage: 'Automated gh-page build',
       commit: true,
       push: true,
       blacklist: [
