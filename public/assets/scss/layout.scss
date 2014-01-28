@@ -57,6 +57,7 @@ body {
         letter-spacing: -3.9px;
         text-transform: uppercase;
 
+
         -webkit-transition : all 1s;
         -moz-transition    : all 1s;
         transition         : all 1s;
@@ -196,7 +197,7 @@ body {
 
     .menu-button {
       position    : absolute;
-      bottom      : 0;
+      bottom: 3px;
       color       : #FFF;
       font-size   : 2em;
       margin-left : 5px;

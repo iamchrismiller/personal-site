@@ -68,8 +68,6 @@ var Snake = function(options) {
   this.score = 0;
   this.started = false;
 
-  this.surround = false;
-
   this.snakePieces = [];
   this.snakeFood = [];
 
