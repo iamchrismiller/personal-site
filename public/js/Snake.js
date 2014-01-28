@@ -172,6 +172,7 @@ Snake.prototype.keydown = function (e) {
   }
 };
 
+
 Snake.prototype.onResize = function() {
   var height = window.innerHeight;
   var width = window.innerWidth;

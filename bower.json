@@ -8,6 +8,7 @@
   "dependencies": {
     "font-awesome": "4.0.3",
     "shuffle-letters": "https://github.com/devstopfix/jquery-shuffle-letters-plugin.git",
-    "nprogress": "~0.1.2"
+    "nprogress": "~0.1.2",
+    "hammerjs": "~1.0.6"
   }
 }
