@@ -10,6 +10,8 @@ module.exports = {
       push: false,
       blacklist: [
         '.git',
+        '.gitignore',
+        'node_modules',
         'CNAME'
       ]
     }
