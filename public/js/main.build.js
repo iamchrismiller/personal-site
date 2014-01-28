@@ -365,16 +365,18 @@ Snake.prototype.removeFoodIfExists = function(x,y) {
 
 
 Snake.prototype.drawScoreboard = function() {
-  this.drawScore();
-};
 
-Snake.prototype.drawScore = function() {
-  context.font = "20px 'HelveticaNeue-Light','Helvetica Neue Light','Helvetica Neue', Helvetica, sans-serif";
-  context.fillText("Score: " + this.score, canvasWidth - 110,  canvasHeight - 10);
-  context.fillText("Hi-Score: " + (cookie.get('hi-score') || 0), canvasWidth - 250,  canvasHeight - 10);
-  context.fillText("Bot-Score: " + (cookie.get('bot-score') || 0), canvasWidth - 410,  canvasHeight - 10);
-};
+  var fontSize = 20, offset = 1;
+  if (canvasWidth <= 480) {
+    fontSize = 16;
+    offset = .65;
+  }
 
+  context.font = fontSize + "px 'HelveticaNeue-Light','Helvetica Neue Light','Helvetica Neue', Helvetica, sans-serif";
+  context.fillText("Score: " + this.score,                         canvasWidth - 100 * offset,  canvasHeight - 10);
+  context.fillText("Hi-Score: " + (cookie.get('hi-score') || 0),   canvasWidth - 240 * offset,  canvasHeight - 10);
+  context.fillText("Bot-Score: " + (cookie.get('bot-score') || 0), canvasWidth - 410 * offset,  canvasHeight - 10);
+};
 
 Snake.prototype.drawSnake = function() {
   for (var i = 0; i < this.snakePieces.length; i++) {

@@ -340,7 +340,7 @@ body .container .intro .social i:hover {
 body #menu {
   display: none;
   position: absolute;
-  bottom: 0;
+  bottom: 40px;
   height: 320px;
   width: 100px;
   background: rgba(0, 0, 0, 0.2);
