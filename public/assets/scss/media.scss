@@ -2,9 +2,7 @@
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
 
   body {
-
     position: fixed;
-
     .container {
       .intro {
         text-align : center;
@@ -12,9 +10,8 @@
 
         .social {
           text-align : center;
-
           i {
-            font-size: 1.3em;
+            font-size: 1.2em;
             opacity: .8;
             background: rgba(255, 255, 255, 0.9);
             margin : 2px;
@@ -22,7 +19,8 @@
         }
 
         h1 {
-          font-size : 3.8em;
+          font-size : 3.2em;
+          padding: 4px 0;
         }
 
         h2 {
@@ -30,7 +28,6 @@
         }
 
         p {
-
           &.quote {
             color      : #333;
             font-size    : 1.1em;
@@ -111,6 +108,47 @@
 /* Even Smaller Desktops and laptops ----------- */
 @media only screen and (max-width : 480px) {
 
+  body {
+
+    position: fixed;
+
+    .container {
+      .intro {
+        text-align : center;
+        padding: 15px;
+
+        .social {
+          text-align : center;
+
+          i {
+            font-size: 2.3em;
+            opacity: .8;
+            background: rgba(255, 255, 255, 0.9);
+            margin : 5px;
+          }
+        }
+
+        h1 {
+          font-size : 3.2em;
+          padding: 4px 0;
+        }
+
+        h2 {
+          font-size : 1.6em;
+        }
+
+        p {
+
+          &.quote {
+            color      : #333;
+            font-size    : 1.1em;
+            font-variant : small-caps;
+            text-align   : center;
+          }
+        }
+      }
+    }
+  }
 
 }
 

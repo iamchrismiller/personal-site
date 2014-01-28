@@ -6,8 +6,8 @@ module.exports = {
       cwd: '.',
       distDir: 'public',
       commitMessage: 'Build GH-Pages.',
-      commit: false,
-      push: false,
+      commit: true,
+      push: true,
       blacklist: [
         '.git',
         '.gitignore',
