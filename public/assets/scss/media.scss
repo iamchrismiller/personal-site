@@ -3,6 +3,7 @@
 
   body {
     position : fixed;
+    overflow: hidden;
     .container {
 
       #menu {
@@ -78,6 +79,7 @@
 
 @media screen and (max-device-width : 480px) and (device-aspect-ratio : 40/71) {
   body {
+    overflow: hidden;
     .container {
 
       #menu {
@@ -145,6 +147,7 @@
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
 
   body {
+    overflow: hidden;
     .container {
 
       #menu {
@@ -214,6 +217,7 @@
 
   body {
     position : fixed;
+    overflow: hidden;
 
     .container {
       .intro {

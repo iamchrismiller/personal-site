@@ -568,8 +568,9 @@ body .footer .menu-button {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\000034}}
   body {
     position: fixed;
+    overflow: hidden;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\000039}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000310}}
   body .container #menu.mobile {
     width: 100%;
     height: 70%;
@@ -578,49 +579,49 @@ body .footer .menu-button {
     bottom: 0;
     border-radius: 0;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000319}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000320}}
   body .container #menu .shortcuts li {
     text-align: center;
     margin-left: 17px;
     margin-right: 17px;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000326}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000327}}
   body .container #menu .shortcuts li span.key {
     display: block;
     padding: 0;
     margin: 0;
     border-radius: 50px;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000333}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000334}}
   body .container #menu .shortcuts li span i {
     position: relative;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000341}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000342}}
   body .container .intro {
     text-align: center;
     padding: 15px;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000345}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000346}}
   body .container .intro .social {
     text-align: center;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000347}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000348}}
   body .container .intro .social i {
     font-size: 1.2em;
     opacity: .8;
     background: rgba(0, 0, 0, 0.6);
     margin: 2px 5px;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000355}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000356}}
   body .container .intro h1 {
     font-size: 3.2em;
     padding: 4px 0;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000360}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000361}}
   body .container .intro h2 {
-    font-size: 1.6em;
+    font-size: 1.2em;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000365}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000366}}
   body .container .intro p.quote {
     color: #ffffff;
     font-size: 1.1em;
@@ -630,7 +631,11 @@ body .footer .menu-button {
 }
 /* Iphone5 (portrait and landscape) ----------- */
 @media screen and (max-device-width: 480px) and (device-aspect-ratio: 40 / 71) {
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000384}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000381}}
+  body {
+    overflow: hidden;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000386}}
   body .container #menu.mobile {
     width: 100%;
     height: 70%;
@@ -639,28 +644,28 @@ body .footer .menu-button {
     bottom: 0;
     border-radius: 0;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000394}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000396}}
   body .container #menu .shortcuts li {
     text-align: center;
     margin-left: 17px;
     margin-right: 17px;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003101}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003103}}
   body .container #menu .shortcuts li span.key {
     border-radius: 50px;
     display: block;
     padding: 0;
     margin: 0;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003108}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003110}}
   body .container #menu .shortcuts li span i {
     position: relative;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003119}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003121}}
   body .container .intro h1 {
     font-size: 3.0em;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003123}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003125}}
   body .container .intro .social i {
     font-size: 2.3em;
     opacity: .8;
@@ -673,7 +678,11 @@ body .footer .menu-button {
 /* Smartphones (portrait) ----------- */
 /* iPads (portrait and landscape) ----------- */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003151}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003149}}
+  body {
+    overflow: hidden;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003154}}
   body .container #menu.mobile {
     width: 100%;
     height: 200px;
@@ -682,32 +691,32 @@ body .footer .menu-button {
     bottom: 0;
     border-radius: 0;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003161}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003164}}
   body .container #menu .shortcuts li {
     text-align: center;
     margin-left: 17px;
     margin-right: 17px;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003168}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003171}}
   body .container #menu .shortcuts li span.key {
     border-radius: 50px;
     display: block;
     padding: 0;
     margin: 0;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003175}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003178}}
   body .container #menu .shortcuts li span i {
     position: relative;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003186}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003189}}
   body .container .intro p {
     font-size: 3em;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003189}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003192}}
   body .container .intro p.tagline {
     font-size: 1.4em;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003193}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003196}}
   body .container .intro p.quote {
     font-size: 1.0em;
   }
@@ -716,36 +725,37 @@ body .footer .menu-button {
 /* iPads (portrait) ----------- */
 /* Even Smaller Desktops and laptops ----------- */
 @media only screen and (max-width: 480px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003215}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003218}}
   body {
     position: fixed;
+    overflow: hidden;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003219}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003223}}
   body .container .intro {
     text-align: center;
     padding: 15px;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003223}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003227}}
   body .container .intro .social {
     text-align: center;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003226}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003230}}
   body .container .intro .social i {
     font-size: 2.3em;
     opacity: .8;
     background: rgba(0, 0, 0, 0.6);
     margin: 5px;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003234}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003238}}
   body .container .intro h1 {
     font-size: 3.2em;
     padding: 4px 0;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003239}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003243}}
   body .container .intro h2 {
-    font-size: 1.6em;
+    font-size: 1.2em;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003245}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003249}}
   body .container .intro p.quote {
     color: #ffffff;
     font-size: 1.1em;
@@ -756,19 +766,19 @@ body .footer .menu-button {
 /* Smaller Desktops and laptops ----------- */
 /* Smaller Desktops and laptops ----------- */
 @media only screen and (min-width: 481px) and (max-width: 768px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003268}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003272}}
   body .container .intro {
     text-align: center;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003271}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003275}}
   body .container .intro p {
     font-size: 3em;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003274}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003278}}
   body .container .intro p.tagline {
     font-size: 1.3em;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003278}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003282}}
   body .container .intro p.quote {
     font-size: 1.0em;
   }
@@ -776,15 +786,15 @@ body .footer .menu-button {
 /* Mid Desktops and laptops ----------- */
 /* Desktops and laptops ----------- */
 @media only screen and (min-width: 997px) and (max-width: 1224px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003298}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003302}}
   body .container .intro p {
     font-size: 4em;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003301}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003305}}
   body .container .intro p.tagline {
     font-size: 1.6em;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003305}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003309}}
   body .container .intro p.quote {
     font-size: 1.1em;
   }
