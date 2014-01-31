@@ -11,23 +11,20 @@ body {
 
   a {
     text-decoration : none;
-    color : #329ECC;
+    color           : #329ECC;
   }
 
-
   .bg {
-    position                : absolute;
-    top                     : 0;
-    background              : url('../img/bg.jpg') no-repeat center center fixed;
-    -webkit-background-size : cover;
-    -moz-background-size    : cover;
-    -o-background-size      : cover;
-    background-size         : cover;
-    height                  : 100%;
-    width                   : 100%;
-
+    position                    : absolute;
+    top                         : 0;
+    background                  : url('../img/bg.jpg') no-repeat center center fixed;
+    -webkit-background-size     : cover;
+    -moz-background-size        : cover;
+    -o-background-size          : cover;
+    background-size             : cover;
+    height                      : 100%;
+    width                       : 100%;
     -webkit-backface-visibility : hidden;
-
     -webkit-animation           : fadeIn 2s linear 0s;
     -moz-animation              : fadeIn 2s linear 0s;
     -o-animation                : fadeIn 2s linear 0s;
@@ -52,69 +49,67 @@ body {
       top                : 0;
       left               : 0;
       padding            : 40px;
-
       -webkit-transition : all 1s;
       -moz-transition    : all 1s;
       transition         : all 1s;
 
       h1 {
-        margin: 0;
-        font-weight: normal;
-        font-size: 5em;
-        color: #329ECC;
-        line-height: 1;
-        letter-spacing: -3.9px;
-        text-transform: uppercase;
-
-
+        margin             : 0;
+        font-weight        : normal;
+        font-size          : 5em;
+        color              : #329ECC;
+        line-height        : 1;
+        letter-spacing     : -3.9px;
+        text-transform     : uppercase;
         -webkit-transition : all 1s;
         -moz-transition    : all 1s;
         transition         : all 1s;
       }
 
       h2 {
-        color: #333;
-        margin: 0 0 0 5px;
-        font-weight: normal;
-        font-size: 2em;
-        border-bottom: 1px solid;
-
+        color              : #333;
+        margin             : 0 0 0 5px;
+        font-weight        : normal;
+        font-size          : 2em;
+        border-bottom      : 1px solid;
         -webkit-transition : all 1s;
         -moz-transition    : all 1s;
         transition         : all 1s;
       }
 
       p {
-        font-family : Georgia, serif;
-        font-size   : 5em;
-        margin      : 0 0 0 10px;
-
+        font-family        : Georgia, serif;
+        font-size          : 5em;
+        margin             : 0 0 0 10px;
         -webkit-transition : all 1s;
         -moz-transition    : all 1s;
         transition         : all 1s;
 
         &.pre {
-          margin: 0;
-          font-weight: normal;
-          font-size: 2em;
-          line-height: 0.90;
-          color: #333;
-          letter-spacing: -1px;
-
-
+          margin         : 0;
+          font-weight    : normal;
+          font-size      : 2em;
+          line-height    : 0.90;
+          color          : #333;
+          letter-spacing : -1px;
         }
 
         &.quote {
-          color : #FFFFFF;
+          color      : #FFFFFF;
           margin-top : 10px;
           font-size  : 1.2em;
-          opacity: .6;
+          opacity    : .6;
 
           &:hover {
-            opacity : 1;
+            opacity            : 1;
             -webkit-transition : all 1s;
             -moz-transition    : all 1s;
             transition         : all 1s;
+          }
+
+          span {
+            display    : block;
+            font-style : italic;
           }
 
         }
@@ -152,19 +147,29 @@ body {
     display                         : none;
     position                        : absolute;
     bottom                          : 40px;
-    height                          : 320px;
-    width                           : 100px;
+    height                          : 230px;
+    width                           : 160px;
     background                      : rgba(0, 0, 0, 0.2);
     color                           : #FFF;
     z-index                         : 1;
-    text-align                      : center;
+    border-right                    : 2px dotted #333;
+    border-top                      : 2px dotted #333;
     border-top-right-radius         : 40px;
     -moz-border-top-right-radius    : 40px;
     -o-border-top-right-radius      : 40px;
     -webkit-border-top-right-radius : 40px;
 
+    hr {
+      opacity : .6;
+    }
+
+    .content {
+      padding : 10px;
+    }
+
     p {
-      margin : 0;
+      margin     : 0;
+      text-align : center;
     }
 
     ul {
@@ -175,10 +180,16 @@ body {
 
       &.links {
         margin-top : 10px;
-
+        text-align : center;
         a {
           &.inactive {
-            text-decoration:line-through;
+            text-decoration : line-through;
+          }
+
+          i {
+            margin-right : 10px;
+            font-size    : 1.2em;
+            color        : #333;
           }
         }
       }
@@ -190,6 +201,25 @@ body {
         margin-bottom : 5px;
         color         : #ffffff;
         font-size     : .8em;
+
+        li {
+          float         : left;
+          margin-right  : 10px;
+          margin-bottom : 15px;
+          font-size     : 1.1em;
+
+          span {
+
+            &.key {
+              padding       : 5px 10px;
+              background    : rgba(0, 0, 0, 0.3);
+              border-radius : 5px;
+              margin-right  : 7px;
+              font-weight   : bold;
+              margin-left   : 7px;
+            }
+          }
+        }
       }
 
       li {
@@ -215,12 +245,11 @@ body {
 
     #scoreboard {
       div {
-        opacity : .6;
-        float :right;
+        opacity      : .6;
+        float        : right;
         margin-right : 30px;
-        margin-top: 10px;
-        font-size : 20px;
-        font-family : 'HelveticaNeue-Light','Helvetica Neue Light','Helvetica Neue', Helvetica, sans-serif;
+        margin-top   : 10px;
+        font-size    : 20px;
       }
 
       span {
@@ -230,7 +259,7 @@ body {
 
     .menu-button {
       position    : absolute;
-      bottom: 3px;
+      bottom      : 3px;
       color       : #FFF;
       font-size   : 2em;
       margin-left : 5px;

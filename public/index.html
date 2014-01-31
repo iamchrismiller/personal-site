@@ -30,20 +30,20 @@
     <canvas id="canvas" autofocus="autofocus"></canvas>
 
     <div id="menu">
-        <ul class="links">
-            <li><a class="inactive" href="#about">About Me</a></li>
-            <li><a href="http://cmiller.svbtle.com/">Blog</a></li>
-            <li><a class="inactive" href="#work">Work</a></li>
-        </ul>
-        <hr>
-        <p>Shortcuts</p>
-        <hr>
-        <ul class="shortcuts">
-            <li>? : menu</li>
-            <li>b : bot</li>
-            <li>r : reset</li>
-            <li>space : pause</li>
-        </ul>
+        <div class="content">
+
+            <p>Keyboard Events</p>
+            <hr>
+            <div>
+                <ul class="shortcuts">
+                    <li><span class="key"><i class="fa fa-arrows"></i></span> movement</li>
+                    <li><span class="key">b</span> bot </li>
+                    <li><span class="key">space</span> pause</li>
+                    <li><span class="key">r</span> reset</li>
+                    <li><span class="key">o</span> game toggle </li>
+                </ul>
+            </div>
+        </div>
     </div>
 
     <div class="container">
@@ -53,26 +53,28 @@
 
             <div class="animate slideInLeft dur1">
                 <h2>An Open Source Web Enthusiast.</h2>
-                <p class="quote">“Skate where the puck is going, not where it’s been” - Wayne Gretzky<br/>
-                                 Currently i'm a platform developer at
+                <p class="quote">
+                    Currently i'm a platform developer at
                     <a href="http://www.onehealth.com/">OneHealth</a>, a Co-Founder of
                     <a href="https://github.com/javascriptu">JavascriptU</a>,
-                    <a href="https://github.com/iamchrismiller" target="_BLANK">...
+                    <a href="https://github.com/iamchrismiller" target="_BLANK">...</a>
+                    <span>I've build this snake game for you to enjoy. Press <i class="fa fa-gamepad fa-2x"></i> or <strong>?</strong> for shortcut menu</span>
                 </p>
             </div>
 
             <div class="social animate slideInLeft dur2">
-                <a href="http://www.linkedin.com/in/chrismiller84" target="_BLANK"><i class="fa fa-linkedin"></i></a>
-                <a href="https://github.com/iamchrismiller" target="_BLANK"><i class="fa fa-github"></i></a>
-                <a href="https://plus.google.com/108975120791815625181" target="_BLANK"><i class="fa fa-google-plus"></i></a>
-                <a href="https://twitter.com/ChrisMiller84" target="_BLANK"><i class="fa fa-twitter"></i></a>
-                <a href="mailto:cmille142@gmail.com" target="_BLANK"><i class="fa fa-envelope"></i></a>
+                <a href="http://www.linkedin.com/in/chrismiller84" target="_BLANK" title="Linkedin"><i class="fa fa-linkedin"></i></a>
+                <a href="https://github.com/iamchrismiller" target="_BLANK" title="Github"><i class="fa fa-github"></i></a>
+                <a href="https://plus.google.com/108975120791815625181" target="_BLANK" title="Google+"><i class="fa fa-google-plus"></i></a>
+                <a href="https://twitter.com/ChrisMiller84" target="_BLANK" title="Twitter"><i class="fa fa-twitter"></i></a>
+                <a href="mailto:cmille142@gmail.com" target="_BLANK" title="Email"><i class="fa fa-envelope"></i></a>
+                <a href="http://cmiller.svbtle.com/" target="_BLANK" title="Blog"><i class="fa fa-pencil"></i></a>
             </div>
         </div>
     </div>
 
     <div class="footer">
-        <div class="fa fa-question js-menu menu-button"></div>
+        <div class="fa fa-gamepad js-menu menu-button"></div>
         <div id="scoreboard">
             <div id="score">
                 Score :

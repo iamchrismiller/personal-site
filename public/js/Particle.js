@@ -7,20 +7,14 @@ function Particle(options) {
   this.x = this.options.x;
   this.y = this.options.y;
 
-  this.radius = parseInt(Math.random() * 5);
-  this.color = ((!(Math.random()+ 0.5 | 0) === true) ? 255 : 0);
-
   this.life = 100;
-
   this.velocity = {
     x : -5 + Math.random() * 10,
     y : -8 + Math.random() * 10
   };
+  this.radius = parseInt(Math.random() * 5);
+  this.color = ((!(Math.random()+ 0.5 | 0) === true) ? 255 : 0);
 }
-
-Particle.prototype.getBWHex = function () {
-  return '#' + ((!(Math.random()+ 0.5 | 0) === true) ? 'FFFFFF' : '000000');
-};
 
 Particle.prototype.getColor = function() {
   return '#' + (Math.random() * 0xFFFFFF << 0).toString(16);

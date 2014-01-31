@@ -19,7 +19,8 @@ var Snake = function(options) {
   this.particles = [];
   this.particleCount = 150;
 
-  this.canvas = $("canvas")[0];
+  this.$canvas = $("canvas");
+  this.canvas = this.$canvas[0];
   this.context = this.canvas.getContext('2d');
   this.canvas.width = window.innerWidth;
   this.canvas.height = window.innerHeight;
@@ -162,7 +163,7 @@ Snake.prototype.createFood = function() {
 
 Snake.prototype._getDirection = function () {
   var direction;
-  while (typeof direction === 'undefined' || (this.direction - direction + 4) % 4 == 2) {
+  while (typeof direction === 'undefined' || (this.direction - direction + 4) % 4 === 2) {
     if (this.directionQueue.length > 0) {
       //Shift through the Queue
       direction = this.directionQueue.shift();
@@ -267,17 +268,17 @@ Snake.prototype.drawLoop = function() {
   }
 
   switch(this.direction) {
-    case this.DIRECTIONS.RIGHT:
-      headX++;
-      break;
     case this.DIRECTIONS.LEFT:
       headX--;
       break;
-    case this.DIRECTIONS.DOWN:
-      headY++;
+    case this.DIRECTIONS.RIGHT:
+      headX++;
       break;
     case this.DIRECTIONS.UP:
       headY--;
+      break;
+    case this.DIRECTIONS.DOWN:
+      headY++;
       break;
   }
 
@@ -311,11 +312,9 @@ Snake.prototype.drawLoop = function() {
       snakeTail.x = headX;
       snakeTail.y = headY;
     }
-
     //move snakeTail to snakeHead
     this.snakePieces.unshift(snakeTail);
   }
-
   this.drawSnake();
   this.drawFood();
 };
@@ -330,11 +329,9 @@ Snake.prototype.scorePoint = function() {
 Snake.prototype.animationLoop = function() {
   if (this.started) {
     var self = this;
-
     if (this.animationTimeout) {
       clearTimeout(this.animationTimeout);
     }
-
     //Ensure FPS
     this.animationTimeout = setTimeout(function() {
       self.drawLoop.call(self);
@@ -362,9 +359,9 @@ Snake.prototype.particleLoop = function() {
 };
 
 
-//-----------------
+//--------------------
 // Automated Bot Logic
-//-----------------
+//--------------------
 
 Snake.prototype.enableBot = function() {
   this.bot.enabled = true;

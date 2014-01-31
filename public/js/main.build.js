@@ -9,20 +9,20 @@ var cookie = require('./util/cookie');
  * @constructor
  */
 var Game = function (options) {
-
   this.started = false;
+  this.disabled = false;
   this.score = 0;
   this.settings = $.extend({
     inst : false
   }, options);
 
   this.inst = this.settings.inst;
-
   //Game Instance
   if (!this.inst) {
     throw new Error("A Game Instance Must Be Supplied");
   }
 
+  this.$canvas = this.inst.$canvas;
   this.$scoreboard = $('#scoreboard');
   this.updateScoreboard();
   this.bindEvents();
@@ -39,11 +39,11 @@ Game.prototype.bindEvents = function () {
   $(document).on('keydown', this.onKeydown.bind(this));
   $(window).on('resize', this.onResize.bind(this));
 
-  this.inst.onRestart = function(score) {
+  this.inst.onRestart = function (score) {
     self.onGameRestart(score);
   };
 
-  this.inst.onScore = function(score) {
+  this.inst.onScore = function (score) {
     self.onGameScore(score);
   };
 };
@@ -56,6 +56,18 @@ Game.prototype.play = function () {
 Game.prototype.pause = function () {
   this.started = false;
   this.inst.pause();
+};
+
+Game.prototype.enableGame = function () {
+  this.disabled = false;
+  this.$canvas.show();
+  this.play();
+};
+
+Game.prototype.disableGame = function () {
+  this.disabled = true;
+  this.$canvas.hide();
+  this.pause();
 };
 
 Game.prototype.saveGame = function (score) {
@@ -71,7 +83,7 @@ Game.prototype.saveGame = function (score) {
   }
 };
 
-Game.prototype.updateScoreboard = function(score) {
+Game.prototype.updateScoreboard = function (score) {
   this.updateScore(score || 0);
 
   this.$scoreboard.find('#hi-score span')
@@ -83,33 +95,49 @@ Game.prototype.updateScoreboard = function(score) {
   }
 };
 
-Game.prototype.updateScore = function(score) {
+Game.prototype.updateScore = function (score) {
   var $score = this.$scoreboard.find('#score span');
   $score.text(score).addClass('flash');
-  setTimeout(function() {
+  setTimeout(function () {
     $score.removeClass('flash');
   }, 1000)
 };
 
 Game.prototype.onKeydown = function (event) {
   switch (event.keyCode) {
+    case 79 : //o
+      this.toggleGame();
+      break;
     case 82 : //r
       this.inst.restart();
       break;
     case 32 : //space
-      if (this.started) this.pause();
-      else this.play();
+      if (!this.disabled) {
+        if (this.started) {
+          this.pause();
+        } else {
+          this.play();
+        }
+      }
       break;
   }
 };
 
-Game.prototype.onGameScore = function(score) {
+Game.prototype.onGameScore = function (score) {
   this.updateScore(score);
 };
 
 Game.prototype.onGameRestart = function (score) {
   this.saveGame(score);
   this.updateScoreboard();
+};
+
+Game.prototype.toggleGame = function () {
+  if (this.disabled) {
+    this.enableGame();
+  } else {
+    this.disableGame();
+  }
 };
 
 Game.prototype.onResize = function () {
@@ -129,20 +157,14 @@ function Particle(options) {
   this.x = this.options.x;
   this.y = this.options.y;
 
-  this.radius = parseInt(Math.random() * 5);
-  this.color = ((!(Math.random()+ 0.5 | 0) === true) ? 255 : 0);
-
   this.life = 100;
-
   this.velocity = {
     x : -5 + Math.random() * 10,
     y : -8 + Math.random() * 10
   };
+  this.radius = parseInt(Math.random() * 5);
+  this.color = ((!(Math.random()+ 0.5 | 0) === true) ? 255 : 0);
 }
-
-Particle.prototype.getBWHex = function () {
-  return '#' + ((!(Math.random()+ 0.5 | 0) === true) ? 'FFFFFF' : '000000');
-};
 
 Particle.prototype.getColor = function() {
   return '#' + (Math.random() * 0xFFFFFF << 0).toString(16);
@@ -184,7 +206,8 @@ var Snake = function(options) {
   this.particles = [];
   this.particleCount = 150;
 
-  this.canvas = $("canvas")[0];
+  this.$canvas = $("canvas");
+  this.canvas = this.$canvas[0];
   this.context = this.canvas.getContext('2d');
   this.canvas.width = window.innerWidth;
   this.canvas.height = window.innerHeight;
@@ -327,7 +350,7 @@ Snake.prototype.createFood = function() {
 
 Snake.prototype._getDirection = function () {
   var direction;
-  while (typeof direction === 'undefined' || (this.direction - direction + 4) % 4 == 2) {
+  while (typeof direction === 'undefined' || (this.direction - direction + 4) % 4 === 2) {
     if (this.directionQueue.length > 0) {
       //Shift through the Queue
       direction = this.directionQueue.shift();
@@ -432,17 +455,17 @@ Snake.prototype.drawLoop = function() {
   }
 
   switch(this.direction) {
-    case this.DIRECTIONS.RIGHT:
-      headX++;
-      break;
     case this.DIRECTIONS.LEFT:
       headX--;
       break;
-    case this.DIRECTIONS.DOWN:
-      headY++;
+    case this.DIRECTIONS.RIGHT:
+      headX++;
       break;
     case this.DIRECTIONS.UP:
       headY--;
+      break;
+    case this.DIRECTIONS.DOWN:
+      headY++;
       break;
   }
 
@@ -476,11 +499,9 @@ Snake.prototype.drawLoop = function() {
       snakeTail.x = headX;
       snakeTail.y = headY;
     }
-
     //move snakeTail to snakeHead
     this.snakePieces.unshift(snakeTail);
   }
-
   this.drawSnake();
   this.drawFood();
 };
@@ -495,11 +516,9 @@ Snake.prototype.scorePoint = function() {
 Snake.prototype.animationLoop = function() {
   if (this.started) {
     var self = this;
-
     if (this.animationTimeout) {
       clearTimeout(this.animationTimeout);
     }
-
     //Ensure FPS
     this.animationTimeout = setTimeout(function() {
       self.drawLoop.call(self);
@@ -527,9 +546,9 @@ Snake.prototype.particleLoop = function() {
 };
 
 
-//-----------------
+//--------------------
 // Automated Bot Logic
-//-----------------
+//--------------------
 
 Snake.prototype.enableBot = function() {
   this.bot.enabled = true;

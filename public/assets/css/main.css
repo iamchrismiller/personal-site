@@ -303,7 +303,7 @@ body a {
   text-decoration: none;
   color: #329ECC;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\0000318}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\0000317}}
 body .bg {
   position: absolute;
   top: 0;
@@ -321,7 +321,7 @@ body .bg {
   -ms-animation: fadeIn 2s linear 0s;
   animation: fadeIn 2s linear 0s;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\0000338}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\0000335}}
 body .blurred {
   -webkit-filter: blur(4px);
   -moz-filter: blur(4px);
@@ -330,7 +330,7 @@ body .blurred {
   filter: blur(4px);
   opacity: 0.8;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\0000349}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\0000346}}
 body .container .intro {
   color: #FFF;
   position: absolute;
@@ -341,7 +341,7 @@ body .container .intro {
   -moz-transition: all 1s;
   transition: all 1s;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\0000360}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\0000356}}
 body .container .intro h1 {
   margin: 0;
   font-weight: normal;
@@ -354,7 +354,7 @@ body .container .intro h1 {
   -moz-transition: all 1s;
   transition: all 1s;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\0000375}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\0000369}}
 body .container .intro h2 {
   color: #333;
   margin: 0 0 0 5px;
@@ -365,7 +365,7 @@ body .container .intro h2 {
   -moz-transition: all 1s;
   transition: all 1s;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\0000387}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\0000380}}
 body .container .intro p {
   font-family: Georgia, serif;
   font-size: 5em;
@@ -374,7 +374,7 @@ body .container .intro p {
   -moz-transition: all 1s;
   transition: all 1s;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\0000396}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\0000388}}
 body .container .intro p.pre {
   margin: 0;
   font-weight: normal;
@@ -383,25 +383,30 @@ body .container .intro p.pre {
   color: #333;
   letter-spacing: -1px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003107}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\0000397}}
 body .container .intro p.quote {
   color: #FFFFFF;
   margin-top: 10px;
   font-size: 1.2em;
   opacity: .6;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003113}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003103}}
 body .container .intro p.quote:hover {
   opacity: 1;
   -webkit-transition: all 1s;
   -moz-transition: all 1s;
   transition: all 1s;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003123}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003110}}
+body .container .intro p.quote span {
+  display: block;
+  font-style: italic;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003118}}
 body .container .intro .social {
   margin-top: 20px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003126}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003121}}
 body .container .intro .social i {
   font-size: 2.8em;
   margin-right: 20px;
@@ -414,7 +419,7 @@ body .container .intro .social i {
   -moz-transition: all 1s;
   transition: all 1s;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003138}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003133}}
 body .container .intro .social i:hover {
   opacity: .7;
   background-color: #fff;
@@ -423,42 +428,59 @@ body .container .intro .social i:hover {
   -moz-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003151}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003146}}
 body #menu {
   display: none;
   position: absolute;
   bottom: 40px;
-  height: 320px;
-  width: 100px;
+  height: 230px;
+  width: 160px;
   background: rgba(0, 0, 0, 0.2);
   color: #FFF;
   z-index: 1;
-  text-align: center;
+  border-right: 2px dotted #333;
+  border-top: 2px dotted #333;
   border-top-right-radius: 40px;
   -moz-border-top-right-radius: 40px;
   -o-border-top-right-radius: 40px;
   -webkit-border-top-right-radius: 40px;
 }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003162}}
+body #menu hr {
+  opacity: .6;
+}
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003166}}
-body #menu p {
-  margin: 0;
+body #menu .content {
+  padding: 10px;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003170}}
+body #menu p {
+  margin: 0;
+  text-align: center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003175}}
 body #menu ul {
   margin: 10px auto 0px 0px;
   list-style-type: none;
   padding: 10px;
   font-size: 1em;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003176}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003181}}
 body #menu ul.links {
   margin-top: 10px;
+  text-align: center;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003180}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003185}}
 body #menu ul.links a.inactive {
   text-decoration: line-through;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003186}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003189}}
+body #menu ul.links a i {
+  margin-right: 10px;
+  font-size: 1.2em;
+  color: #333;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003197}}
 body #menu ul.shortcuts {
   margin: 0;
   padding: 0;
@@ -467,18 +489,34 @@ body #menu ul.shortcuts {
   color: #ffffff;
   font-size: .8em;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003195}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003205}}
+body #menu ul.shortcuts li {
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 15px;
+  font-size: 1.1em;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003213}}
+body #menu ul.shortcuts li span.key {
+  padding: 5px 10px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  margin-right: 7px;
+  font-weight: bold;
+  margin-left: 7px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003225}}
 body #menu ul li {
   margin: 0;
   padding: 0;
   margin-bottom: 10px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003200}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003230}}
 body #menu ul li a {
   text-decoration: none;
   color: #FFF;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003208}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003238}}
 body .footer {
   position: absolute;
   bottom: 0;
@@ -487,20 +525,19 @@ body .footer {
   background: rgba(0, 0, 0, 0.3);
   color: white;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003217}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003247}}
 body .footer #scoreboard div {
   opacity: .6;
   float: right;
   margin-right: 30px;
   margin-top: 10px;
   font-size: 20px;
-  font-family: 'HelveticaNeue-Light','Helvetica Neue Light','Helvetica Neue', Helvetica, sans-serif;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003226}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003255}}
 body .footer #scoreboard span {
   font-weight: bold;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003231}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003260}}
 body .footer .menu-button {
   position: absolute;
   bottom: 3px;
