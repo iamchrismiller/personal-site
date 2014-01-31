@@ -1,4 +1,125 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+/*global requestAnimationFrame, module, require, $ */
+
+var cookie = require('./util/cookie');
+
+/**
+ * Basic Game Object
+ * @param options
+ * @constructor
+ */
+var Game = function (options) {
+
+  this.started = false;
+  this.score = 0;
+  this.settings = $.extend({
+    inst : false
+  }, options);
+
+  this.inst = this.settings.inst;
+
+  //Game Instance
+  if (!this.inst) {
+    throw new Error("A Game Instance Must Be Supplied");
+  }
+
+  this.$scoreboard = $('#scoreboard');
+  this.updateScoreboard();
+  this.bindEvents();
+};
+
+
+Game.prototype.start = function () {
+  this.started = true;
+  this.inst.start();
+};
+
+Game.prototype.bindEvents = function () {
+  var self = this;
+  $(document).on('keydown', this.onKeydown.bind(this));
+  $(window).on('resize', this.onResize.bind(this));
+
+  this.inst.onRestart = function(score) {
+    self.onGameRestart(score);
+  };
+
+  this.inst.onScore = function(score) {
+    self.onGameScore(score);
+  };
+};
+
+Game.prototype.play = function () {
+  this.started = true;
+  this.inst.play();
+};
+
+Game.prototype.pause = function () {
+  this.started = false;
+  this.inst.pause();
+};
+
+Game.prototype.saveGame = function (score) {
+  var hiScore = cookie.get(this.inst.name + '_user') || 0;
+  if (this.inst.bot && this.inst.bot.enabled) {
+    var botScore = cookie.get(this.inst.name + '_bot') || 0;
+    if (botScore && score < botScore) {
+      score = botScore;
+    }
+    cookie.set(this.inst.name + '_bot', score);
+  } else if (!hiScore || (hiScore && score > hiScore)) {
+    cookie.set(this.inst.name + '_user', score);
+  }
+};
+
+Game.prototype.updateScoreboard = function(score) {
+  this.updateScore(score || 0);
+
+  this.$scoreboard.find('#hi-score span')
+    .text(cookie.get(this.inst.name + '_user') || 0);
+
+  if (this.inst.bot) {
+    this.$scoreboard.find('#bot-hi-score span')
+      .text(cookie.get(this.inst.name + '_bot') || 0);
+  }
+};
+
+Game.prototype.updateScore = function(score) {
+  var $score = this.$scoreboard.find('#score span');
+  $score.text(score).addClass('flash');
+  setTimeout(function() {
+    $score.removeClass('flash');
+  }, 1000)
+};
+
+Game.prototype.onKeydown = function (event) {
+  switch (event.keyCode) {
+    case 82 : //r
+      this.inst.restart();
+      break;
+    case 32 : //space
+      if (this.started) this.pause();
+      else this.play();
+      break;
+  }
+};
+
+Game.prototype.onGameScore = function(score) {
+  this.updateScore(score);
+};
+
+Game.prototype.onGameRestart = function (score) {
+  this.saveGame(score);
+  this.updateScoreboard();
+};
+
+Game.prototype.onResize = function () {
+  if (typeof this.inst.onResize === 'function') {
+    this.inst.onResize(window.innerHeight, window.innerWidth);
+  }
+};
+
+module.exports = Game;
+},{"./util/cookie":5}],2:[function(require,module,exports){
 
 /**
  * Pseudo Particle Class
@@ -9,10 +130,12 @@ function Particle(options) {
   this.y = this.options.y;
 
   this.radius = parseInt(Math.random() * 5);
-  this.color = this.getBWHex();
+  this.color = ((!(Math.random()+ 0.5 | 0) === true) ? 255 : 0);
+
+  this.life = 100;
 
   this.velocity = {
-    x : -8 + Math.random() * 10,
+    x : -5 + Math.random() * 10,
     y : -8 + Math.random() * 10
   };
 }
@@ -27,7 +150,11 @@ Particle.prototype.getColor = function() {
 
 
 Particle.prototype.draw = function (context) {
-  context.fillStyle = this.color;
+  //decay
+  this.life = ~~(this.life *.96);
+  this.radius = (this.radius *.96);
+
+  context.fillStyle = ('rgba(' + this.color + ',' + this.color + ',' + this.color + ", " + this.life / 100);
   context.beginPath();
   context.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
   context.fill();
@@ -35,28 +162,11 @@ Particle.prototype.draw = function (context) {
 };
 
 module.exports = Particle;
-},{}],2:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 /*global requestAnimationFrame, module, require, $ */
 
 var Particle = require('./Particle');
 var cookie = require('./util/cookie');
-
-//DOM CANVAS GLOBALS
-var $canvas = $("#canvas");
-var canvas = $canvas[0];
-var context = canvas.getContext('2d');
-var canvasWidth = canvas.width = window.innerWidth;
-var canvasHeight = canvas.height= window.innerHeight;
-$canvas.css({width : window.innerWidth, height : window.innerHeight});
-var animationTimeout;
-
-//Global Particles For Explosions
-var particles = [];
-var particleCount = 150;
-var gravity = 1;
-//move into snake class
-var fpsDefault = 15;
-var fps = fpsDefault;
 
 /**
  * Snake Game
@@ -65,8 +175,20 @@ var fps = fpsDefault;
  */
 var Snake = function(options) {
 
+  this.name = "snake";
   this.score = 0;
   this.started = false;
+  this.fps = 15;
+
+  this.gravity = 1;
+  this.particles = [];
+  this.particleCount = 150;
+
+  this.canvas = $("canvas")[0];
+  this.context = this.canvas.getContext('2d');
+  this.canvas.width = window.innerWidth;
+  this.canvas.height = window.innerHeight;
+  this.animationTimeout = null;
 
   this.snakePieces = [];
   this.snakeFood = [];
@@ -91,8 +213,7 @@ var Snake = function(options) {
   };
 
   this.direction = this.DIRECTIONS.RIGHT;
-  this.dQueue = [];
-
+  this.directionQueue = [];
   this.bindEvents();
 };
 
@@ -107,27 +228,29 @@ Snake.prototype.start = function() {
 Snake.prototype.reset = function() {
   this.started = false;
   this.score = 0;
-  this.dQueue = [];
+  this.directionQueue = [];
   this.direction = this.DIRECTIONS.RIGHT;
   this.snakePieces = [];
   this.snakeFood = [];
-  fps = fpsDefault;
+  this.particles = [];
+  this.gravity = 1;
+  this.fps = 15;
 
-  if (animationTimeout) {
-    clearTimeout(animationTimeout);
+  if (this.animationTimeout) {
+    clearTimeout(this.animationTimeout);
   }
 };
 
 Snake.prototype.restart = function () {
-  this.saveGame();
+  if (typeof this.onRestart === 'function') {
+    this.onRestart(this.score);
+  }
   this.reset();
   this.start();
 };
 
-
 Snake.prototype.bindEvents = function() {
-  $(document).keydown(this.keydown.bind(this));
-  $(window).on('resize', this.onResize.bind(this));
+  $(document).on('keydown', this.onKeydown.bind(this));
 };
 
 Snake.prototype.play = function() {
@@ -137,47 +260,28 @@ Snake.prototype.play = function() {
   }
 };
 
-
 Snake.prototype.pause = function() {
   this.started = false;
 };
 
-
 Snake.prototype.lose = function() {
+  var self = this;
   this.pause();
 
   setTimeout(function() {
-    this.restart();
-  }.bind(this), 2000);
-
+    self.restart();
+  }, 3000);
 };
 
-Snake.prototype.saveGame = function() {
-  var hiScore = cookie.get('hi-score');
-  var score = this.score;
-  if (this.bot.enabled) {
-    var botScore = cookie.get('bot-score');
-    if (botScore && this.score < botScore) {
-      score = botScore;
-    }
-    cookie.set('bot-score', score);
-  } else if (!hiScore || (hiScore && this.score < hiScore)) {
-    score = hiScore ? hiScore : this.score;
-    cookie.set('hi-score', score);
-  }
-};
-
-Snake.prototype.keydown = function (e) {
+Snake.prototype.onKeydown = function (event) {
   var direction;
 
-  //Keys For Gameplay
-  var gameKeys = [38,40,37,39];
-
-  if (this.bot && gameKeys.indexOf(e.keyCode) !== -1) {
+  //Gameplay Keys
+  if (this.bot && [38,40,37,39].indexOf(event.keyCode) !== -1) {
     this.disableBot();
   }
 
-  switch (e.keyCode) {
+  switch (event.keyCode) {
     case 38 :
       direction = this.DIRECTIONS.UP;
       break;
@@ -193,36 +297,20 @@ Snake.prototype.keydown = function (e) {
     case 66 : //b
       this.enableBot();
       break;
-    case 32 : //space
-      if (this.started) {
-        this.pause();
-      } else {
-        this.play();
-      }
-      return;
     default :
       return;
   }
 
   //Don't Allow The Same Moves To Stack Up
-  if (this.started && this.dQueue[this.dQueue.length - 1] !== direction) {
-    this.dQueue.push(direction);
+  if (this.started && this.directionQueue[this.directionQueue.length - 1] !== direction) {
+    this.directionQueue.push(direction);
   }
 };
 
-
-Snake.prototype.onResize = function() {
-  var height = window.innerHeight;
-  var width = window.innerWidth;
-
-  canvasWidth = width;
-  canvas.width = width;
-  canvasHeight = height;
-  canvas.height = height;
-
-  $canvas.css({width : width, height : height});
+Snake.prototype.onResize = function(height, width) {
+  this.canvas.width = width;
+  this.canvas.height = height;
 };
-
 
 Snake.prototype.create = function() {
   for (var x = 0; x < this.settings.snakeSize; x++) {
@@ -232,16 +320,103 @@ Snake.prototype.create = function() {
 
 Snake.prototype.createFood = function() {
   this.snakeFood.push({
-    x : Math.round(Math.random() * (canvasWidth - this.settings.snakePixels) / this.settings.snakePixels),
-    y : Math.round(Math.random() * (canvasHeight - this.settings.snakePixels) / this.settings.snakePixels)
+    x : Math.round(Math.random() * (this.canvas.width - this.settings.snakePixels) / this.settings.snakePixels),
+    y : Math.round(Math.random() * (this.canvas.height - this.settings.snakePixels) / this.settings.snakePixels)
+  });
+};
+
+Snake.prototype._getDirection = function () {
+  var direction;
+  while (typeof direction === 'undefined' || (this.direction - direction + 4) % 4 == 2) {
+    if (this.directionQueue.length > 0) {
+      //Shift through the Queue
+      direction = this.directionQueue.shift();
+    }
+    else {
+      direction = this.direction;
+    }
+  }
+  return direction;
+};
+
+
+Snake.prototype.isWallCollision = function(x,y) {
+  var isTopCollision = y === -1,
+    isRightCollision = x >= this.canvas.width / this.settings.snakePixels,
+    isBottomCollision = y >= this.canvas.height / this.settings.snakePixels,
+    isLeftCollision = x === -1;
+
+  return isTopCollision || isRightCollision  || isBottomCollision || isLeftCollision;
+};
+
+Snake.prototype.isSelfCollision = function(x,y) {
+  for (var i = 0; i < this.snakePieces.length; i++) {
+    if (this.snakePieces[i].x == x && this.snakePieces[i].y == y) {
+      return true;
+    }
+  }
+  return false;
+};
+
+Snake.prototype.isFoodCollision = function(x,y) {
+  var found = false;
+  this.snakeFood.forEach(function(food) {
+    if ((x == food.x && y == food.y)) {
+      found = true;
+    }
+  });
+  return found;
+};
+
+Snake.prototype.removeFoodIfExists = function(x,y) {
+  var self = this;
+  this.snakeFood.forEach(function(food,ix) {
+    if ((x == food.x && y == food.y)) {
+      self.snakeFood.splice(ix);
+    }
+  });
+};
+
+Snake.prototype.drawSnake = function() {
+  for (var i = 0; i < this.snakePieces.length; i++) {
+    var x = this.snakePieces[i];
+    this.drawPart(x.x, x.y);
+  }
+};
+
+Snake.prototype.drawFood = function(x,y) {
+  var self = this;
+  var width = this.settings.snakePixels;
+  this.context.fillStyle = "#ffffff";
+  this.context.strokeStyle = "#000000";
+
+  this.snakeFood.forEach(function(food) {
+    self.context.fillRect(food.x * width, food.y * width, width, width);
+    self.context.strokeRect(food.x * width, food.y * width, width, width);
   });
 };
 
 
+Snake.prototype.drawPart = function(x,y) {
+  var width = this.settings.snakePixels;
+  this.context.fillStyle = "#ffffff";
+  this.context.strokeStyle = "#000000";
+  this.context.fillRect(x * width, y * width, width, width);
+  this.context.strokeRect(x * width, y * width, width, width);
+};
+
+Snake.prototype.createExpolosion = function(x,y) {
+  for (var i = 0; i < this.particleCount; i++) {
+    var particle = new Particle({x : x * this.settings.snakePixels, y : y * this.settings.snakePixels});
+    this.particles.push(particle);
+  }
+};
+
+
 Snake.prototype.drawLoop = function() {
-  //Clear Canvas Context Defore Redraw
-  context.setTransform(1, 0, 0, 1, 0, 0);
-  context.clearRect(0, 0, canvas.width, canvas.height);
+  //Clear Canvas Context Before Redraw
+  this.context.setTransform(1, 0, 0, 1, 0, 0);
+  this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
   var headX = this.snakePieces[0].x;
   var headY = this.snakePieces[0].y;
@@ -278,16 +453,15 @@ Snake.prototype.drawLoop = function() {
   if (this.isSelfCollision(headX, headY)) {
     this.lose();
   }
-  
+
   var snakeTail = {};
 
   if (this.started) {
     if (this.isFoodCollision(headX, headY)) {
-      this.score++;
-
-      //Increase FramesPerSecond Each Multiple of 8
+      this.scorePoint();
+      //Increase Frames Per Secod
       if (this.score % 2) {
-        fps += 0.5;
+        this.fps += 0.5;
       }
 
       this.removeFoodIfExists(headX, headY);
@@ -309,143 +483,53 @@ Snake.prototype.drawLoop = function() {
 
   this.drawSnake();
   this.drawFood();
-  this.drawScoreboard();
 };
 
-Snake.prototype._getDirection = function () {
-  var direction;
-  while (typeof direction === 'undefined' || (this.direction - direction + 4) % 4 == 2) {
-    if (this.dQueue.length > 0) {
-      //Shift through the Queue
-      direction = this.dQueue.shift();
-    }
-    else {
-      direction = this.direction;
-    }
+Snake.prototype.scorePoint = function() {
+  this.score++;
+  if (this.onScore && typeof this.onScore === 'function') {
+    this.onScore(this.score);
   }
-  return direction;
-};
-
-
-Snake.prototype.isWallCollision = function(x,y) {
-  var isTopCollision = y === -1,
-    isRightCollision = x >= canvasWidth / this.settings.snakePixels,
-    isBottomCollision = y >= canvasHeight / this.settings.snakePixels,
-    isLeftCollision = x === -1;
-
-  return isTopCollision || isRightCollision  || isBottomCollision || isLeftCollision;
-};
-
-Snake.prototype.isSelfCollision = function(x,y) {
-  for (var i = 0; i < this.snakePieces.length; i++) {
-    if (this.snakePieces[i].x == x && this.snakePieces[i].y == y) {
-      return true;
-    }
-  }
-  return false;
-};
-
-Snake.prototype.isFoodCollision = function(x,y) {
-  var found = false;
-  this.snakeFood.forEach(function(food) {
-    if ((x == food.x && y == food.y)) {
-      found = true;
-    }
-  });
-  return found;
-};
-
-Snake.prototype.removeFoodIfExists = function(x,y) {
-  var self = this;
-  this.snakeFood.forEach(function(food,ix) {
-    if ((x == food.x && y == food.y)) {
-      self.snakeFood.splice(ix);
-    }
-  });
-};
-
-
-Snake.prototype.drawScoreboard = function() {
-
-  var fontSize = 20, offset = 1;
-  if (canvasWidth <= 480) {
-    fontSize = 16;
-    offset = .65;
-  }
-
-  context.font = fontSize + "px 'HelveticaNeue-Light','Helvetica Neue Light','Helvetica Neue', Helvetica, sans-serif";
-  context.fillText("Score: " + this.score,                         canvasWidth - 100 * offset,  canvasHeight - 10);
-  context.fillText("Hi-Score: " + (cookie.get('hi-score') || 0),   canvasWidth - 240 * offset,  canvasHeight - 10);
-  context.fillText("Bot-Score: " + (cookie.get('bot-score') || 0), canvasWidth - 410 * offset,  canvasHeight - 10);
-};
-
-Snake.prototype.drawSnake = function() {
-  for (var i = 0; i < this.snakePieces.length; i++) {
-    var x = this.snakePieces[i];
-    this.drawPart(x.x, x.y);
-  }
-};
-
-Snake.prototype.drawFood = function(x,y) {
-  var width = this.settings.snakePixels;
-  context.fillStyle = "#ffffff";
-  context.strokeStyle = "#000000";
-
-  this.snakeFood.forEach(function(food) {
-    context.fillRect(food.x * width, food.y * width, width, width);
-    context.strokeRect(food.x * width, food.y * width, width, width);
-  });
-};
-
-
-Snake.prototype.drawPart = function(x,y) {
-  var width = this.settings.snakePixels;
-  context.fillStyle = "#ffffff";
-  context.strokeStyle = "#000000";
-  context.fillRect(x * width, y * width, width, width);
-  context.strokeRect(x * width, y * width, width, width);
-};
-
-Snake.prototype.createExpolosion = function(x,y) {
-  for (var i = 0; i < particleCount; i++) {
-    var particle = new Particle({x : x * this.settings.snakePixels, y : y * this.settings.snakePixels});
-    particles.push(particle);
-  }
-};
+}
 
 Snake.prototype.animationLoop = function() {
   if (this.started) {
     var self = this;
 
-    if (animationTimeout) {
-      clearTimeout(animationTimeout);
+    if (this.animationTimeout) {
+      clearTimeout(this.animationTimeout);
     }
 
     //Ensure FPS
-    animationTimeout = setTimeout(function() {
+    this.animationTimeout = setTimeout(function() {
       self.drawLoop.call(self);
       self.particleLoop.call(self);
       window.requestAnimationFrame(self.animationLoop.bind(self));
-    }, 1000 / fps);
+    }, 1000 / this.fps);
   }
 };
 
 Snake.prototype.particleLoop = function() {
-  if (particles) {
-    particles.forEach(function(particle,ix) {
+  if (this.particles) {
+    var self = this;
+    this.particles.forEach(function(particle,ix) {
       //Apply Some Gravity
-      particle.velocity.y += gravity;
+      particle.velocity.y += self.gravity;
       //Now Come Velocity
       particle.x += particle.velocity.x;
       particle.y += particle.velocity.y;
-      particle.draw(context);
-      if (particle.y > canvasHeight) {
-        particles.splice(ix);
+      particle.draw(self.context);
+      if (particle.y > this.canvas.height * 1.1) {
+        self.particles.splice(ix);
       }
     });
   }
 };
 
+
+//-----------------
+// Automated Bot Logic
+//-----------------
 
 Snake.prototype.enableBot = function() {
   this.bot.enabled = true;
@@ -513,9 +597,11 @@ Snake.prototype.getNextMove = function() {
 
 
 module.exports = Snake;
-},{"./Particle":1,"./util/cookie":4}],3:[function(require,module,exports){
+},{"./Particle":2,"./util/cookie":5}],4:[function(require,module,exports){
 /*global $, require, NProgress*/
 
+//Game Runner
+var Game = require('./Game');
 //Snake Game Container
 var Snake = require('./Snake');
 
@@ -524,67 +610,67 @@ var app = {
 
   menuOpen : false,
 
-  snake : new Snake(),
+  game : new Game({ inst : new Snake()}),
 
   start : function () {
     NProgress.done();
     this.bindEvents();
 
-    setTimeout(function() {
-      app.snake.start();
+    setTimeout(function () {
+      app.game.start();
     }, 3000);
+  },
+
+  preloadImages : function (obj, cb) {
+    var count = 0,
+      toload = 0,
+      images = obj instanceof Array ? [] : {};
+
+    for (var i in obj) {
+      images[i] = new Image();
+      images[i].src = obj[i];
+
+      images[i].onload = loaded;
+      images[i].onerror = loaded;
+      images[i].onabort = loaded;
+      toload++;
+    }
+
+    function loaded() {
+      if (++count <= toload) cb();
+    }
+  },
+
+  bindEvents : function () {
+    $(window)
+      .focus(this.game.play.bind(this.game))
+      .blur(this.game.pause.bind(this.game));
+
+    $('.js-menu').on('click', this.toggleMenu);
+    $(window).on('keydown', this.onKeydown);
+  },
+
+  onKeydown : function (event) {
+    switch (event.keyCode) {
+      case 191 : //?
+        app.toggleMenu();
+        break;
+    }
   },
 
   toggleMenu : function () {
     $('#menu').slideToggle();
-  },
-
-  preloadImages : function(obj, cb) {
-      var loaded = 0;
-      var toload = 0;
-      var images = obj instanceof Array ? [] : {};
-
-      for (var i in obj) {
-        toload++;
-        images[i] = new Image();
-        images[i].src = obj[i];
-        images[i].onload = load;
-        images[i].onerror = load;
-        images[i].onabort = load;
-      }
-
-      function load() {
-        if (++loaded >= toload) cb();
-      }
-  },
-
-  bindEvents : function () {
-    $(window).focus(this.snake.play).blur(this.snake.pause);
-
-    $('.js-menu').on('click', function () {
-      app.toggleMenu();
-    });
-
-    $(window).on('keydown', function (e) {
-      switch (e.keyCode) {
-        case 82 : //r
-          app.snake.restart();
-          break;
-        case 191 : //?
-          app.toggleMenu();
-          break;
-      }
-    });
   }
 };
 
-
-$(document).ready(function() {
-  app.preloadImages(['/assets/img/bg.jpg'], function() {
+//On Document Ready PreLoad Images
+$(document).ready(function () {
+  var images = ['/assets/img/bg.jpg'];
+  app.preloadImages(images, function () {
     app.start();
   });
 });
-},{"./Snake":2}],4:[function(require,module,exports){
+},{"./Game":1,"./Snake":3}],5:[function(require,module,exports){
 /*global module*/
 
 module.exports = {
@@ -608,4 +694,4 @@ module.exports = {
     return false;
   }
 };
-},{}]},{},[3])
+},{}]},{},[4])

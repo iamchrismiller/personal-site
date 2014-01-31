@@ -27,7 +27,6 @@
 
 <body>
     <div class="bg"></div>
-
     <canvas id="canvas" autofocus="autofocus"></canvas>
 
     <div id="menu">
@@ -54,7 +53,7 @@
 
             <div class="animate slideInLeft dur1">
                 <h2>An Open Source Web Enthusiast.</h2>
-                <p class="quote">I have a passion for building, new technology and competition shooting.<br/>
+                <p class="quote">“Skate where the puck is going, not where it’s been” - Wayne Gretzky<br/>
                                  Currently i'm a platform developer at
                     <a href="http://www.onehealth.com/">OneHealth</a>, a Co-Founder of
                     <a href="https://github.com/javascriptu">JavascriptU</a>,
@@ -73,7 +72,24 @@
     </div>
 
     <div class="footer">
-        <div class="fa fa-gear js-menu menu-button"></div>
+        <div class="fa fa-question js-menu menu-button"></div>
+        <div id="scoreboard">
+            <div id="score">
+                Score :
+                <span>0</span>
+            </div>
+
+            <div id="hi-score">
+                Hi Score :
+                <span>0</span>
+            </div>
+
+            <div id="bot-hi-score">
+                Bot Hi Score :
+                <span>0</span>
+            </div>
+
+        </div>
     </div>
 
 <!-- Vendor Component Libraries -->
@@ -93,7 +109,7 @@
         e=o.createElement(i);r=o.getElementsByTagName(i)[0];
         e.src='//www.google-analytics.com/analytics.js';
         r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-    ga('create','UA-XXXXX-X');ga('send','pageview');
+    ga('create','UA-47572881-1');ga('send','pageview');
 </script>
 </body>
 </html>

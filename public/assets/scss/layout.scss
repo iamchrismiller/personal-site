@@ -11,6 +11,7 @@ body {
 
   a {
     text-decoration : none;
+    color : #329ECC;
   }
 
 
@@ -24,6 +25,14 @@ body {
     background-size         : cover;
     height                  : 100%;
     width                   : 100%;
+
+    -webkit-backface-visibility : hidden;
+
+    -webkit-animation           : fadeIn 2s linear 0s;
+    -moz-animation              : fadeIn 2s linear 0s;
+    -o-animation                : fadeIn 2s linear 0s;
+    -ms-animation               : fadeIn 2s linear 0s;
+    animation                   : fadeIn 2s linear 0s;
   }
 
   .blurred {
@@ -99,6 +108,15 @@ body {
           color : #FFFFFF;
           margin-top : 10px;
           font-size  : 1.2em;
+          opacity: .6;
+
+          &:hover {
+            opacity : 1;
+            -webkit-transition : all 1s;
+            -moz-transition    : all 1s;
+            transition         : all 1s;
+          }
+
         }
       }
 
@@ -194,6 +212,21 @@ body {
     height     : 40px;
     background : rgba(0, 0, 0, 0.3);
     color      : white;
+
+    #scoreboard {
+      div {
+        opacity : .6;
+        float :right;
+        margin-right : 30px;
+        margin-top: 10px;
+        font-size : 20px;
+        font-family : 'HelveticaNeue-Light','Helvetica Neue Light','Helvetica Neue', Helvetica, sans-serif;
+      }
+
+      span {
+        font-weight : bold;
+      }
+    }
 
     .menu-button {
       position    : absolute;

@@ -1,5 +1,7 @@
 /*global $, require, NProgress*/
 
+//Game Runner
+var Game = require('./Game');
 //Snake Game Container
 var Snake = require('./Snake');
 
@@ -8,63 +10,63 @@ var app = {
 
   menuOpen : false,
 
-  snake : new Snake(),
+  game : new Game({ inst : new Snake()}),
 
   start : function () {
     NProgress.done();
     this.bindEvents();
 
-    setTimeout(function() {
-      app.snake.start();
+    setTimeout(function () {
+      app.game.start();
     }, 3000);
+  },
+
+  preloadImages : function (obj, cb) {
+    var count = 0,
+      toload = 0,
+      images = obj instanceof Array ? [] : {};
+
+    for (var i in obj) {
+      images[i] = new Image();
+      images[i].src = obj[i];
+
+      images[i].onload = loaded;
+      images[i].onerror = loaded;
+      images[i].onabort = loaded;
+      toload++;
+    }
+
+    function loaded() {
+      if (++count <= toload) cb();
+    }
+  },
+
+  bindEvents : function () {
+    $(window)
+      .focus(this.game.play.bind(this.game))
+      .blur(this.game.pause.bind(this.game));
+
+    $('.js-menu').on('click', this.toggleMenu);
+    $(window).on('keydown', this.onKeydown);
+  },
+
+  onKeydown : function (event) {
+    switch (event.keyCode) {
+      case 191 : //?
+        app.toggleMenu();
+        break;
+    }
   },
 
   toggleMenu : function () {
     $('#menu').slideToggle();
-  },
-
-  preloadImages : function(obj, cb) {
-      var loaded = 0;
-      var toload = 0;
-      var images = obj instanceof Array ? [] : {};
-
-      for (var i in obj) {
-        toload++;
-        images[i] = new Image();
-        images[i].src = obj[i];
-        images[i].onload = load;
-        images[i].onerror = load;
-        images[i].onabort = load;
-      }
-
-      function load() {
-        if (++loaded >= toload) cb();
-      }
-  },
-
-  bindEvents : function () {
-    $(window).focus(this.snake.play).blur(this.snake.pause);
-
-    $('.js-menu').on('click', function () {
-      app.toggleMenu();
-    });
-
-    $(window).on('keydown', function (e) {
-      switch (e.keyCode) {
-        case 82 : //r
-          app.snake.restart();
-          break;
-        case 191 : //?
-          app.toggleMenu();
-          break;
-      }
-    });
   }
 };
 
-
-$(document).ready(function() {
-  app.preloadImages(['/assets/img/bg.jpg'], function() {
+//On Document Ready PreLoad Images
+$(document).ready(function () {
+  var images = ['/assets/img/bg.jpg'];
+  app.preloadImages(images, function () {
     app.start();
   });
 });

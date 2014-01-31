@@ -8,10 +8,12 @@ function Particle(options) {
   this.y = this.options.y;
 
   this.radius = parseInt(Math.random() * 5);
-  this.color = this.getBWHex();
+  this.color = ((!(Math.random()+ 0.5 | 0) === true) ? 255 : 0);
+
+  this.life = 100;
 
   this.velocity = {
-    x : -8 + Math.random() * 10,
+    x : -5 + Math.random() * 10,
     y : -8 + Math.random() * 10
   };
 }
@@ -26,7 +28,11 @@ Particle.prototype.getColor = function() {
 
 
 Particle.prototype.draw = function (context) {
-  context.fillStyle = this.color;
+  //decay
+  this.life = ~~(this.life *.96);
+  this.radius = (this.radius *.96);
+
+  context.fillStyle = ('rgba(' + this.color + ',' + this.color + ',' + this.color + ", " + this.life / 100);
   context.beginPath();
   context.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
   context.fill();
