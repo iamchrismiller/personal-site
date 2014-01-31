@@ -3,3 +3,4 @@ node_modules/
 .idea/
 htdocs/.sass-cache
 .sass-cache/
+components/font-awesome/src/
