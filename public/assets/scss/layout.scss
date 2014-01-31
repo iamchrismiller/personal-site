@@ -14,6 +14,10 @@ body {
     color           : #329ECC;
   }
 
+  .hidden {
+    display : none;
+  }
+
   .bg {
     position                    : absolute;
     top                         : 0;
@@ -159,12 +163,27 @@ body {
     -o-border-top-right-radius      : 40px;
     -webkit-border-top-right-radius : 40px;
 
+    &.mobile {
+      .content {
+        &.desktop {
+          display : none;
+        }
+        &.mobile {
+          display : block;
+        }
+      }
+    }
+
     hr {
       opacity : .6;
     }
 
     .content {
       padding : 10px;
+
+      &.mobile {
+        display : none;
+      }
     }
 
     p {
@@ -201,6 +220,9 @@ body {
         margin-bottom : 5px;
         color         : #ffffff;
         font-size     : .8em;
+
+        &.mobile {
+        }
 
         li {
           float         : left;

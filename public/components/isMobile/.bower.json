@@ -1,0 +1,26 @@
+{
+  "name": "isMobile",
+  "version": "0.3.1",
+  "main": [
+    "isMobile.js",
+    "isMobile.min.js"
+  ],
+  "ignore": [
+    "**/.*",
+    "bower.json",
+    "CONTRIBUTORS.md",
+    "Gruntfile.js",
+    "tests"
+  ],
+  "homepage": "https://github.com/kaimallea/isMobile",
+  "_release": "0.3.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.3.1",
+    "commit": "63f4bbe2691aa2c8dc6697444140f43e0506a808"
+  },
+  "_source": "git://github.com/kaimallea/isMobile.git",
+  "_target": "~0.3.1",
+  "_originalSource": "isMobile",
+  "_direct": true
+}

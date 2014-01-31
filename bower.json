@@ -8,6 +8,7 @@
   "dependencies": {
     "font-awesome": "4.0.3",
     "nprogress": "~0.1.2",
-    "hammerjs": "~1.0.6"
+    "hammerjs": "~1.0.6",
+    "isMobile": "~0.3.1"
   }
 }
