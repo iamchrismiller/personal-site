@@ -258,24 +258,26 @@ GameContainer.prototype.onKeydown = function (event) {
 
 GameContainer.prototype.bindTouchEvents = function() {
   var self = this;
-  var body = document.getElementsByTagName('body')[0];
 
-  jQuery('body').on('touchmove', function(e) {
+  $(document).on('touchmove', function(e) {
     e.preventDefault();
   });
 
-//  Hammer(body).on("doubletap", function(event) {console.log("doubletap");});
-//  Hammer(body).on("hold", function(event) { console.log("hold");});
-  Hammer(body).on("swipeup", function(event) {
+  //  Hammer(body).on("hold", function(event) { console.log("hold");});
+
+  Hammer(body).on("doubletap", function(e) {
+    self.inst.restart();
+  });
+  Hammer(body).on("swipeup", function(e) {
     self.inst.queueDirection(self.inst.DIRECTIONS.UP);
   });
-  Hammer(body).on("swipedown", function(event) {
+  Hammer(body).on("swipedown", function(e) {
     self.inst.queueDirection(self.inst.DIRECTIONS.DOWN);
   });
-  Hammer(body).on("swipeleft", function(event) {
+  Hammer(body).on("swipeleft", function(e) {
     self.inst.queueDirection(self.inst.DIRECTIONS.LEFT);
   });
-  Hammer(body).on("swiperight", function(event) {
+  Hammer(body).on("swiperight", function(e) {
     self.inst.queueDirection(self.inst.DIRECTIONS.RIGHT);
   });
 };
