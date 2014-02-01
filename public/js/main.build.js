@@ -259,6 +259,11 @@ GameContainer.prototype.onKeydown = function (event) {
 GameContainer.prototype.bindTouchEvents = function() {
   var self = this;
   var body = document.getElementsByTagName('body')[0];
+
+  jQuery('body').on('touchmove', function(e) {
+    e.preventDefault();
+  });
+
 //  Hammer(body).on("doubletap", function(event) {console.log("doubletap");});
 //  Hammer(body).on("hold", function(event) { console.log("hold");});
   Hammer(body).on("swipeup", function(event) {
@@ -759,7 +764,6 @@ var app = {
 
   onKeydown : function (event) {
     switch (event.keyCode) {
-
       case 191 : //?
         app.toggleMenu();
         break;

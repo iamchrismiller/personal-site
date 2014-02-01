@@ -53,7 +53,6 @@ var app = {
 
   onKeydown : function (event) {
     switch (event.keyCode) {
-
       case 191 : //?
         app.toggleMenu();
         break;
