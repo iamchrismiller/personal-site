@@ -12,6 +12,7 @@
     <meta property="og:country-name" content="USA"/>
     <meta property="og:url" content="http://chris-miller.me"/>
     <meta property="og:description" content="This is my personal space where I can blog about things I enjoy..."/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
 
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="components/nprogress/nprogress.css">
@@ -22,6 +23,8 @@
             return window.requestAnimationFrame||window.webkitRequestAnimationFrame||
                     window.mozRequestAnimationFrame||window.msRequestAnimationFrame||
                     window.oRequestAnimationFrame||function(f){window.setTimeout(f,1e3/60)}}();
+
+        window.scrollTo(0, 1);
     </script>
 </head>
 
