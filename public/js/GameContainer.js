@@ -116,6 +116,11 @@ GameContainer.prototype.onKeydown = function (event) {
     case 39 :
       this.inst.queueDirection(this.inst.DIRECTIONS.RIGHT);
       break;
+    case 98 : //b
+      if (this.inst.bot) {
+        this.inst.bot.enable();
+      }
+      break;
     case 82 : //r
       this.inst.restart();
       break;
@@ -139,7 +144,7 @@ GameContainer.prototype.bindTouchEvents = function() {
   var body = document.getElementsByTagName('body')[0];
 //  Hammer(body).on("doubletap", function(event) {console.log("doubletap");});
 //  Hammer(body).on("hold", function(event) { console.log("hold");});
-//  Hammer(body).on("swipeup", function(event) {
+  Hammer(body).on("swipeup", function(event) {
     self.inst.queueDirection(self.inst.DIRECTIONS.UP);
   });
   Hammer(body).on("swipedown", function(event) {
