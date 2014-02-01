@@ -115,7 +115,7 @@ Food.prototype.draw = function (context) {
 
 module.exports = Food;
 },{}],3:[function(require,module,exports){
-/*global requestAnimationFrame, module, require, $ */
+/*global module, require, $, Hammer */
 
 var cookie = require('./util/cookie');
 
@@ -153,6 +153,7 @@ GameContainer.prototype.bindEvents = function () {
   var self = this;
   $(document).on('keydown', this.onKeydown.bind(this));
   $(window).on('resize', this.onResize.bind(this));
+  this.bindTouchEvents();
 
   this.inst.onRestart = function (score) {
     self.onGameRestart(score);
@@ -220,11 +221,23 @@ GameContainer.prototype.updateScore = function (score) {
 
 GameContainer.prototype.onKeydown = function (event) {
   switch (event.keyCode) {
-    case 79 : //o
-      this.toggleGame();
+    case 38 :
+      this.inst.queueDirection(this.inst.DIRECTIONS.UP);
+      break;
+    case 40 :
+      this.inst.queueDirection(this.inst.DIRECTIONS.DOWN);
+      break;
+    case 37 :
+      this.inst.queueDirection(this.inst.DIRECTIONS.LEFT);
+      break;
+    case 39 :
+      this.inst.queueDirection(this.inst.DIRECTIONS.RIGHT);
       break;
     case 82 : //r
       this.inst.restart();
+      break;
+    case 79 : //o
+      this.toggleGame();
       break;
     case 32 : //space
       if (!this.disabled) {
@@ -236,6 +249,33 @@ GameContainer.prototype.onKeydown = function (event) {
       }
       break;
   }
+};
+
+GameContainer.prototype.bindTouchEvents = function() {
+  var self = this;
+
+  var body = document.getElementsByTagName('body')[0];
+  Hammer(body).on("doubletap", function(event) {console.log("doubletap");});
+  Hammer(body).on("hold", function(event) { console.log("hold");});
+  Hammer(body).on("swipeup", function(event) {
+    console.log("UP");
+    self.inst.queueDirection(self.inst.DIRECTIONS.UP);
+  });
+  Hammer(body).on("swipedown", function(event) {
+    console.log("DOWN");
+
+    self.inst.queueDirection(self.inst.DIRECTIONS.DOWN);
+  });
+  Hammer(body).on("swipeleft", function(event) {
+    console.log("left");
+
+    self.inst.queueDirection(self.inst.DIRECTIONS.LEFT);
+  });
+  Hammer(body).on("swiperight", function(event) {
+    console.log("right");
+
+    self.inst.queueDirection(self.inst.DIRECTIONS.RIGHT);
+  });
 };
 
 GameContainer.prototype.onGameScore = function (score) {
@@ -389,12 +429,9 @@ var Snake = function(options) {
 
   this.bot = new Bot({directions : this.DIRECTIONS});
   if (this.settings.bot) this.bot.enable();
-
   this.direction = this.DIRECTIONS.RIGHT;
   this.directionQueue = [];
-  this.bindEvents();
 };
-
 
 Snake.prototype.start = function() {
   this.started = true;
@@ -427,10 +464,6 @@ Snake.prototype.restart = function () {
   this.start();
 };
 
-Snake.prototype.bindEvents = function() {
-  $(document).on('keydown', this.onKeydown.bind(this));
-};
-
 
 Snake.prototype.play = function() {
   this.started = true;
@@ -448,33 +481,9 @@ Snake.prototype.lose = function() {
   setTimeout(this.restart.bind(this), this.settings.timeout);
 };
 
-Snake.prototype.onKeydown = function (event) {
-  var direction;
-
-  //Gameplay Keys
-  if (this.bot && [38,40,37,39].indexOf(event.keyCode) !== -1) {
-    this.bot.disable();
-  }
-
-  switch (event.keyCode) {
-    case 38 :
-      direction = this.DIRECTIONS.UP;
-      break;
-    case 40 :
-      direction = this.DIRECTIONS.DOWN;
-      break;
-    case 37 :
-      direction = this.DIRECTIONS.LEFT;
-      break;
-    case 39 :
-      direction = this.DIRECTIONS.RIGHT;
-      break;
-    case 66 : //b
-      this.bot.enable();
-      break;
-    default :
-      return;
-  }
+Snake.prototype.queueDirection = function(direction) {
+  if (this.bot.enabled) this.bot.disable();
+  //check if direction allowed
 
   //Don't Allow The Same Moves To Stack Up
   if (this.started && this.directionQueue[this.directionQueue.length - 1] !== direction) {
@@ -570,6 +579,13 @@ Snake.prototype.createExplosion = function(x,y, colors) {
   }
 };
 
+Snake.prototype.scorePoint = function() {
+  this.score++;
+  if (this.onScore && typeof this.onScore === 'function') {
+    this.onScore(this.score);
+  }
+}
+
 
 Snake.prototype.drawLoop = function() {
   var self = this;
@@ -653,13 +669,6 @@ Snake.prototype.drawLoop = function() {
   });
 };
 
-Snake.prototype.scorePoint = function() {
-  this.score++;
-  if (this.onScore && typeof this.onScore === 'function') {
-    this.onScore(this.score);
-  }
-}
-
 Snake.prototype.animationLoop = function() {
   if (this.started) {
     var self = this;
@@ -742,16 +751,18 @@ var app = {
   },
 
   bindEvents : function () {
-    $(window)
-      .focus(this.game.play.bind(this.game))
-      .blur(this.game.pause.bind(this.game));
-
+    if (this.game.started) {
+      $(window)
+        .focus(this.game.play.bind(this.game))
+        .blur(this.game.pause.bind(this.game));
+    }
     $('.js-menu-toggle').on('click', this.toggleMenu);
     $(window).on('keydown', this.onKeydown);
   },
 
   onKeydown : function (event) {
     switch (event.keyCode) {
+
       case 191 : //?
         app.toggleMenu();
         break;
@@ -765,23 +776,11 @@ var app = {
     } else {
       menu.slideDown();
     }
-
     this.menuOpen = !this.menuOpen;
-  },
-
-  bindMobileEvents : function() {
-    var body = document.getElementsByTagName('body')[0];
-     Hammer(body).on("doubletap", function(event) {console.log("doubletap");});
-     Hammer(body).on("hold", function(event) { console.log("hold");});
-     Hammer(body).on("swipeup", function(event) {console.log("swipeup");});
-     Hammer(body).on("swipedown", function(event) { console.log("swipedown"); });
-     Hammer(body).on("swipeleft", function(event) {console.log("swipeleft");});
-     Hammer(body).on("swiperight", function(event) {console.log("swiperight");});
   },
 
   ifMobile : function() {
     $('#menu').addClass('mobile');
-    this.bindMobileEvents();
   }
 };
 

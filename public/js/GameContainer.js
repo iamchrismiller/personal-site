@@ -1,4 +1,4 @@
-/*global requestAnimationFrame, module, require, $ */
+/*global module, require, $, Hammer */
 
 var cookie = require('./util/cookie');
 
@@ -36,6 +36,7 @@ GameContainer.prototype.bindEvents = function () {
   var self = this;
   $(document).on('keydown', this.onKeydown.bind(this));
   $(window).on('resize', this.onResize.bind(this));
+  this.bindTouchEvents();
 
   this.inst.onRestart = function (score) {
     self.onGameRestart(score);
@@ -103,11 +104,23 @@ GameContainer.prototype.updateScore = function (score) {
 
 GameContainer.prototype.onKeydown = function (event) {
   switch (event.keyCode) {
-    case 79 : //o
-      this.toggleGame();
+    case 38 :
+      this.inst.queueDirection(this.inst.DIRECTIONS.UP);
+      break;
+    case 40 :
+      this.inst.queueDirection(this.inst.DIRECTIONS.DOWN);
+      break;
+    case 37 :
+      this.inst.queueDirection(this.inst.DIRECTIONS.LEFT);
+      break;
+    case 39 :
+      this.inst.queueDirection(this.inst.DIRECTIONS.RIGHT);
       break;
     case 82 : //r
       this.inst.restart();
+      break;
+    case 79 : //o
+      this.toggleGame();
       break;
     case 32 : //space
       if (!this.disabled) {
@@ -119,6 +132,25 @@ GameContainer.prototype.onKeydown = function (event) {
       }
       break;
   }
+};
+
+GameContainer.prototype.bindTouchEvents = function() {
+  var self = this;
+  var body = document.getElementsByTagName('body')[0];
+//  Hammer(body).on("doubletap", function(event) {console.log("doubletap");});
+//  Hammer(body).on("hold", function(event) { console.log("hold");});
+//  Hammer(body).on("swipeup", function(event) {
+    self.inst.queueDirection(self.inst.DIRECTIONS.UP);
+  });
+  Hammer(body).on("swipedown", function(event) {
+    self.inst.queueDirection(self.inst.DIRECTIONS.DOWN);
+  });
+  Hammer(body).on("swipeleft", function(event) {
+    self.inst.queueDirection(self.inst.DIRECTIONS.LEFT);
+  });
+  Hammer(body).on("swiperight", function(event) {
+    self.inst.queueDirection(self.inst.DIRECTIONS.RIGHT);
+  });
 };
 
 GameContainer.prototype.onGameScore = function (score) {

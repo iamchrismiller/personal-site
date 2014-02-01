@@ -48,12 +48,9 @@ var Snake = function(options) {
 
   this.bot = new Bot({directions : this.DIRECTIONS});
   if (this.settings.bot) this.bot.enable();
-
   this.direction = this.DIRECTIONS.RIGHT;
   this.directionQueue = [];
-  this.bindEvents();
 };
-
 
 Snake.prototype.start = function() {
   this.started = true;
@@ -86,10 +83,6 @@ Snake.prototype.restart = function () {
   this.start();
 };
 
-Snake.prototype.bindEvents = function() {
-  $(document).on('keydown', this.onKeydown.bind(this));
-};
-
 
 Snake.prototype.play = function() {
   this.started = true;
@@ -107,33 +100,9 @@ Snake.prototype.lose = function() {
   setTimeout(this.restart.bind(this), this.settings.timeout);
 };
 
-Snake.prototype.onKeydown = function (event) {
-  var direction;
-
-  //Gameplay Keys
-  if (this.bot && [38,40,37,39].indexOf(event.keyCode) !== -1) {
-    this.bot.disable();
-  }
-
-  switch (event.keyCode) {
-    case 38 :
-      direction = this.DIRECTIONS.UP;
-      break;
-    case 40 :
-      direction = this.DIRECTIONS.DOWN;
-      break;
-    case 37 :
-      direction = this.DIRECTIONS.LEFT;
-      break;
-    case 39 :
-      direction = this.DIRECTIONS.RIGHT;
-      break;
-    case 66 : //b
-      this.bot.enable();
-      break;
-    default :
-      return;
-  }
+Snake.prototype.queueDirection = function(direction) {
+  if (this.bot.enabled) this.bot.disable();
+  //check if direction allowed
 
   //Don't Allow The Same Moves To Stack Up
   if (this.started && this.directionQueue[this.directionQueue.length - 1] !== direction) {
@@ -229,6 +198,13 @@ Snake.prototype.createExplosion = function(x,y, colors) {
   }
 };
 
+Snake.prototype.scorePoint = function() {
+  this.score++;
+  if (this.onScore && typeof this.onScore === 'function') {
+    this.onScore(this.score);
+  }
+}
+
 
 Snake.prototype.drawLoop = function() {
   var self = this;
@@ -311,13 +287,6 @@ Snake.prototype.drawLoop = function() {
     food.draw(self.context);
   });
 };
-
-Snake.prototype.scorePoint = function() {
-  this.score++;
-  if (this.onScore && typeof this.onScore === 'function') {
-    this.onScore(this.score);
-  }
-}
 
 Snake.prototype.animationLoop = function() {
   if (this.started) {

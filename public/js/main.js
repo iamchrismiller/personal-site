@@ -42,16 +42,18 @@ var app = {
   },
 
   bindEvents : function () {
-    $(window)
-      .focus(this.game.play.bind(this.game))
-      .blur(this.game.pause.bind(this.game));
-
+    if (this.game.started) {
+      $(window)
+        .focus(this.game.play.bind(this.game))
+        .blur(this.game.pause.bind(this.game));
+    }
     $('.js-menu-toggle').on('click', this.toggleMenu);
     $(window).on('keydown', this.onKeydown);
   },
 
   onKeydown : function (event) {
     switch (event.keyCode) {
+
       case 191 : //?
         app.toggleMenu();
         break;
@@ -65,23 +67,11 @@ var app = {
     } else {
       menu.slideDown();
     }
-
     this.menuOpen = !this.menuOpen;
-  },
-
-  bindMobileEvents : function() {
-    var body = document.getElementsByTagName('body')[0];
-     Hammer(body).on("doubletap", function(event) {console.log("doubletap");});
-     Hammer(body).on("hold", function(event) { console.log("hold");});
-     Hammer(body).on("swipeup", function(event) {console.log("swipeup");});
-     Hammer(body).on("swipedown", function(event) { console.log("swipedown"); });
-     Hammer(body).on("swipeleft", function(event) {console.log("swipeleft");});
-     Hammer(body).on("swiperight", function(event) {console.log("swiperight");});
   },
 
   ifMobile : function() {
     $('#menu').addClass('mobile');
-    this.bindMobileEvents();
   }
 };
 
