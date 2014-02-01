@@ -265,6 +265,8 @@ GameContainer.prototype.bindTouchEvents = function() {
 
   //  Hammer(body).on("hold", function(event) { console.log("hold");});
 
+  var body = document.getElementsByTagName('body')[0];
+
   Hammer(body).on("doubletap", function(e) {
     self.inst.restart();
   });

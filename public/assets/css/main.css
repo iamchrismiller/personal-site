@@ -573,7 +573,7 @@ body .footer .menu-button {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000310}}
   body .container #menu.mobile {
     width: 100%;
-    height: 70%;
+    height: 55%;
     background-color: #333;
     opacity: .8;
     bottom: 0;
@@ -638,7 +638,7 @@ body .footer .menu-button {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000386}}
   body .container #menu.mobile {
     width: 100%;
-    height: 70%;
+    height: 55%;
     background-color: #333;
     opacity: .8;
     bottom: 0;
@@ -685,7 +685,7 @@ body .footer .menu-button {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003154}}
   body .container #menu.mobile {
     width: 100%;
-    height: 200px;
+    height: 150px;
     background-color: #333;
     opacity: .8;
     bottom: 0;
