@@ -1,7 +1,9 @@
 /*global requestAnimationFrame, module, require, $ */
 
 var Particle = require('./Particle');
-var cookie = require('./util/cookie');
+var Piece = require('./Piece');
+var Food = require('./Food');
+var Bot = require('./Bot');
 
 /**
  * Snake Game
@@ -26,27 +28,26 @@ var Snake = function(options) {
   this.canvas.height = window.innerHeight;
   this.animationTimeout = null;
 
-  this.snakePieces = [];
-  this.snakeFood = [];
+  this.pieces = [];
+  this.food = [];
 
   this.settings = $.extend({
     snakePixels    : 14,
     snakeSize      : 3,
-    bot            : true
+    bot            : true,
+    timeout        : 3000,
+    explosion      : true
   }, options);
-
-  this.bot = {};
-
-  if (this.settings.bot) {
-    this.enableBot();
-  }
 
   this.DIRECTIONS = {
     UP   : 0,
     DOWN : 2,
-    LEFT  : 3,
-    RIGHT : 1
+    LEFT  : 1,
+    RIGHT : 3
   };
+
+  this.bot = new Bot({directions : this.DIRECTIONS});
+  if (this.settings.bot) this.bot.enable();
 
   this.direction = this.DIRECTIONS.RIGHT;
   this.directionQueue = [];
@@ -66,8 +67,8 @@ Snake.prototype.reset = function() {
   this.score = 0;
   this.directionQueue = [];
   this.direction = this.DIRECTIONS.RIGHT;
-  this.snakePieces = [];
-  this.snakeFood = [];
+  this.pieces = [];
+  this.food = [];
   this.particles = [];
   this.gravity = 1;
   this.fps = 15;
@@ -89,6 +90,7 @@ Snake.prototype.bindEvents = function() {
   $(document).on('keydown', this.onKeydown.bind(this));
 };
 
+
 Snake.prototype.play = function() {
   this.started = true;
   if (typeof this.animationLoop === 'function') {
@@ -101,12 +103,8 @@ Snake.prototype.pause = function() {
 };
 
 Snake.prototype.lose = function() {
-  var self = this;
   this.pause();
-
-  setTimeout(function() {
-    self.restart();
-  }, 3000);
+  setTimeout(this.restart.bind(this), this.settings.timeout);
 };
 
 Snake.prototype.onKeydown = function (event) {
@@ -114,7 +112,7 @@ Snake.prototype.onKeydown = function (event) {
 
   //Gameplay Keys
   if (this.bot && [38,40,37,39].indexOf(event.keyCode) !== -1) {
-    this.disableBot();
+    this.bot.disable();
   }
 
   switch (event.keyCode) {
@@ -131,7 +129,7 @@ Snake.prototype.onKeydown = function (event) {
       direction = this.DIRECTIONS.RIGHT;
       break;
     case 66 : //b
-      this.enableBot();
+      this.bot.enable();
       break;
     default :
       return;
@@ -150,18 +148,25 @@ Snake.prototype.onResize = function(height, width) {
 
 Snake.prototype.create = function() {
   for (var x = 0; x < this.settings.snakeSize; x++) {
-    this.snakePieces.push({ x : 0, y : 20 });
+    this.pieces.push(new Piece({
+      x : 0,
+      y : 20,
+      width : this.settings.snakePixels
+    }));
   }
 };
 
 Snake.prototype.createFood = function() {
-  this.snakeFood.push({
+  this.food.push(new Food({
     x : Math.round(Math.random() * (this.canvas.width - this.settings.snakePixels) / this.settings.snakePixels),
-    y : Math.round(Math.random() * (this.canvas.height - this.settings.snakePixels) / this.settings.snakePixels)
-  });
+    y : Math.round(Math.random() * (this.canvas.height - this.settings.snakePixels) / this.settings.snakePixels),
+    width : this.settings.snakePixels,
+    color : '#fff',
+    border : '#000'
+  }));
 };
 
-Snake.prototype._getDirection = function () {
+Snake.prototype.getDirection = function () {
   var direction;
   while (typeof direction === 'undefined' || (this.direction - direction + 4) % 4 === 2) {
     if (this.directionQueue.length > 0) {
@@ -186,8 +191,8 @@ Snake.prototype.isWallCollision = function(x,y) {
 };
 
 Snake.prototype.isSelfCollision = function(x,y) {
-  for (var i = 0; i < this.snakePieces.length; i++) {
-    if (this.snakePieces[i].x == x && this.snakePieces[i].y == y) {
+  for (var i = 0; i < this.pieces.length; i++) {
+    if (this.pieces[i].x == x && this.pieces[i].y == y) {
       return true;
     }
   }
@@ -196,7 +201,7 @@ Snake.prototype.isSelfCollision = function(x,y) {
 
 Snake.prototype.isFoodCollision = function(x,y) {
   var found = false;
-  this.snakeFood.forEach(function(food) {
+  this.food.forEach(function(food) {
     if ((x == food.x && y == food.y)) {
       found = true;
     }
@@ -204,67 +209,43 @@ Snake.prototype.isFoodCollision = function(x,y) {
   return found;
 };
 
-Snake.prototype.removeFoodIfExists = function(x,y) {
+Snake.prototype.removeFood = function(x,y) {
   var self = this;
-  this.snakeFood.forEach(function(food,ix) {
+  this.food.forEach(function(food,ix) {
     if ((x == food.x && y == food.y)) {
-      self.snakeFood.splice(ix);
+      self.food.splice(ix);
     }
   });
 };
 
-Snake.prototype.drawSnake = function() {
-  for (var i = 0; i < this.snakePieces.length; i++) {
-    var x = this.snakePieces[i];
-    this.drawPart(x.x, x.y);
-  }
-};
-
-Snake.prototype.drawFood = function(x,y) {
-  var self = this;
-  var width = this.settings.snakePixels;
-  this.context.fillStyle = "#ffffff";
-  this.context.strokeStyle = "#000000";
-
-  this.snakeFood.forEach(function(food) {
-    self.context.fillRect(food.x * width, food.y * width, width, width);
-    self.context.strokeRect(food.x * width, food.y * width, width, width);
-  });
-};
-
-
-Snake.prototype.drawPart = function(x,y) {
-  var width = this.settings.snakePixels;
-  this.context.fillStyle = "#ffffff";
-  this.context.strokeStyle = "#000000";
-  this.context.fillRect(x * width, y * width, width, width);
-  this.context.strokeRect(x * width, y * width, width, width);
-};
-
-Snake.prototype.createExpolosion = function(x,y) {
+Snake.prototype.createExplosion = function(x,y, colors) {
   for (var i = 0; i < this.particleCount; i++) {
-    var particle = new Particle({x : x * this.settings.snakePixels, y : y * this.settings.snakePixels});
+    var particle = new Particle({
+      x : x * this.settings.snakePixels,
+      y : y * this.settings.snakePixels,
+      color : colors ? colors[~~(Math.random()*colors.length)] : null
+    });
     this.particles.push(particle);
   }
 };
 
 
 Snake.prototype.drawLoop = function() {
+  var self = this;
+
   //Clear Canvas Context Before Redraw
   this.context.setTransform(1, 0, 0, 1, 0, 0);
   this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-  var headX = this.snakePieces[0].x;
-  var headY = this.snakePieces[0].y;
+  var headX = this.pieces[0].x;
+  var headY = this.pieces[0].y;
 
-  var direction = this._getDirection();
+  var direction = this.getDirection();
   //reset direction
   this.direction = direction;
 
-  if (this.bot) {
-    if (this.bot.enabled) {
-      this.direction = this.getNextMove();
-    }
+  if (this.bot && this.bot.enabled) {
+    this.direction = this.bot.getNextMove(this.pieces, this.food[0], {x : headX, y : headY}, this.direction, this.DIRECTIONS);
   }
 
   switch(this.direction) {
@@ -282,41 +263,53 @@ Snake.prototype.drawLoop = function() {
       break;
   }
 
-  if (this.isWallCollision(headX, headY)) {
+  if (this.isWallCollision(headX, headY) || this.isSelfCollision(headX, headY)) {
     this.lose();
   }
-
-  if (this.isSelfCollision(headX, headY)) {
-    this.lose();
-  }
-
-  var snakeTail = {};
 
   if (this.started) {
-    if (this.isFoodCollision(headX, headY)) {
+    var headShift = null;
+    var food = this.isFoodCollision(headX, headY);
+
+    if (food) {
       this.scorePoint();
-      //Increase Frames Per Secod
+      //Increase Frames Per Second
       if (this.score % 2) {
         this.fps += 0.5;
       }
 
-      this.removeFoodIfExists(headX, headY);
-      this.createExpolosion(headX, headY);
+      if (this.settings.explosion) {
+        this.createExplosion(headX, headY, [food.color,food.border]);
+      }
+
+      this.removeFood(headX, headY);
       this.createFood();
 
-      snakeTail.x = headX;
-      snakeTail.y = headY;
+      //create new snake head
+      headShift = new Piece({
+        x : headX,
+        y : headY,
+        width : this.settings.snakePixels
+      });
+
     } else {
       //Pop head tail to become new  head
-      snakeTail = this.snakePieces.pop();
-      snakeTail.x = headX;
-      snakeTail.y = headY;
+      headShift = this.pieces.pop();
+      headShift.updatePosition(headX, headY);
     }
     //move snakeTail to snakeHead
-    this.snakePieces.unshift(snakeTail);
+    this.pieces.unshift(headShift);
   }
-  this.drawSnake();
-  this.drawFood();
+
+  //Draw Snake
+  this.pieces.forEach(function(piece) {
+    piece.draw(self.context);
+  });
+
+  //Draw Food
+  this.food.forEach(function(food) {
+    food.draw(self.context);
+  });
 };
 
 Snake.prototype.scorePoint = function() {
@@ -344,6 +337,7 @@ Snake.prototype.animationLoop = function() {
 Snake.prototype.particleLoop = function() {
   if (this.particles) {
     var self = this;
+    var particles = [];
     this.particles.forEach(function(particle,ix) {
       //Apply Some Gravity
       particle.velocity.y += self.gravity;
@@ -351,80 +345,13 @@ Snake.prototype.particleLoop = function() {
       particle.x += particle.velocity.x;
       particle.y += particle.velocity.y;
       particle.draw(self.context);
-      if (particle.y > this.canvas.height * 1.1) {
-        self.particles.splice(ix);
+
+      if (particle.y < this.canvas.height * 1.1) {
+        particles.push(particle);
       }
     });
+    this.particles = particles;
   }
-};
-
-
-//--------------------
-// Automated Bot Logic
-//--------------------
-
-Snake.prototype.enableBot = function() {
-  this.bot.enabled = true;
-};
-
-Snake.prototype.disableBot = function() {
-  this.bot.enabled = false;
-};
-
-Snake.prototype.isSafeMove = function(snakePos, direction) {
-  //Make Sure you are only able to go perpendicular direction
-  if (Math.abs(this.direction - direction) === 2) return false;
-
-  switch (direction) {
-    case this.DIRECTIONS.UP :
-      snakePos.y--;
-      break;
-    case this.DIRECTIONS.DOWN :
-      snakePos.y++;
-      break;
-    case this.DIRECTIONS.RIGHT :
-      snakePos.x++;
-      break;
-    case this.DIRECTIONS.LEFT :
-    default:
-      snakePos.x--;
-  }
-
-  var isSafe = true;
-  this.snakePieces.forEach(function(piece) {
-    if (piece.x === snakePos.x && piece.y === snakePos.y) {
-      isSafe = false;
-    }
-  });
-  return isSafe;
-};
-
-Snake.prototype.getPrelimDirection = function (snake, food) {
-  var xdiff = Math.abs(snake.x - food.x);
-  var ydiff = Math.abs(snake.y - food.y);
-
-  if (xdiff > ydiff) {
-    //if snake is above food
-    return snake.x > food.x ? this.DIRECTIONS.LEFT : this.DIRECTIONS.RIGHT;
-  }
-  //if food is below snake or snake is at top of screen
-  return snake.y < food.y || snake.y === 0 ? this.DIRECTIONS.DOWN : this.DIRECTIONS.UP;
-};
-
-
-Snake.prototype.getNextMove = function() {
-  var snakeFood = this.snakeFood[0];
-  var head = {
-    x : this.snakePieces[0].x,
-    y : this.snakePieces[0].y
-  }
-  var tries = 0;
-  var direction = this.getPrelimDirection(head, snakeFood);
-  //test preliminary move
-  while (!this.isSafeMove(head, direction) && tries++ <= 4) {
-    direction = (direction + 1) % 4;
-  }
-  return direction;
 };
 
 

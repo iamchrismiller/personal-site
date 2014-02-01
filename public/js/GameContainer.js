@@ -7,7 +7,7 @@ var cookie = require('./util/cookie');
  * @param options
  * @constructor
  */
-var Game = function (options) {
+var GameContainer = function (options) {
   this.started = false;
   this.disabled = false;
   this.score = 0;
@@ -16,7 +16,6 @@ var Game = function (options) {
   }, options);
 
   this.inst = this.settings.inst;
-  //Game Instance
   if (!this.inst) {
     throw new Error("A Game Instance Must Be Supplied");
   }
@@ -28,12 +27,12 @@ var Game = function (options) {
 };
 
 
-Game.prototype.start = function () {
+GameContainer.prototype.start = function () {
   this.started = true;
   this.inst.start();
 };
 
-Game.prototype.bindEvents = function () {
+GameContainer.prototype.bindEvents = function () {
   var self = this;
   $(document).on('keydown', this.onKeydown.bind(this));
   $(window).on('resize', this.onResize.bind(this));
@@ -47,54 +46,54 @@ Game.prototype.bindEvents = function () {
   };
 };
 
-Game.prototype.play = function () {
+GameContainer.prototype.play = function () {
   this.started = true;
   this.inst.play();
 };
 
-Game.prototype.pause = function () {
+GameContainer.prototype.pause = function () {
   this.started = false;
   this.inst.pause();
 };
 
-Game.prototype.enableGame = function () {
+GameContainer.prototype.enableGame = function () {
   this.disabled = false;
   this.$canvas.show();
   this.play();
 };
 
-Game.prototype.disableGame = function () {
+GameContainer.prototype.disableGame = function () {
   this.disabled = true;
   this.$canvas.hide();
   this.pause();
 };
 
-Game.prototype.saveGame = function (score) {
-  var hiScore = cookie.get(this.inst.name + '_user') || 0;
+GameContainer.prototype.saveGame = function (score) {
+  var hiScore = cookie.read(this.inst.name + '_user') || 0;
   if (this.inst.bot && this.inst.bot.enabled) {
-    var botScore = cookie.get(this.inst.name + '_bot') || 0;
+    var botScore = cookie.read(this.inst.name + '_bot') || 0;
     if (botScore && score < botScore) {
       score = botScore;
     }
-    cookie.set(this.inst.name + '_bot', score);
+    cookie.create(this.inst.name + '_bot', score);
   } else if (!hiScore || (hiScore && score > hiScore)) {
-    cookie.set(this.inst.name + '_user', score);
+    cookie.create(this.inst.name + '_user', score);
   }
 };
 
-Game.prototype.updateScoreboard = function (score) {
+GameContainer.prototype.updateScoreboard = function (score) {
   this.updateScore(score || 0);
 
   this.$scoreboard.find('#hi-score span')
-    .text(cookie.get(this.inst.name + '_user') || 0);
+    .text(cookie.read(this.inst.name + '_user') || 0);
 
   if (this.inst.bot) {
     this.$scoreboard.find('#bot-hi-score span')
-      .text(cookie.get(this.inst.name + '_bot') || 0);
+      .text(cookie.read(this.inst.name + '_bot') || 0);
   }
 };
 
-Game.prototype.updateScore = function (score) {
+GameContainer.prototype.updateScore = function (score) {
   var $score = this.$scoreboard.find('#score span');
   $score.text(score).addClass('flash');
   setTimeout(function () {
@@ -102,7 +101,7 @@ Game.prototype.updateScore = function (score) {
   }, 1000)
 };
 
-Game.prototype.onKeydown = function (event) {
+GameContainer.prototype.onKeydown = function (event) {
   switch (event.keyCode) {
     case 79 : //o
       this.toggleGame();
@@ -122,16 +121,16 @@ Game.prototype.onKeydown = function (event) {
   }
 };
 
-Game.prototype.onGameScore = function (score) {
+GameContainer.prototype.onGameScore = function (score) {
   this.updateScore(score);
 };
 
-Game.prototype.onGameRestart = function (score) {
+GameContainer.prototype.onGameRestart = function (score) {
   this.saveGame(score);
   this.updateScoreboard();
 };
 
-Game.prototype.toggleGame = function () {
+GameContainer.prototype.toggleGame = function () {
   if (this.disabled) {
     this.enableGame();
   } else {
@@ -139,10 +138,10 @@ Game.prototype.toggleGame = function () {
   }
 };
 
-Game.prototype.onResize = function () {
+GameContainer.prototype.onResize = function () {
   if (typeof this.inst.onResize === 'function') {
     this.inst.onResize(window.innerHeight, window.innerWidth);
   }
 };
 
-module.exports = Game;
+module.exports = GameContainer;

@@ -1,4 +1,120 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+/**global $*/
+
+/**
+ * Semi Stupid Automated Bot
+ * Used For 2d Plane
+ * @param options
+ * @constructor
+ */
+function Bot(options) {
+  this.options = $.extend({
+    enabled    : false,
+    //perpendicular checking
+    directions : {
+      UP    : 0,
+      DOWN  : 2,
+      LEFT  : 1,
+      RIGHT : 3
+    }
+  }, options);
+
+  this.enabled = this.options.enabled;
+}
+
+Bot.prototype.enable = function () {
+  this.enabled = true;
+};
+
+Bot.prototype.disable = function () {
+  this.enabled = false;
+};
+
+Bot.prototype.getNextMove = function (obj, attractor, objPos, currentDir, directions) {
+  var tries = 0;
+  var head = {
+    x : obj[0].x,
+    y : obj[0].y
+  };
+
+  var direction = this.getPrelimDirection(head, attractor, directions);
+  //test preliminary move
+  while (!this.isSafeMove(obj, head, currentDir, direction, directions) && tries++ <= 4) {
+    direction = (direction + 1) % 4; //0-3
+  }
+  return direction;
+};
+
+Bot.prototype.getPrelimDirection = function (obj, attractor, directions) {
+  //is object closer to x
+  if (Math.abs(obj.x - attractor.x) > Math.abs(obj.y - attractor.y)) {
+    //if object is above the attractor
+    return obj.x > attractor.x ? directions.LEFT : directions.RIGHT;
+  }
+  //if object is below attractor or object is at top of screen
+  return obj.y < attractor.y || obj.y === 0 ? directions.DOWN : directions.UP;
+};
+
+
+Bot.prototype.isSafeMove = function (snake, head, currentDirection, newDirection, directions) {
+  //Make Sure you are only able to go perpendicular direction
+  if (Math.abs(currentDirection - newDirection) === 2) return false;
+
+  switch (newDirection) {
+    case directions.UP :
+      head.y--;
+      break;
+    case directions.DOWN :
+      head.y++;
+      break;
+    case directions.RIGHT :
+      head.x++;
+      break;
+    case directions.LEFT :
+    default:
+      head.x--;
+  }
+
+  var isSafe = true;
+  snake.forEach(function (piece) {
+    if (piece.x === head.x && piece.y === head.y) {
+      isSafe = false;
+    }
+  });
+  return isSafe;
+};
+
+
+module.exports = Bot;
+},{}],2:[function(require,module,exports){
+
+/**
+ * Food Class
+ * Creating a simple 2d object
+ * with an inner color and a border
+ */
+function Food(options) {
+  this.options = options || {};
+  this.width = this.options.width ? this.options.width : 10;
+  this.x = this.options.x ? this.options.x : 0;
+  this.y = this.options.y ? this.options.y : 0;
+  this.color = this.options.color || '#000';
+  this.border = this.options.border || '#FFF';
+}
+
+/**
+ * Draw Food To Canvas
+ * @param context
+ */
+Food.prototype.draw = function (context) {
+  context.fillStyle = this.color;
+  context.strokeStyle = this.border;
+  context.fillRect(this.x * this.width, this.y * this.width, this.width, this.width);
+  context.strokeRect(this.x * this.width, this.y * this.width, this.width, this.width);
+};
+
+module.exports = Food;
+},{}],3:[function(require,module,exports){
 /*global requestAnimationFrame, module, require, $ */
 
 var cookie = require('./util/cookie');
@@ -8,7 +124,7 @@ var cookie = require('./util/cookie');
  * @param options
  * @constructor
  */
-var Game = function (options) {
+var GameContainer = function (options) {
   this.started = false;
   this.disabled = false;
   this.score = 0;
@@ -17,7 +133,6 @@ var Game = function (options) {
   }, options);
 
   this.inst = this.settings.inst;
-  //Game Instance
   if (!this.inst) {
     throw new Error("A Game Instance Must Be Supplied");
   }
@@ -29,12 +144,12 @@ var Game = function (options) {
 };
 
 
-Game.prototype.start = function () {
+GameContainer.prototype.start = function () {
   this.started = true;
   this.inst.start();
 };
 
-Game.prototype.bindEvents = function () {
+GameContainer.prototype.bindEvents = function () {
   var self = this;
   $(document).on('keydown', this.onKeydown.bind(this));
   $(window).on('resize', this.onResize.bind(this));
@@ -48,54 +163,54 @@ Game.prototype.bindEvents = function () {
   };
 };
 
-Game.prototype.play = function () {
+GameContainer.prototype.play = function () {
   this.started = true;
   this.inst.play();
 };
 
-Game.prototype.pause = function () {
+GameContainer.prototype.pause = function () {
   this.started = false;
   this.inst.pause();
 };
 
-Game.prototype.enableGame = function () {
+GameContainer.prototype.enableGame = function () {
   this.disabled = false;
   this.$canvas.show();
   this.play();
 };
 
-Game.prototype.disableGame = function () {
+GameContainer.prototype.disableGame = function () {
   this.disabled = true;
   this.$canvas.hide();
   this.pause();
 };
 
-Game.prototype.saveGame = function (score) {
-  var hiScore = cookie.get(this.inst.name + '_user') || 0;
+GameContainer.prototype.saveGame = function (score) {
+  var hiScore = cookie.read(this.inst.name + '_user') || 0;
   if (this.inst.bot && this.inst.bot.enabled) {
-    var botScore = cookie.get(this.inst.name + '_bot') || 0;
+    var botScore = cookie.read(this.inst.name + '_bot') || 0;
     if (botScore && score < botScore) {
       score = botScore;
     }
-    cookie.set(this.inst.name + '_bot', score);
+    cookie.create(this.inst.name + '_bot', score);
   } else if (!hiScore || (hiScore && score > hiScore)) {
-    cookie.set(this.inst.name + '_user', score);
+    cookie.create(this.inst.name + '_user', score);
   }
 };
 
-Game.prototype.updateScoreboard = function (score) {
+GameContainer.prototype.updateScoreboard = function (score) {
   this.updateScore(score || 0);
 
   this.$scoreboard.find('#hi-score span')
-    .text(cookie.get(this.inst.name + '_user') || 0);
+    .text(cookie.read(this.inst.name + '_user') || 0);
 
   if (this.inst.bot) {
     this.$scoreboard.find('#bot-hi-score span')
-      .text(cookie.get(this.inst.name + '_bot') || 0);
+      .text(cookie.read(this.inst.name + '_bot') || 0);
   }
 };
 
-Game.prototype.updateScore = function (score) {
+GameContainer.prototype.updateScore = function (score) {
   var $score = this.$scoreboard.find('#score span');
   $score.text(score).addClass('flash');
   setTimeout(function () {
@@ -103,7 +218,7 @@ Game.prototype.updateScore = function (score) {
   }, 1000)
 };
 
-Game.prototype.onKeydown = function (event) {
+GameContainer.prototype.onKeydown = function (event) {
   switch (event.keyCode) {
     case 79 : //o
       this.toggleGame();
@@ -123,16 +238,16 @@ Game.prototype.onKeydown = function (event) {
   }
 };
 
-Game.prototype.onGameScore = function (score) {
+GameContainer.prototype.onGameScore = function (score) {
   this.updateScore(score);
 };
 
-Game.prototype.onGameRestart = function (score) {
+GameContainer.prototype.onGameRestart = function (score) {
   this.saveGame(score);
   this.updateScoreboard();
 };
 
-Game.prototype.toggleGame = function () {
+GameContainer.prototype.toggleGame = function () {
   if (this.disabled) {
     this.enableGame();
   } else {
@@ -140,14 +255,14 @@ Game.prototype.toggleGame = function () {
   }
 };
 
-Game.prototype.onResize = function () {
+GameContainer.prototype.onResize = function () {
   if (typeof this.inst.onResize === 'function') {
     this.inst.onResize(window.innerHeight, window.innerWidth);
   }
 };
 
-module.exports = Game;
-},{"./util/cookie":5}],2:[function(require,module,exports){
+module.exports = GameContainer;
+},{"./util/cookie":8}],4:[function(require,module,exports){
 
 /**
  * Pseudo Particle Class
@@ -184,11 +299,52 @@ Particle.prototype.draw = function (context) {
 };
 
 module.exports = Particle;
-},{}],3:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
+
+/**
+ * Piece Class
+ * Creating a simple 2d object
+ * with an inner color and a border
+ */
+function Piece(options) {
+  this.options = options || {};
+  this.width = this.options.width ? this.options.width : 10;
+  this.x = this.options.x ? this.options.x : 0;
+  this.y = this.options.y ? this.options.y : 0;
+  this.color = this.options.color || '#FFF';
+  this.border = this.options.border || '#000';
+}
+
+/**
+ * Basic Position Updater
+ * @param x
+ * @param y
+ */
+Piece.prototype.updatePosition = function(x,y) {
+  this.x = x;
+  this.y = y;
+}
+
+/**
+ * Draw Piece To Canvas
+ * @param context
+ */
+Piece.prototype.draw = function (context) {
+  context.fillStyle = this.color;
+  context.strokeStyle = this.border;
+  context.fillRect(this.x * this.width, this.y * this.width, this.width, this.width);
+  context.strokeRect(this.x * this.width, this.y * this.width, this.width, this.width);
+};
+
+
+module.exports = Piece;
+},{}],6:[function(require,module,exports){
 /*global requestAnimationFrame, module, require, $ */
 
 var Particle = require('./Particle');
-var cookie = require('./util/cookie');
+var Piece = require('./Piece');
+var Food = require('./Food');
+var Bot = require('./Bot');
 
 /**
  * Snake Game
@@ -213,27 +369,26 @@ var Snake = function(options) {
   this.canvas.height = window.innerHeight;
   this.animationTimeout = null;
 
-  this.snakePieces = [];
-  this.snakeFood = [];
+  this.pieces = [];
+  this.food = [];
 
   this.settings = $.extend({
     snakePixels    : 14,
     snakeSize      : 3,
-    bot            : true
+    bot            : true,
+    timeout        : 3000,
+    explosion      : true
   }, options);
-
-  this.bot = {};
-
-  if (this.settings.bot) {
-    this.enableBot();
-  }
 
   this.DIRECTIONS = {
     UP   : 0,
     DOWN : 2,
-    LEFT  : 3,
-    RIGHT : 1
+    LEFT  : 1,
+    RIGHT : 3
   };
+
+  this.bot = new Bot({directions : this.DIRECTIONS});
+  if (this.settings.bot) this.bot.enable();
 
   this.direction = this.DIRECTIONS.RIGHT;
   this.directionQueue = [];
@@ -253,8 +408,8 @@ Snake.prototype.reset = function() {
   this.score = 0;
   this.directionQueue = [];
   this.direction = this.DIRECTIONS.RIGHT;
-  this.snakePieces = [];
-  this.snakeFood = [];
+  this.pieces = [];
+  this.food = [];
   this.particles = [];
   this.gravity = 1;
   this.fps = 15;
@@ -276,6 +431,7 @@ Snake.prototype.bindEvents = function() {
   $(document).on('keydown', this.onKeydown.bind(this));
 };
 
+
 Snake.prototype.play = function() {
   this.started = true;
   if (typeof this.animationLoop === 'function') {
@@ -288,12 +444,8 @@ Snake.prototype.pause = function() {
 };
 
 Snake.prototype.lose = function() {
-  var self = this;
   this.pause();
-
-  setTimeout(function() {
-    self.restart();
-  }, 3000);
+  setTimeout(this.restart.bind(this), this.settings.timeout);
 };
 
 Snake.prototype.onKeydown = function (event) {
@@ -301,7 +453,7 @@ Snake.prototype.onKeydown = function (event) {
 
   //Gameplay Keys
   if (this.bot && [38,40,37,39].indexOf(event.keyCode) !== -1) {
-    this.disableBot();
+    this.bot.disable();
   }
 
   switch (event.keyCode) {
@@ -318,7 +470,7 @@ Snake.prototype.onKeydown = function (event) {
       direction = this.DIRECTIONS.RIGHT;
       break;
     case 66 : //b
-      this.enableBot();
+      this.bot.enable();
       break;
     default :
       return;
@@ -337,18 +489,25 @@ Snake.prototype.onResize = function(height, width) {
 
 Snake.prototype.create = function() {
   for (var x = 0; x < this.settings.snakeSize; x++) {
-    this.snakePieces.push({ x : 0, y : 20 });
+    this.pieces.push(new Piece({
+      x : 0,
+      y : 20,
+      width : this.settings.snakePixels
+    }));
   }
 };
 
 Snake.prototype.createFood = function() {
-  this.snakeFood.push({
+  this.food.push(new Food({
     x : Math.round(Math.random() * (this.canvas.width - this.settings.snakePixels) / this.settings.snakePixels),
-    y : Math.round(Math.random() * (this.canvas.height - this.settings.snakePixels) / this.settings.snakePixels)
-  });
+    y : Math.round(Math.random() * (this.canvas.height - this.settings.snakePixels) / this.settings.snakePixels),
+    width : this.settings.snakePixels,
+    color : '#fff',
+    border : '#000'
+  }));
 };
 
-Snake.prototype._getDirection = function () {
+Snake.prototype.getDirection = function () {
   var direction;
   while (typeof direction === 'undefined' || (this.direction - direction + 4) % 4 === 2) {
     if (this.directionQueue.length > 0) {
@@ -373,8 +532,8 @@ Snake.prototype.isWallCollision = function(x,y) {
 };
 
 Snake.prototype.isSelfCollision = function(x,y) {
-  for (var i = 0; i < this.snakePieces.length; i++) {
-    if (this.snakePieces[i].x == x && this.snakePieces[i].y == y) {
+  for (var i = 0; i < this.pieces.length; i++) {
+    if (this.pieces[i].x == x && this.pieces[i].y == y) {
       return true;
     }
   }
@@ -383,7 +542,7 @@ Snake.prototype.isSelfCollision = function(x,y) {
 
 Snake.prototype.isFoodCollision = function(x,y) {
   var found = false;
-  this.snakeFood.forEach(function(food) {
+  this.food.forEach(function(food) {
     if ((x == food.x && y == food.y)) {
       found = true;
     }
@@ -391,67 +550,43 @@ Snake.prototype.isFoodCollision = function(x,y) {
   return found;
 };
 
-Snake.prototype.removeFoodIfExists = function(x,y) {
+Snake.prototype.removeFood = function(x,y) {
   var self = this;
-  this.snakeFood.forEach(function(food,ix) {
+  this.food.forEach(function(food,ix) {
     if ((x == food.x && y == food.y)) {
-      self.snakeFood.splice(ix);
+      self.food.splice(ix);
     }
   });
 };
 
-Snake.prototype.drawSnake = function() {
-  for (var i = 0; i < this.snakePieces.length; i++) {
-    var x = this.snakePieces[i];
-    this.drawPart(x.x, x.y);
-  }
-};
-
-Snake.prototype.drawFood = function(x,y) {
-  var self = this;
-  var width = this.settings.snakePixels;
-  this.context.fillStyle = "#ffffff";
-  this.context.strokeStyle = "#000000";
-
-  this.snakeFood.forEach(function(food) {
-    self.context.fillRect(food.x * width, food.y * width, width, width);
-    self.context.strokeRect(food.x * width, food.y * width, width, width);
-  });
-};
-
-
-Snake.prototype.drawPart = function(x,y) {
-  var width = this.settings.snakePixels;
-  this.context.fillStyle = "#ffffff";
-  this.context.strokeStyle = "#000000";
-  this.context.fillRect(x * width, y * width, width, width);
-  this.context.strokeRect(x * width, y * width, width, width);
-};
-
-Snake.prototype.createExpolosion = function(x,y) {
+Snake.prototype.createExplosion = function(x,y, colors) {
   for (var i = 0; i < this.particleCount; i++) {
-    var particle = new Particle({x : x * this.settings.snakePixels, y : y * this.settings.snakePixels});
+    var particle = new Particle({
+      x : x * this.settings.snakePixels,
+      y : y * this.settings.snakePixels,
+      color : colors ? colors[~~(Math.random()*colors.length)] : null
+    });
     this.particles.push(particle);
   }
 };
 
 
 Snake.prototype.drawLoop = function() {
+  var self = this;
+
   //Clear Canvas Context Before Redraw
   this.context.setTransform(1, 0, 0, 1, 0, 0);
   this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-  var headX = this.snakePieces[0].x;
-  var headY = this.snakePieces[0].y;
+  var headX = this.pieces[0].x;
+  var headY = this.pieces[0].y;
 
-  var direction = this._getDirection();
+  var direction = this.getDirection();
   //reset direction
   this.direction = direction;
 
-  if (this.bot) {
-    if (this.bot.enabled) {
-      this.direction = this.getNextMove();
-    }
+  if (this.bot && this.bot.enabled) {
+    this.direction = this.bot.getNextMove(this.pieces, this.food[0], {x : headX, y : headY}, this.direction, this.DIRECTIONS);
   }
 
   switch(this.direction) {
@@ -469,41 +604,53 @@ Snake.prototype.drawLoop = function() {
       break;
   }
 
-  if (this.isWallCollision(headX, headY)) {
+  if (this.isWallCollision(headX, headY) || this.isSelfCollision(headX, headY)) {
     this.lose();
   }
-
-  if (this.isSelfCollision(headX, headY)) {
-    this.lose();
-  }
-
-  var snakeTail = {};
 
   if (this.started) {
-    if (this.isFoodCollision(headX, headY)) {
+    var headShift = null;
+    var food = this.isFoodCollision(headX, headY);
+
+    if (food) {
       this.scorePoint();
-      //Increase Frames Per Secod
+      //Increase Frames Per Second
       if (this.score % 2) {
         this.fps += 0.5;
       }
 
-      this.removeFoodIfExists(headX, headY);
-      this.createExpolosion(headX, headY);
+      if (this.settings.explosion) {
+        this.createExplosion(headX, headY, [food.color,food.border]);
+      }
+
+      this.removeFood(headX, headY);
       this.createFood();
 
-      snakeTail.x = headX;
-      snakeTail.y = headY;
+      //create new snake head
+      headShift = new Piece({
+        x : headX,
+        y : headY,
+        width : this.settings.snakePixels
+      });
+
     } else {
       //Pop head tail to become new  head
-      snakeTail = this.snakePieces.pop();
-      snakeTail.x = headX;
-      snakeTail.y = headY;
+      headShift = this.pieces.pop();
+      headShift.updatePosition(headX, headY);
     }
     //move snakeTail to snakeHead
-    this.snakePieces.unshift(snakeTail);
+    this.pieces.unshift(headShift);
   }
-  this.drawSnake();
-  this.drawFood();
+
+  //Draw Snake
+  this.pieces.forEach(function(piece) {
+    piece.draw(self.context);
+  });
+
+  //Draw Food
+  this.food.forEach(function(food) {
+    food.draw(self.context);
+  });
 };
 
 Snake.prototype.scorePoint = function() {
@@ -531,6 +678,7 @@ Snake.prototype.animationLoop = function() {
 Snake.prototype.particleLoop = function() {
   if (this.particles) {
     var self = this;
+    var particles = [];
     this.particles.forEach(function(particle,ix) {
       //Apply Some Gravity
       particle.velocity.y += self.gravity;
@@ -538,90 +686,23 @@ Snake.prototype.particleLoop = function() {
       particle.x += particle.velocity.x;
       particle.y += particle.velocity.y;
       particle.draw(self.context);
-      if (particle.y > this.canvas.height * 1.1) {
-        self.particles.splice(ix);
+
+      if (particle.y < this.canvas.height * 1.1) {
+        particles.push(particle);
       }
     });
+    this.particles = particles;
   }
-};
-
-
-//--------------------
-// Automated Bot Logic
-//--------------------
-
-Snake.prototype.enableBot = function() {
-  this.bot.enabled = true;
-};
-
-Snake.prototype.disableBot = function() {
-  this.bot.enabled = false;
-};
-
-Snake.prototype.isSafeMove = function(snakePos, direction) {
-  //Make Sure you are only able to go perpendicular direction
-  if (Math.abs(this.direction - direction) === 2) return false;
-
-  switch (direction) {
-    case this.DIRECTIONS.UP :
-      snakePos.y--;
-      break;
-    case this.DIRECTIONS.DOWN :
-      snakePos.y++;
-      break;
-    case this.DIRECTIONS.RIGHT :
-      snakePos.x++;
-      break;
-    case this.DIRECTIONS.LEFT :
-    default:
-      snakePos.x--;
-  }
-
-  var isSafe = true;
-  this.snakePieces.forEach(function(piece) {
-    if (piece.x === snakePos.x && piece.y === snakePos.y) {
-      isSafe = false;
-    }
-  });
-  return isSafe;
-};
-
-Snake.prototype.getPrelimDirection = function (snake, food) {
-  var xdiff = Math.abs(snake.x - food.x);
-  var ydiff = Math.abs(snake.y - food.y);
-
-  if (xdiff > ydiff) {
-    //if snake is above food
-    return snake.x > food.x ? this.DIRECTIONS.LEFT : this.DIRECTIONS.RIGHT;
-  }
-  //if food is below snake or snake is at top of screen
-  return snake.y < food.y || snake.y === 0 ? this.DIRECTIONS.DOWN : this.DIRECTIONS.UP;
-};
-
-
-Snake.prototype.getNextMove = function() {
-  var snakeFood = this.snakeFood[0];
-  var head = {
-    x : this.snakePieces[0].x,
-    y : this.snakePieces[0].y
-  }
-  var tries = 0;
-  var direction = this.getPrelimDirection(head, snakeFood);
-  //test preliminary move
-  while (!this.isSafeMove(head, direction) && tries++ <= 4) {
-    direction = (direction + 1) % 4;
-  }
-  return direction;
 };
 
 
 module.exports = Snake;
-},{"./Particle":2,"./util/cookie":5}],4:[function(require,module,exports){
+},{"./Bot":1,"./Food":2,"./Particle":4,"./Piece":5}],7:[function(require,module,exports){
 /*global $, require, NProgress, isMobile*/
 
-//Game Runner
-var Game = require('./Game');
-//Snake Game Container
+//Game Container
+var GameContainer = require('./GameContainer');
+//Snake Game
 var Snake = require('./Snake');
 
 
@@ -629,7 +710,7 @@ var app = {
 
   menuOpen : false,
 
-  game : new Game({ inst : new Snake()}),
+  game : new GameContainer({ inst : new Snake(), explosion : true}),
 
   start : function () {
     NProgress.done();
@@ -690,34 +771,12 @@ var app = {
 
   bindMobileEvents : function() {
     var body = document.getElementsByTagName('body')[0];
-
-     Hammer(body).on("doubletap", function(event) {
-      console.log("doubletap");
-    });
-
-     Hammer(body).on("swipeup", function(event) {
-      console.log("swipeup");
-    });
-
-
-     Hammer(body).on("swipedown", function(event) {
-      console.log("swipedown");
-    });
-
-
-     Hammer(body).on("swipeleft", function(event) {
-      console.log("swipeleft");
-    });
-
-
-     Hammer(body).on("swiperight", function(event) {
-      console.log("swiperight");
-    });
-
-     Hammer(body).on("hold", function(event) {
-      console.log("hold");
-    });
-
+     Hammer(body).on("doubletap", function(event) {console.log("doubletap");});
+     Hammer(body).on("hold", function(event) { console.log("hold");});
+     Hammer(body).on("swipeup", function(event) {console.log("swipeup");});
+     Hammer(body).on("swipedown", function(event) { console.log("swipedown"); });
+     Hammer(body).on("swipeleft", function(event) {console.log("swipeleft");});
+     Hammer(body).on("swiperight", function(event) {console.log("swiperight");});
   },
 
   ifMobile : function() {
@@ -742,19 +801,31 @@ $(document).ready(function () {
 });
 
 module.exports = app;
-},{"./Game":1,"./Snake":3}],5:[function(require,module,exports){
+},{"./GameContainer":3,"./Snake":6}],8:[function(require,module,exports){
 /*global module*/
 
 module.exports = {
 
-  set : function (name, value, days) {
+  /**
+   * Create a new cookie
+   * @param name
+   * @param value
+   * @param days
+   */
+  create : function (name, value, days) {
     var d = new Date();
     d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
     var expires = "expires=" + d.toGMTString();
+    //'secure', subdomain '.'?
     document.cookie = name + "=" + value + "; " + expires;
   },
 
-  get : function (name) {
+  /**
+   * Read an existing cookie
+   * @param name
+   * @returns {*}
+   */
+  read : function (name) {
     name = name + "=";
     var cookies = document.cookie.split(';');
     for (var i = 0; i < cookies.length; i++) {
@@ -764,6 +835,14 @@ module.exports = {
       }
     }
     return false;
+  },
+
+  /**
+   * Remove an existing cookie
+   * @param name
+   */
+  remove : function(name) {
+    this.create(name,"",-1);
   }
 };
-},{}]},{},[4])
+},{}]},{},[7])

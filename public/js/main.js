@@ -1,8 +1,8 @@
 /*global $, require, NProgress, isMobile*/
 
-//Game Runner
-var Game = require('./Game');
-//Snake Game Container
+//Game Container
+var GameContainer = require('./GameContainer');
+//Snake Game
 var Snake = require('./Snake');
 
 
@@ -10,7 +10,7 @@ var app = {
 
   menuOpen : false,
 
-  game : new Game({ inst : new Snake()}),
+  game : new GameContainer({ inst : new Snake(), explosion : true}),
 
   start : function () {
     NProgress.done();
@@ -71,34 +71,12 @@ var app = {
 
   bindMobileEvents : function() {
     var body = document.getElementsByTagName('body')[0];
-
-     Hammer(body).on("doubletap", function(event) {
-      console.log("doubletap");
-    });
-
-     Hammer(body).on("swipeup", function(event) {
-      console.log("swipeup");
-    });
-
-
-     Hammer(body).on("swipedown", function(event) {
-      console.log("swipedown");
-    });
-
-
-     Hammer(body).on("swipeleft", function(event) {
-      console.log("swipeleft");
-    });
-
-
-     Hammer(body).on("swiperight", function(event) {
-      console.log("swiperight");
-    });
-
-     Hammer(body).on("hold", function(event) {
-      console.log("hold");
-    });
-
+     Hammer(body).on("doubletap", function(event) {console.log("doubletap");});
+     Hammer(body).on("hold", function(event) { console.log("hold");});
+     Hammer(body).on("swipeup", function(event) {console.log("swipeup");});
+     Hammer(body).on("swipedown", function(event) { console.log("swipedown"); });
+     Hammer(body).on("swipeleft", function(event) {console.log("swipeleft");});
+     Hammer(body).on("swiperight", function(event) {console.log("swiperight");});
   },
 
   ifMobile : function() {
