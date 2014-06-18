@@ -1,6 +1,0 @@
-node_modules/
-.DS_Store
-.idea/
-htdocs/.sass-cache
-.sass-cache/
-components/font-awesome/src/

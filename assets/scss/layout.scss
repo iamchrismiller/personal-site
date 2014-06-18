@@ -18,6 +18,77 @@ body {
     display : none;
   }
 
+  .underline {
+    text-decoration : underline;
+  }
+
+  .absolute {
+    position : absolute;
+    width    : 100%;
+    height   : 100%;
+  }
+
+  h1 {
+    position       : relative;
+    font-family    : 'Montserrat', sans-serif;
+    font-size      : 21px;
+    font-weight    : 700;
+    letter-spacing : 4px;
+    color          : rgb(255, 255, 255);
+    text-align     : center;
+    text-transform : uppercase;
+    top            : 48%;
+    border         : 2px solid rgb(206, 206, 206);
+    width          : 220px;
+    padding        : 10px 8px 10px 8px;
+    margin         : 0 auto;
+  }
+
+  h2 {
+    font-family    : 'Merriweather', serif;
+    font-size      : 10px;
+    font-weight    : 700;
+    font-style     : italic;
+    letter-spacing : 2px;
+    color          : rgb(255, 255, 255);
+    text-align     : center;
+    position       : relative;
+    top            : 48%;
+  }
+
+  ul.links {
+    width           : 240px;
+    margin          : auto;
+    font-family     : 'Merriweather', serif;
+    font-size       : 10px;
+    font-weight     : 700;
+    font-style      : italic;
+    letter-spacing  : 2px;
+    color           : rgb(255, 255, 255);
+    text-align      : center;
+    position        : relative;
+    top             : 48%;
+    list-style-type : none;
+    overflow        : hidden;
+    padding         : 0;
+
+    li {
+      float         : left;
+      margin-right  : 14px;
+      margin-bottom : 10px;
+      margin-left   : 14px;
+
+      i {
+        font-size : 3.4em;
+        color     : rgb(51, 51, 51);
+
+        &:hover {
+          color : rgb(50, 158, 204);
+        }
+      }
+    }
+  }
+
   .bg {
     position                    : absolute;
     top                         : 0;
@@ -29,266 +100,6 @@ body {
     height                      : 100%;
     width                       : 100%;
     -webkit-backface-visibility : hidden;
-    -webkit-animation           : fadeIn 2s linear 0s;
-    -moz-animation              : fadeIn 2s linear 0s;
-    -o-animation                : fadeIn 2s linear 0s;
-    -ms-animation               : fadeIn 2s linear 0s;
-    animation                   : fadeIn 2s linear 0s;
-  }
-
-  .blurred {
-    -webkit-filter : blur(4px);
-    -moz-filter    : blur(4px);
-    -o-filter      : blur(4px);
-    -ms-filter     : blur(4px);
-    filter         : blur(4px);
-    opacity        : 0.8;
-  }
-
-  .container {
-
-    .intro {
-      color              : #FFF;
-      position           : absolute;
-      top                : 0;
-      left               : 0;
-      padding            : 40px;
-      -webkit-transition : all 1s;
-      -moz-transition    : all 1s;
-      transition         : all 1s;
-
-      h1 {
-        margin             : 0;
-        font-weight        : normal;
-        font-size          : 5em;
-        color              : #329ECC;
-        line-height        : 1;
-        letter-spacing     : -3.9px;
-        text-transform     : uppercase;
-        -webkit-transition : all 1s;
-        -moz-transition    : all 1s;
-        transition         : all 1s;
-      }
-
-      h2 {
-        color              : #333;
-        margin             : 0 0 0 5px;
-        font-weight        : normal;
-        font-size          : 2em;
-        border-bottom      : 1px solid;
-        -webkit-transition : all 1s;
-        -moz-transition    : all 1s;
-        transition         : all 1s;
-      }
-
-      p {
-        font-family        : Georgia, serif;
-        font-size          : 5em;
-        margin             : 0 0 0 10px;
-        -webkit-transition : all 1s;
-        -moz-transition    : all 1s;
-        transition         : all 1s;
-
-        &.pre {
-          margin         : 0;
-          font-weight    : normal;
-          font-size      : 2em;
-          line-height    : 0.90;
-          color          : #333;
-          letter-spacing : -1px;
-        }
-
-        &.quote {
-          color      : #FFFFFF;
-          margin-top : 10px;
-          font-size  : 1.2em;
-          opacity    : .6;
-
-          &:hover {
-            opacity            : 1;
-            -webkit-transition : all 1s;
-            -moz-transition    : all 1s;
-            transition         : all 1s;
-          }
-
-          span {
-            display    : block;
-            font-style : italic;
-          }
-
-        }
-      }
-
-      .social {
-        margin-top : 20px;
-
-        i {
-          font-size          : 2.8em;
-          margin-right       : 20px;
-          color              : #808080;
-          padding            : 12px 14px;
-          opacity            : .4;
-          border-radius      : 50px;
-          box-shadow         : 0 0 0 4px #FFF;
-          -webkit-transition : all 1s;
-          -moz-transition    : all 1s;
-          transition         : all 1s;
-
-          &:hover {
-            opacity           : .7;
-            background-color  : #fff;
-            color             : #808080;
-            -webkit-animation : spin 2s linear infinite;
-            -moz-animation    : spin 2s linear infinite;
-            animation         : spin 2s linear infinite;
-          }
-        }
-      }
-    }
-  }
-
-  #menu {
-    display                         : none;
-    position                        : absolute;
-    bottom                          : 40px;
-    height                          : 230px;
-    width                           : 160px;
-    background                      : rgba(0, 0, 0, 0.2);
-    color                           : #FFF;
-    z-index                         : 1;
-    border-right                    : 2px dotted #333;
-    border-top                      : 2px dotted #333;
-    border-top-right-radius         : 40px;
-    -moz-border-top-right-radius    : 40px;
-    -o-border-top-right-radius      : 40px;
-    -webkit-border-top-right-radius : 40px;
-
-    &.mobile {
-      .content {
-        &.desktop {
-          display : none;
-        }
-        &.mobile {
-          display : block;
-        }
-      }
-    }
-
-    hr {
-      opacity : .6;
-    }
-
-    .content {
-      padding : 10px;
-
-      &.mobile {
-        display : none;
-      }
-    }
-
-    p {
-      margin     : 0;
-      text-align : center;
-    }
-
-    ul {
-      margin          : 10px auto 0px 0px;
-      list-style-type : none;
-      padding         : 10px;
-      font-size       : 1em;
-
-      &.links {
-        margin-top : 10px;
-        text-align : center;
-        a {
-          &.inactive {
-            text-decoration : line-through;
-          }
-
-          i {
-            margin-right : 10px;
-            font-size    : 1.2em;
-            color        : #333;
-          }
-        }
-      }
-
-      &.shortcuts {
-        margin        : 0;
-        padding       : 0;
-        margin-top    : 15px;
-        margin-bottom : 5px;
-        color         : #ffffff;
-        font-size     : .8em;
-
-        &.mobile {
-        }
-
-        li {
-          float         : left;
-          margin-right  : 10px;
-          margin-bottom : 15px;
-          font-size     : 1.1em;
-
-          span {
-
-            &.key {
-              padding       : 5px 10px;
-              background    : rgba(0, 0, 0, 0.3);
-              border-radius : 5px;
-              margin-right  : 7px;
-              font-weight   : bold;
-              margin-left   : 7px;
-            }
-          }
-        }
-      }
-
-      li {
-        margin        : 0;
-        padding       : 0;
-        margin-bottom : 10px;
-
-        a {
-          text-decoration : none;
-          color           : #FFF;
-        }
-      }
-    }
-  }
-
-  .footer {
-    position   : absolute;
-    bottom     : 0;
-    width      : 100%;
-    height     : 40px;
-    background : rgba(0, 0, 0, 0.3);
-    color      : white;
-
-    #scoreboard {
-      div {
-        opacity      : .6;
-        float        : right;
-        margin-right : 30px;
-        margin-top   : 10px;
-        font-size    : 20px;
-      }
-
-      span {
-        font-weight : bold;
-      }
-    }
-
-    .menu-button {
-      position    : absolute;
-      bottom      : 3px;
-      color       : #FFF;
-      font-size   : 2em;
-      margin-left : 5px;
-      z-index     : 2;
-    }
-
   }
 
 }
-

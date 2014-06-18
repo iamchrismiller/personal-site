@@ -1,4 +1,4 @@
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/animations\.scss}line{font-family:\000031}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/chris-miller\.me\/public\/assets\/scss\/animations\.scss}line{font-family:\000031}}
 .animate {
   -webkit-animation-fill-mode: both;
   -moz-animation-fill-mode: both;
@@ -6,248 +6,40 @@
   animation-fill-mode: both;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/animations\.scss}line{font-family:\000038}}
-.dur2 {
-  -webkit-animation-duration: 2s;
-  -moz-animation-duration: 2s;
-  -o-animation-duration: 2s;
-  animation-duration: 2s;
-}
-
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/animations\.scss}line{font-family:\0000315}}
-.dur1 {
-  -webkit-animation-duration: 1s;
-  -moz-animation-duration: 1s;
-  -o-animation-duration: 1s;
-  animation-duration: 1s;
-}
-
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/animations\.scss}line{font-family:\0000322}}
-.dur05 {
-  -webkit-animation-duration: .5s;
-  -moz-animation-duration: .5s;
-  -o-animation-duration: .5s;
-  animation-duration: .5s;
-}
-
-@-webkit-keyframes spin {
-  from {
-    -webkit-transform: rotate(0deg);
-  }
-
-  to {
-    -webkit-transform: rotate(360deg);
-  }
-}
-
-@-moz-keyframes spin {
-  from {
-    -moz-transform: rotate(0deg);
-  }
-
-  to {
-    -moz-transform: rotate(360deg);
-  }
-}
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@-webkit-keyframes fadeInTop {
+@-webkit-keyframes fadeInDown {
   0% {
     opacity: 0;
-    -webkit-transform: translateY(-1000px);
+    -webkit-transform: translateY(-20px);
+    transform: translateY(-20px);
   }
 
   100% {
     opacity: 1;
     -webkit-transform: translateY(0);
-  }
-}
-
-@-moz-keyframes fadeInTop {
-  0% {
-    opacity: 0;
-    -moz-transform: translateY(-1000px);
-  }
-
-  100% {
-    opacity: 1;
-    -moz-transform: translateY(0);
-  }
-}
-
-@-o-keyframes fadeInTop {
-  0% {
-    opacity: 0;
-    -o-transform: translateY(-1000px);
-  }
-
-  100% {
-    opacity: 1;
-    -o-transform: translateY(0);
-  }
-}
-
-@keyframes fadeInTop {
-  0% {
-    opacity: 0;
-    transform: translateY(-1000px);
-  }
-
-  100% {
-    opacity: 1;
     transform: translateY(0);
   }
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/animations\.scss}line{font-family:\0000396}}
-.fadeInTop {
-  -webkit-animation-name: fadeInTop;
-  -moz-animation-name: fadeInTop;
-  -o-animation-name: fadeInTop;
-  animation-name: fadeInTop;
-}
-
-@-webkit-keyframes speedIn {
-  0% {
-    -webkit-transform: translateX(100%) skewX(-30deg);
-    transform: translateX(100%) skewX(-30deg);
-    opacity: 0;
-  }
-
-  60% {
-    -webkit-transform: translateX(-20%) skewX(30deg);
-    transform: translateX(-20%) skewX(30deg);
-    opacity: 1;
-  }
-
-  80% {
-    -webkit-transform: translateX(0%) skewX(-15deg);
-    transform: translateX(0%) skewX(-15deg);
-    opacity: 1;
-  }
-
-  100% {
-    -webkit-transform: translateX(0%) skewX(0deg);
-    transform: translateX(0%) skewX(0deg);
-    opacity: 1;
-  }
-}
-
-@keyframes speedIn {
-  0% {
-    -webkit-transform: translateX(100%) skewX(-30deg);
-    -ms-transform: translateX(100%) skewX(-30deg);
-    transform: translateX(100%) skewX(-30deg);
-    opacity: 0;
-  }
-
-  60% {
-    -webkit-transform: translateX(-20%) skewX(30deg);
-    -ms-transform: translateX(-20%) skewX(30deg);
-    transform: translateX(-20%) skewX(30deg);
-    opacity: 1;
-  }
-
-  80% {
-    -webkit-transform: translateX(0%) skewX(-15deg);
-    -ms-transform: translateX(0%) skewX(-15deg);
-    transform: translateX(0%) skewX(-15deg);
-    opacity: 1;
-  }
-
-  100% {
-    -webkit-transform: translateX(0%) skewX(0deg);
-    -ms-transform: translateX(0%) skewX(0deg);
-    transform: translateX(0%) skewX(0deg);
-    opacity: 1;
-  }
-}
-
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/animations\.scss}line{font-family:\00003158}}
-.speedIn {
-  -webkit-animation-name: speedIn;
-  animation-name: speedIn;
-  -webkit-animation-timing-function: ease-out;
-  animation-timing-function: ease-out;
-}
-
-@-webkit-keyframes slideInLeft {
+@keyframes fadeInDown {
   0% {
     opacity: 0;
-    -webkit-transform: translateX(-2000px);
-    transform: translateX(-2000px);
-  }
-
-  100% {
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideInLeft {
-  0% {
-    opacity: 0;
-    -webkit-transform: translateX(-2000px);
-    -ms-transform: translateX(-2000px);
-    transform: translateX(-2000px);
-  }
-
-  100% {
-    -webkit-transform: translateX(0);
-    -ms-transform: translateX(0);
-    transform: translateX(0);
-  }
-}
-
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/animations\.scss}line{font-family:\00003193}}
-.slideInLeft {
-  -webkit-animation-name: slideInLeft;
-  animation-name: slideInLeft;
-}
-
-@-webkit-keyframes fadeIn {
-  0% {
-    opacity: 0;
-    -webkit-transform: scale(1.2);
-    -webkit-animation-timing-function: ease-out;
+    -webkit-transform: translateY(-20px);
+    -ms-transform: translateY(-20px);
+    transform: translateY(-20px);
   }
 
   100% {
     opacity: 1;
-    -webkit-transform: scale(1);
-    -webkit-animation-timing-function: ease-in;
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
   }
 }
 
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: scale(1.2);
-    animation-timing-function: ease-out;
-  }
-
-  100% {
-    opacity: 1;
-    transform: scale(1);
-    animation-timing-function: ease-in;
-  }
-}
-
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/animations\.scss}line{font-family:\00003226}}
-.fadeIn {
-  -webkit-animation-name: fadeIn;
-  animation-name: fadeIn;
-  -webkit-animation-timing-function: ease-in;
-  animation-timing-function: ease-in;
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/chris-miller\.me\/public\/assets\/scss\/animations\.scss}line{font-family:\0000338}}
+.fadeInDown {
+  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown;
 }
 
 @-webkit-keyframes flash {
@@ -278,7 +70,7 @@
   }
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/animations\.scss}line{font-family:\00003258}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/chris-miller\.me\/public\/assets\/scss\/animations\.scss}line{font-family:\0000368}}
 .flash {
   -webkit-animation: flash 1s ease-out;
   -webkit-animation-iteration-count: 1;
@@ -286,7 +78,7 @@
   -moz-animation-iteration-count: 1;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\000031}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/chris-miller\.me\/public\/assets\/scss\/layout\.scss}line{font-family:\000031}}
 body {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 300;
@@ -294,20 +86,91 @@ body {
   padding: 0;
   overflow: hidden;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\000038}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/chris-miller\.me\/public\/assets\/scss\/layout\.scss}line{font-family:\000038}}
 body #canvas {
   position: relative;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\0000312}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/chris-miller\.me\/public\/assets\/scss\/layout\.scss}line{font-family:\0000312}}
 body a {
   text-decoration: none;
   color: #329ECC;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\0000317}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/chris-miller\.me\/public\/assets\/scss\/layout\.scss}line{font-family:\0000317}}
 body .hidden {
   display: none;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\0000321}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/chris-miller\.me\/public\/assets\/scss\/layout\.scss}line{font-family:\0000321}}
+body .underline {
+  text-decoration: underline;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/chris-miller\.me\/public\/assets\/scss\/layout\.scss}line{font-family:\0000325}}
+body .absolute {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/chris-miller\.me\/public\/assets\/scss\/layout\.scss}line{font-family:\0000331}}
+body h1 {
+  position: relative;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  top: 48%;
+  border: 2px solid #cecece;
+  width: 220px;
+  padding: 10px 8px 10px 8px;
+  margin: 0 auto;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/chris-miller\.me\/public\/assets\/scss\/layout\.scss}line{font-family:\0000347}}
+body h2 {
+  font-family: 'Merriweather', serif;
+  font-size: 10px;
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: 2px;
+  color: white;
+  text-align: center;
+  position: relative;
+  top: 48%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/chris-miller\.me\/public\/assets\/scss\/layout\.scss}line{font-family:\0000359}}
+body ul.links {
+  width: 240px;
+  margin: auto;
+  font-family: 'Merriweather', serif;
+  font-size: 10px;
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: 2px;
+  color: white;
+  text-align: center;
+  position: relative;
+  top: 48%;
+  list-style-type: none;
+  overflow: hidden;
+  padding: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/chris-miller\.me\/public\/assets\/scss\/layout\.scss}line{font-family:\0000375}}
+body ul.links li {
+  float: left;
+  margin-right: 14px;
+  margin-bottom: 10px;
+  margin-left: 14px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/chris-miller\.me\/public\/assets\/scss\/layout\.scss}line{font-family:\0000381}}
+body ul.links li i {
+  font-size: 3.4em;
+  color: #333333;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/chris-miller\.me\/public\/assets\/scss\/layout\.scss}line{font-family:\0000385}}
+body ul.links li i:hover {
+  color: #329ecc;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/chris-miller\.me\/public\/assets\/scss\/layout\.scss}line{font-family:\0000392}}
 body .bg {
   position: absolute;
   top: 0;
@@ -319,221 +182,15 @@ body .bg {
   height: 100%;
   width: 100%;
   -webkit-backface-visibility: hidden;
-  -webkit-animation: fadeIn 2s linear 0s;
-  -moz-animation: fadeIn 2s linear 0s;
-  -o-animation: fadeIn 2s linear 0s;
-  -ms-animation: fadeIn 2s linear 0s;
-  animation: fadeIn 2s linear 0s;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\0000339}}
-body .blurred {
-  -webkit-filter: blur(4px);
-  -moz-filter: blur(4px);
-  -o-filter: blur(4px);
-  -ms-filter: blur(4px);
-  filter: blur(4px);
-  opacity: 0.8;
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/chris-miller\.me\/public\/assets\/scss\/snake\.scss}line{font-family:\000032}}
+#snake-canvas {
+  position: relative;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\0000350}}
-body .container .intro {
-  color: #FFF;
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 40px;
-  -webkit-transition: all 1s;
-  -moz-transition: all 1s;
-  transition: all 1s;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\0000360}}
-body .container .intro h1 {
-  margin: 0;
-  font-weight: normal;
-  font-size: 5em;
-  color: #329ECC;
-  line-height: 1;
-  letter-spacing: -3.9px;
-  text-transform: uppercase;
-  -webkit-transition: all 1s;
-  -moz-transition: all 1s;
-  transition: all 1s;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\0000373}}
-body .container .intro h2 {
-  color: #333;
-  margin: 0 0 0 5px;
-  font-weight: normal;
-  font-size: 2em;
-  border-bottom: 1px solid;
-  -webkit-transition: all 1s;
-  -moz-transition: all 1s;
-  transition: all 1s;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\0000384}}
-body .container .intro p {
-  font-family: Georgia, serif;
-  font-size: 5em;
-  margin: 0 0 0 10px;
-  -webkit-transition: all 1s;
-  -moz-transition: all 1s;
-  transition: all 1s;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\0000392}}
-body .container .intro p.pre {
-  margin: 0;
-  font-weight: normal;
-  font-size: 2em;
-  line-height: 0.90;
-  color: #333;
-  letter-spacing: -1px;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003101}}
-body .container .intro p.quote {
-  color: #FFFFFF;
-  margin-top: 10px;
-  font-size: 1.2em;
-  opacity: .6;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003107}}
-body .container .intro p.quote:hover {
-  opacity: 1;
-  -webkit-transition: all 1s;
-  -moz-transition: all 1s;
-  transition: all 1s;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003114}}
-body .container .intro p.quote span {
-  display: block;
-  font-style: italic;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003122}}
-body .container .intro .social {
-  margin-top: 20px;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003125}}
-body .container .intro .social i {
-  font-size: 2.8em;
-  margin-right: 20px;
-  color: #808080;
-  padding: 12px 14px;
-  opacity: .4;
-  border-radius: 50px;
-  box-shadow: 0 0 0 4px #FFF;
-  -webkit-transition: all 1s;
-  -moz-transition: all 1s;
-  transition: all 1s;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003137}}
-body .container .intro .social i:hover {
-  opacity: .7;
-  background-color: #fff;
-  color: #808080;
-  -webkit-animation: spin 2s linear infinite;
-  -moz-animation: spin 2s linear infinite;
-  animation: spin 2s linear infinite;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003150}}
-body #menu {
-  display: none;
-  position: absolute;
-  bottom: 40px;
-  height: 230px;
-  width: 160px;
-  background: rgba(0, 0, 0, 0.2);
-  color: #FFF;
-  z-index: 1;
-  border-right: 2px dotted #333;
-  border-top: 2px dotted #333;
-  border-top-right-radius: 40px;
-  -moz-border-top-right-radius: 40px;
-  -o-border-top-right-radius: 40px;
-  -webkit-border-top-right-radius: 40px;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003168}}
-body #menu.mobile .content.desktop {
-  display: none;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003171}}
-body #menu.mobile .content.mobile {
-  display: block;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003177}}
-body #menu hr {
-  opacity: .6;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003181}}
-body #menu .content {
-  padding: 10px;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003184}}
-body #menu .content.mobile {
-  display: none;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003189}}
-body #menu p {
-  margin: 0;
-  text-align: center;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003194}}
-body #menu ul {
-  margin: 10px auto 0px 0px;
-  list-style-type: none;
-  padding: 10px;
-  font-size: 1em;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003200}}
-body #menu ul.links {
-  margin-top: 10px;
-  text-align: center;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003204}}
-body #menu ul.links a.inactive {
-  text-decoration: line-through;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003208}}
-body #menu ul.links a i {
-  margin-right: 10px;
-  font-size: 1.2em;
-  color: #333;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003216}}
-body #menu ul.shortcuts {
-  margin: 0;
-  padding: 0;
-  margin-top: 15px;
-  margin-bottom: 5px;
-  color: #ffffff;
-  font-size: .8em;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003227}}
-body #menu ul.shortcuts li {
-  float: left;
-  margin-right: 10px;
-  margin-bottom: 15px;
-  font-size: 1.1em;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003235}}
-body #menu ul.shortcuts li span.key {
-  padding: 5px 10px;
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 5px;
-  margin-right: 7px;
-  font-weight: bold;
-  margin-left: 7px;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003247}}
-body #menu ul li {
-  margin: 0;
-  padding: 0;
-  margin-bottom: 10px;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003252}}
-body #menu ul li a {
-  text-decoration: none;
-  color: #FFF;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003260}}
-body .footer {
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/chris-miller\.me\/public\/assets\/scss\/snake\.scss}line{font-family:\000036}}
+#scoreboard {
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -541,352 +198,15 @@ body .footer {
   background: rgba(0, 0, 0, 0.3);
   color: white;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003269}}
-body .footer #scoreboard div {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/chris-miller\.me\/public\/assets\/scss\/snake\.scss}line{font-family:\0000314}}
+#scoreboard div {
   opacity: .6;
   float: right;
   margin-right: 30px;
-  margin-top: 10px;
-  font-size: 20px;
+  margin-top: 15px;
+  font-size: 14px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003277}}
-body .footer #scoreboard span {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/chris-miller\.me\/public\/assets\/scss\/snake\.scss}line{font-family:\0000322}}
+#scoreboard span {
   font-weight: bold;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/layout\.scss}line{font-family:\00003282}}
-body .footer .menu-button {
-  position: absolute;
-  bottom: 3px;
-  color: #FFF;
-  font-size: 2em;
-  margin-left: 5px;
-  z-index: 2;
-}
-
-/* Smartphones (portrait and landscape) ----------- */
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\000034}}
-  body {
-    position: fixed;
-    overflow: hidden;
-  }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000310}}
-  body .container #menu.mobile {
-    width: 100%;
-    height: 55%;
-    background-color: #333;
-    opacity: .8;
-    bottom: 0;
-    border-radius: 0;
-  }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000320}}
-  body .container #menu .shortcuts li {
-    text-align: center;
-    margin-left: 17px;
-    margin-right: 17px;
-  }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000327}}
-  body .container #menu .shortcuts li span.key {
-    display: block;
-    padding: 0;
-    margin: 0;
-    border-radius: 50px;
-  }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000334}}
-  body .container #menu .shortcuts li span i {
-    position: relative;
-  }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000342}}
-  body .container .intro {
-    text-align: center;
-    padding: 15px;
-  }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000346}}
-  body .container .intro .social {
-    text-align: center;
-  }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000348}}
-  body .container .intro .social i {
-    font-size: 1.2em;
-    opacity: .8;
-    background: rgba(0, 0, 0, 0.6);
-    margin: 2px 5px;
-  }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000356}}
-  body .container .intro h1 {
-    font-size: 3.2em;
-    padding: 4px 0;
-  }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000361}}
-  body .container .intro h2 {
-    font-size: 1.2em;
-  }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000366}}
-  body .container .intro p.quote {
-    color: #ffffff;
-    font-size: 1.1em;
-    font-variant: small-caps;
-    text-align: center;
-  }
-}
-/* Iphone5 (portrait and landscape) ----------- */
-@media screen and (max-device-width: 480px) and (device-aspect-ratio: 40 / 71) {
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000381}}
-  body {
-    overflow: hidden;
-  }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000386}}
-  body .container #menu.mobile {
-    width: 100%;
-    height: 55%;
-    background-color: #333;
-    opacity: .8;
-    bottom: 0;
-    border-radius: 0;
-  }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\0000396}}
-  body .container #menu .shortcuts li {
-    text-align: center;
-    margin-left: 17px;
-    margin-right: 17px;
-  }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003103}}
-  body .container #menu .shortcuts li span.key {
-    border-radius: 50px;
-    display: block;
-    padding: 0;
-    margin: 0;
-  }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003110}}
-  body .container #menu .shortcuts li span i {
-    position: relative;
-  }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003121}}
-  body .container .intro h1 {
-    font-size: 3.0em;
-  }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003125}}
-  body .container .intro .social i {
-    font-size: 2.3em;
-    opacity: .8;
-    margin: 2px 5px;
-    background: rgba(0, 0, 0, 0.6);
-    color: white;
-  }
-}
-/* Smartphones (landscape) ----------- */
-/* Smartphones (portrait) ----------- */
-/* iPads (portrait and landscape) ----------- */
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003149}}
-  body {
-    overflow: hidden;
-  }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003154}}
-  body .container #menu.mobile {
-    width: 100%;
-    height: 150px;
-    background-color: #333;
-    opacity: .8;
-    bottom: 0;
-    border-radius: 0;
-  }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003164}}
-  body .container #menu .shortcuts li {
-    text-align: center;
-    margin-left: 17px;
-    margin-right: 17px;
-  }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003171}}
-  body .container #menu .shortcuts li span.key {
-    border-radius: 50px;
-    display: block;
-    padding: 0;
-    margin: 0;
-  }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003178}}
-  body .container #menu .shortcuts li span i {
-    position: relative;
-  }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003189}}
-  body .container .intro p {
-    font-size: 3em;
-  }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003192}}
-  body .container .intro p.tagline {
-    font-size: 1.4em;
-  }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003196}}
-  body .container .intro p.quote {
-    font-size: 1.0em;
-  }
-}
-/* iPads (landscape) ----------- */
-/* iPads (portrait) ----------- */
-/* Even Smaller Desktops and laptops ----------- */
-@media only screen and (max-width: 480px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003218}}
-  body {
-    position: fixed;
-    overflow: hidden;
-  }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003223}}
-  body .container .intro {
-    text-align: center;
-    padding: 15px;
-  }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003227}}
-  body .container .intro .social {
-    text-align: center;
-  }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003230}}
-  body .container .intro .social i {
-    font-size: 2.3em;
-    opacity: .8;
-    background: rgba(0, 0, 0, 0.6);
-    margin: 5px;
-  }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003238}}
-  body .container .intro h1 {
-    font-size: 3.2em;
-    padding: 4px 0;
-  }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003243}}
-  body .container .intro h2 {
-    font-size: 1.2em;
-  }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003249}}
-  body .container .intro p.quote {
-    color: #ffffff;
-    font-size: 1.1em;
-    font-variant: small-caps;
-    text-align: center;
-  }
-}
-/* Smaller Desktops and laptops ----------- */
-/* Smaller Desktops and laptops ----------- */
-@media only screen and (min-width: 481px) and (max-width: 768px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003272}}
-  body .container .intro {
-    text-align: center;
-  }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003275}}
-  body .container .intro p {
-    font-size: 3em;
-  }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003278}}
-  body .container .intro p.tagline {
-    font-size: 1.3em;
-  }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003282}}
-  body .container .intro p.quote {
-    font-size: 1.0em;
-  }
-}
-/* Mid Desktops and laptops ----------- */
-/* Desktops and laptops ----------- */
-@media only screen and (min-width: 997px) and (max-width: 1224px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003302}}
-  body .container .intro p {
-    font-size: 4em;
-  }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003305}}
-  body .container .intro p.tagline {
-    font-size: 1.6em;
-  }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/media\.scss}line{font-family:\00003309}}
-  body .container .intro p.quote {
-    font-size: 1.1em;
-  }
-}
-/* Large screens ----------- */
-/* iPhone 4 ----------- */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/mobile-images\.scss}line{font-family:\000031}}
-.mobile-swipe-down, .mobile-swipe-left, .mobile-swipe-right, .mobile-swipe-up, .mobile-swipe-down-2x, .mobile-swipe-left-2x, .mobile-swipe-right-2x, .mobile-swipe-up-2x, .mobile-tap-2x, .mobile-blow, .mobile-hold, .mobile-tap {
-  background: url("../img/mobile-sprite.png") no-repeat;
-  display: block;
-}
-
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/mobile-images\.scss}line{font-family:\000036}}
-.mobile-swipe-down {
-  background-position: 0 -0.0142364501953125px;
-  width: 64px;
-  height: 64px;
-}
-
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/mobile-images\.scss}line{font-family:\0000312}}
-.mobile-swipe-left {
-  background-position: -64.99716186523438px -0.005706787109375px;
-  width: 64px;
-  height: 64px;
-}
-
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/mobile-images\.scss}line{font-family:\0000318}}
-.mobile-swipe-right {
-  background-position: -130.99716186523438px -0.0142364501953125px;
-  width: 64px;
-  height: 64px;
-}
-
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/mobile-images\.scss}line{font-family:\0000324}}
-.mobile-swipe-up {
-  background-position: -1.997161865234375px -65.00570678710938px;
-  width: 64px;
-  height: 64px;
-}
-
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/mobile-images\.scss}line{font-family:\0000330}}
-.mobile-swipe-down-2x {
-  background-position: -66.99148559570312px -65.008544921875px;
-  width: 64px;
-  height: 64px;
-}
-
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/mobile-images\.scss}line{font-family:\0000336}}
-.mobile-swipe-left-2x {
-  background-position: -131.99716186523438px -65.00570678710938px;
-  width: 64px;
-  height: 64px;
-}
-
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/mobile-images\.scss}line{font-family:\0000342}}
-.mobile-swipe-right-2x {
-  background-position: -197px -65.01423645019531px;
-  width: 64px;
-  height: 64px;
-}
-
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/mobile-images\.scss}line{font-family:\0000348}}
-.mobile-swipe-up-2x {
-  background-position: -1.991485595703125px -130.0142364501953px;
-  width: 64px;
-  height: 64px;
-}
-
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/mobile-images\.scss}line{font-family:\0000354}}
-.mobile-tap-2x {
-  background-position: -66.99148559570312px -130.00283813476562px;
-  width: 64px;
-  height: 64px;
-}
-
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/mobile-images\.scss}line{font-family:\0000360}}
-.mobile-blow {
-  background-position: -131.99429321289062px -130.00283813476562px;
-  width: 64px;
-  height: 64px;
-}
-
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/mobile-images\.scss}line{font-family:\0000366}}
-.mobile-hold {
-  background-position: -195.99432373046875px 0;
-  width: 64px;
-  height: 64px;
-}
-
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cmiller\/development\/src\/new-site\/public\/assets\/scss\/mobile-images\.scss}line{font-family:\0000372}}
-.mobile-tap {
-  background-position: -196.99716186523438px -129.99432373046875px;
-  width: 64px;
-  height: 64px;
 }

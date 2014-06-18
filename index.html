@@ -15,8 +15,12 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
 
     <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="components/nprogress/nprogress.css">
-    <link rel="stylesheet" href="components/font-awesome/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="js/vendor/components/">
+    <link rel="stylesheet" href="js/vendor/components/font-awesome/css/font-awesome.min.css">
+
+
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:100,700|Merriweather:700,700italic" rel="stylesheet" type="text/css">
 
     <script>
         window.requestAnimationFrame=function(){
@@ -28,98 +32,70 @@
 
 <body>
     <div class="bg"></div>
-    <canvas id="canvas" autofocus="autofocus"></canvas>
-    <div class="container">
-        <div id="menu">
-            <div class="content desktop">
-                <p>Keyboard Events</p>
-                <hr>
-                <div>
-                    <ul class="shortcuts">
-                        <li><span class="key"><i class="fa fa-arrows"></i></span> movement</li>
-                        <li><span class="key">b</span> bot </li>
-                        <li><span class="key">space</span> pause</li>
-                        <li><span class="key">r</span> reset</li>
-                        <li><span class="key">o</span> game toggle </li>
-                    </ul>
-                </div>
-            </div>
 
-            <div class="content mobile">
-                <div>
-                    <ul class="shortcuts">
-                        <li><span class="key"><i class="mobile-swipe-up"></i></span> up</li>
-                        <li><span class="key"><i class="mobile-swipe-down"></i></span> down</li>
-                        <li><span class="key"><i class="mobile-swipe-left"></i></span> left</li>
-                        <li><span class="key"><i class="mobile-swipe-right"></i></span> right</li>
-                        <li><span class="key"><i class="mobile-tap"></i></span> reset</li>
-                        <li class="hidden"><span class="key"><i class="mobile-swipe-right-2x"></i></span> bot</li>
-                        <li class="hidden"><span class="key"><i class="mobile-tap-2x"></i></span> game toggle</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="container absolute">
 
-    <div class="container">
-        <div class="intro">
-            <p class="pre fadeInTop animate dur1">Hello, I am</p>
-            <h1 class="animate speedIn dur1">Chris Miller</h1>
+        <canvas id="snake-canvas" autofocus="autofocus" data-full-screen="true"></canvas>
 
-            <div class="animate slideInLeft dur1">
-                <h2>An Open Source Web Enthusiast.</h2>
-                <p class="quote">
-                    Currently i'm a platform developer at
-                    <a href="http://www.onehealth.com/">OneHealth</a>, a Co-Founder of
-                    <a href="https://github.com/javascriptu">JavascriptU</a>,
-                    <a href="https://github.com/iamchrismiller" target="_BLANK">...</a>
-                    <span>I built this snake game for you to enjoy. Press <i class="fa fa-gamepad fa-2x js-menu-toggle"></i> or <strong>?</strong> for shortcuts</span>
-                </p>
-            </div>
-
-            <div class="social animate slideInLeft dur2">
-                <a href="http://www.linkedin.com/in/chrismiller84" target="_BLANK" title="Linkedin"><i class="fa fa-linkedin"></i></a>
-                <a href="https://github.com/iamchrismiller" target="_BLANK" title="Github"><i class="fa fa-github"></i></a>
-                <a href="https://plus.google.com/108975120791815625181" target="_BLANK" title="Google+"><i class="fa fa-google-plus"></i></a>
-                <a href="https://twitter.com/ChrisMiller84" target="_BLANK" title="Twitter"><i class="fa fa-twitter"></i></a>
-                <a href="mailto:cmille142@gmail.com" target="_BLANK" title="Email"><i class="fa fa-envelope"></i></a>
-                <a href="http://cmiller.svbtle.com/" target="_BLANK" title="Blog"><i class="fa fa-pencil"></i></a>
-            </div>
-        </div>
-    </div>
-
-    <div class="footer">
-        <div class="fa fa-gamepad js-menu-toggle menu-button"></div>
         <div id="scoreboard">
             <div id="score">
-                Score :
-                <span>0</span>
+                Score : <span>0</span>
             </div>
 
             <div id="hi-score">
-                Hi Score :
-                <span>0</span>
+                Hi Score : <span>0</span>
             </div>
 
             <div id="bot-hi-score">
-                Bot Hi Score :
-                <span>0</span>
+                Bot Hi Score : <span>0</span>
             </div>
-
         </div>
     </div>
 
+    <div class="container absolute">
+        <ul class="links animate fadeIn">
+            <li>
+                <a href="http://www.linkedin.com/in/chrismiller84" target="_BLANK" title="Linkedin"><i class="fa fa-linkedin"></i></a>
+            </li>
+            <li>
+                <a href="https://github.com/iamchrismiller" target="_BLANK" title="Github"><i class="fa fa-github"></i></a>
+            </li>
+            <li>
+                <a href="https://twitter.com/ChrisMiller84" target="_BLANK" title="Twitter"><i class="fa fa-twitter"></i></a>
+            </li>
+            <li>
+                <a href="http://cmiller.svbtle.com/" target="_BLANK" title="Blog"><i class="fa fa-pencil"></i></a>
+            </li>
+
+            <!--
+              <a href="https://plus.google.com/108975120791815625181" target="_BLANK" title="Google+"><i class="fa fa-google-plus"></i></a>
+                <a href="mailto:cmille142@gmail.com" target="_BLANK" title="Email"><i class="fa fa-envelope"></i></a>
+              -->
+
+        </ul>
+        <h1 class="">Chris Miller</h1>
+        <h2 class="">Platform Developer At <a href="onehealth.com">OneHealth</a></h2>
+        <h2 class="">Open Source Enthusiast / Late Night Hacker</h2>
+        <h2 class="underline">Use Your Arrow Keys / Swipe / O / R / Spacebar</h2>
+    </div>
+
 <!-- Vendor Component Libraries -->
-<script src="components/jquery/jquery-2.0.3.js"></script>
-<script src="components/nprogress/nprogress.min.js"></script>
-<script src="components/hammerjs/hammer.min.js"></script>
-<script src="components/isMobile/isMobile.min.js"></script>
+<script src="js/vendor/zepto/zepto.js"></script>
+<script src="js/vendor/zepto-touch/zepto-touch.js"></script>
+<script src="js/vendor/components/responsive-snake/build/snake.build.min.js"></script>
 
 <script>
-    NProgress.start();
+    //Start Snake Game
+    //Check it out here https://github.com/iamchrismiller/responsive-snake
+    $(document).ready(function() {
+        ResponsiveSnake.start({
+            snakePixels    : 14,
+            snakeSize      : 4,
+            bot            : true,
+            explosion      : true
+        });
+    });
 </script>
-<!-- Browserified Build -->
-<script src="js/main.build.min.js"></script>
 
 <script>
     (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=

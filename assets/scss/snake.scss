@@ -1,0 +1,25 @@
+
+#snake-canvas {
+  position : relative;
+}
+
+#scoreboard {
+  position   : absolute;
+  bottom     : 0;
+  width      : 100%;
+  height     : 40px;
+  background : rgba(0, 0, 0, 0.3);
+  color      : white;
+
+  div {
+    opacity: .6;
+    float: right;
+    margin-right: 30px;
+    margin-top: 15px;
+    font-size: 14px;
+  }
+
+  span {
+    font-weight : bold;
+  }
+}
