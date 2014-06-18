@@ -1,5 +1,5 @@
 module.exports = {
-  dev     : {
+  dev : {
     options : {
       compass   : true,
       debugInfo : true,

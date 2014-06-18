@@ -1,7 +1,7 @@
 module.exports = {
   install : {
     options : {
-      targetDir      : './public/components',
+      targetDir      : './example/vendor',
       layout         : 'byType',
       install        : true,
       verbose        : true,

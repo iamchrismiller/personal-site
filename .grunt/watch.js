@@ -5,7 +5,7 @@ module.exports = {
   },
 
   src       : {
-    files : ['public/**/*.js', '!public/js/main.build.js'],
+    files : ['public/**/*.js'],
     tasks : ['browserify']
   },
 
