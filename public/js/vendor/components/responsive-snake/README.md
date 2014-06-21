@@ -34,6 +34,17 @@ A Responsive HTML5 Snake Game with a particle explosion on food impact!
     - explosion (bool) default : true
         - Do you want to particle explosion when food is consumed
 
+  Supported Keys / Touches
+
+    - (swipeUp, swipeDown, swipeLeft, swipeRight) Mobile Touch Events  - Directional
+    - (UP/Down/Left/Right) Keyboard Arrow Keys - Directional
+    - (O) - Game On/Off
+    - (R) - Game Restart
+    - (B) - Enable Bot
+    - (+) - Increase Snake Frames Per Second
+    - (-) - Decrease Snake Frames Per Second
+    - (Space Bar) - Pause/Resume Toggle
+
 
 ## Sample Markup
 
@@ -76,21 +87,34 @@ A Responsive HTML5 Snake Game with a particle explosion on food impact!
 
   visit http://iamchrismiller.github.io/responsive-snake/example/
 
-  OR
+  OR clone the repo and open the example
 
   `git clone https://github.com/iamchrismiller/responsive-snake.git`
 
-  `npm install`
-
-  `grunt dev`
+  `npm install && grunt dev`
 
   `open http://127.0.0.1:8000/example/`
 
 
+## Contributing
+
+ In lieu of a formal style-guide, take care to maintain the existing coding style. Lint and test your code using grunt (dev).
+
+
+## License
+
+ Licensed under the MIT license.
+
+
 ## Release History
 
+ * 2014-06-20   v0.1.3   Added key events for (+/-) Frames Per Second
  * 2014-06-17   v0.1.2   Fixed bot enabled flag
  * 2014-06-17   v0.1.1   Added "play" options, exports for AMD/CommonJS
  * 2014-06-17   v0.1.0   Initial Release
+
+## Author
+
+ Chris Miller
 
 ---
