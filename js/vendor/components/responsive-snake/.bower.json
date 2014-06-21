@@ -1,6 +1,6 @@
 {
   "name": "responsive-snake",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "ignore": [
     ".jshintrc",
     "**/*.txt",
@@ -25,11 +25,11 @@
     "game"
   ],
   "license": "MIT",
-  "_release": "0.1.4",
+  "_release": "0.1.5",
   "_resolution": {
     "type": "version",
-    "tag": "v0.1.4",
-    "commit": "545fd4b29305427956973963a400089ada12b936"
+    "tag": "v0.1.5",
+    "commit": "cd7504323ce84701c72f128e8d9de1589a9c151b"
   },
   "_source": "git://github.com/iamchrismiller/responsive-snake.git",
   "_target": "*",
