@@ -1,76 +1,9 @@
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-
   body {
-    position : fixed;
-    overflow: hidden;
-    .container {
 
-      #menu {
-        &.mobile {
-          width            : 100%;
-          height           : 55%;
-          background-color : #333;
-          opacity          : .8;
-          bottom           : 0;
-          border-radius    : 0;
-        }
-
-        .shortcuts {
-          li {
-            text-align   : center;
-            margin-left  : 17px;
-            margin-right : 17px;
-
-            span {
-
-              &.key {
-                display : block;
-                padding : 0;
-                margin  : 0;
-                border-radius : 50px;
-              }
-
-              i {
-                position : relative;
-              }
-            }
-          }
-        }
-      }
-
-      .intro {
-        text-align : center;
-        padding    : 15px;
-
-        .social {
-          text-align : center;
-          i {
-            font-size  : 1.2em;
-            opacity    : .8;
-            background : rgba(0, 0, 0, .6);
-            margin     : 2px 5px;
-          }
-        }
-
-        h1 {
-          font-size : 3.2em;
-          padding   : 4px 0;
-        }
-
-        h2 {
-          font-size: 1.2em;
-        }
-
-        p {
-          &.quote {
-            color        : #ffffff;
-            font-size    : 1.1em;
-            font-variant : small-caps;
-            text-align   : center;
-          }
-        }
-      }
+    .legend {
+      display : none;
     }
   }
 }
@@ -79,128 +12,32 @@
 
 @media screen and (max-device-width : 480px) and (device-aspect-ratio : 40/71) {
   body {
-    overflow: hidden;
-    .container {
 
-      #menu {
-        &.mobile {
-          width            : 100%;
-          height           : 55%;
-          background-color : #333;
-          opacity          : .8;
-          bottom           : 0;
-          border-radius    : 0;
-        }
-
-        .shortcuts {
-          li {
-            text-align   : center;
-            margin-left  : 17px;
-            margin-right : 17px;
-
-            span {
-
-              &.key {
-                border-radius : 50px;
-                display : block;
-                padding : 0;
-                margin  : 0;
-              }
-
-              i {
-                position : relative;
-              }
-            }
-          }
-        }
-
-      }
-
-      .intro {
-
-        h1 {
-          font-size : 3.0em;
-        }
-        .social {
-          i {
-            font-size  : 2.3em;
-            opacity    : .8;
-            margin     : 2px 5px;
-            background : rgba(0, 0, 0, .6);
-            color      : white;
-          }
-        }
-      }
+    .legend {
+      display : none;
     }
+
   }
 }
 
 /* Smartphones (landscape) ----------- */
 @media only screen and (min-width : 321px) {
+  body {
+
+    .legend {
+      display : none;
+    }
+
+  }
 }
 
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width : 320px) {
+
 }
 
 /* iPads (portrait and landscape) ----------- */
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
-
-  body {
-    overflow: hidden;
-    .container {
-
-      #menu {
-        &.mobile {
-          width            : 100%;
-          height           : 150px;
-          background-color : #333;
-          opacity          : .8;
-          bottom           : 0;
-          border-radius    : 0;
-        }
-
-        .shortcuts {
-          li {
-            text-align   : center;
-            margin-left  : 17px;
-            margin-right : 17px;
-
-            span {
-
-              &.key {
-                border-radius : 50px;
-                display : block;
-                padding : 0;
-                margin  : 0;
-              }
-
-              i {
-                position : relative;
-              }
-            }
-          }
-        }
-
-      }
-
-      .intro {
-
-        p {
-          font-size : 3em;
-
-          &.tagline {
-            font-size : 1.4em;
-          }
-
-          &.quote {
-            font-size : 1.0em;
-          }
-
-        }
-      }
-    }
-  }
 
 }
 
@@ -215,48 +52,6 @@
 /* Even Smaller Desktops and laptops ----------- */
 @media only screen and (max-width : 480px) {
 
-  body {
-    position : fixed;
-    overflow: hidden;
-
-    .container {
-      .intro {
-        text-align : center;
-        padding    : 15px;
-
-        .social {
-          text-align : center;
-
-          i {
-            font-size  : 2.3em;
-            opacity    : .8;
-            background : rgba(0, 0, 0, .6);
-            margin     : 5px;
-          }
-        }
-
-        h1 {
-          font-size : 3.2em;
-          padding   : 4px 0;
-        }
-
-        h2 {
-          font-size: 1.2em;
-        }
-
-        p {
-
-          &.quote {
-            color        : #ffffff;
-            font-size    : 1.1em;
-            font-variant : small-caps;
-            text-align   : center;
-          }
-        }
-      }
-    }
-  }
-
 }
 
 /* Smaller Desktops and laptops ----------- */
@@ -266,27 +61,6 @@
 /* Smaller Desktops and laptops ----------- */
 @media only screen and (min-width : 481px) and (max-width : 768px) {
 
-  body {
-    .container {
-
-      .intro {
-        text-align : center;
-
-        p {
-          font-size : 3em;
-
-          &.tagline {
-            font-size : 1.3em;
-          }
-
-          &.quote {
-            font-size : 1.0em;
-          }
-
-        }
-      }
-    }
-  }
 }
 
 /* Mid Desktops and laptops ----------- */
@@ -296,23 +70,6 @@
 /* Desktops and laptops ----------- */
 @media only screen and (min-width : 997px) and (max-width : 1224px) {
 
-  body {
-    .container {
-      .intro {
-        p {
-          font-size : 4em;
-
-          &.tagline {
-            font-size : 1.6em;
-          }
-
-          &.quote {
-            font-size : 1.1em;
-          }
-        }
-      }
-    }
-  }
 }
 
 /* Large screens ----------- */

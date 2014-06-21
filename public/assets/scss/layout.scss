@@ -18,6 +18,11 @@ body {
     display : none;
   }
 
+  .legend {
+    float: left !important;
+    margin-left: 20px;
+  }
+
   .underline {
     text-decoration : underline;
   }

@@ -36,6 +36,8 @@
         <canvas id="snake-canvas" autofocus="autofocus" data-full-screen="true"></canvas>
 
         <div id="scoreboard">
+            <div class="legend">Use Your Arrow Keys / Swipe / O / (+/-) / R / Space-bar</div>
+
             <div id="score">
                 Score : <span>0</span>
             </div>
@@ -73,14 +75,14 @@
         </ul>
         <h1 class="">Chris Miller</h1>
         <h2 class="">Platform Developer At <a href="https://social.onehealth.com" target="_BLANK">OneHealth</a></h2>
-        <h2 class="">Open Source Enthusiast / Late Night Hacker</h2>
-        <h2 class="underline">Use Your Arrow Keys / Swipe / O / (+/-) / R / Space-bar</h2>
+        <h2 class=""><span id="type-container"></span></h2>
     </div>
 
 <!-- Vendor Component Libraries -->
 <script src="js/vendor/zepto/zepto.js"></script>
 <script src="js/vendor/zepto-touch/zepto-touch.js"></script>
 <script src="js/vendor/components/responsive-snake/build/snake.build.min.js"></script>
+<script src="js/vendor/components/typist/build/typist.min.js"></script>
 
 <script>
 
@@ -90,9 +92,29 @@
     }, false);
 
 
-    //Start Snake Game
-    //Check it out here https://github.com/iamchrismiller/responsive-snake
     $(document).ready(function() {
+
+        //Start Typist
+        //Check it out here https://github.com/iamchrismiller/typist
+        new Typist({
+            elementId          : 'type-container',
+            pointer            : '|',
+            typeSpeed          : 100,
+            timeout            : 5000,
+            random             : true,
+            pauseOnPunctuation : false,
+            scrub              : true,
+            start              : true
+        }, [
+           "Open Source Enthusiast",
+           "Late Night Hacker",
+           "Passionate about web technologies",
+           "Opinionated geek",
+           "Has a beautiful soon to be wife"
+        ]);
+
+        //Start Snake Game
+        //Check it out here https://github.com/iamchrismiller/responsive-snake
         ResponsiveSnake.start({
             snakePixels    : 14,
             snakeSize      : 4,
